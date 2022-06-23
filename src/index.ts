@@ -1,35 +1,18 @@
-import { PrismaClient } from "@prisma/client";
+import { ApolloServer } from "apollo-server";
+import { context } from "./context";
 
-const prisma = new PrismaClient();
+const port = process.env.PORT || 3333;
 
-async function main() {
-  await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
-      posts: {
-        create: { title: "Hello World" },
-      },
-      profile: {
-        create: { bio: "I like turtles" },
-      },
-    },
-  });
+import { schema } from "./schema";
+export const server = new ApolloServer({
+  schema,
+  context,
+});
 
-  const allUsers = await prisma.user.findMany({
-    include: {
-      posts: true,
-      profile: true,
-    },
-  });
-
-  console.dir(allUsers, { depth: null });
-}
-
-main()
-  .catch((e) => {
-    throw e;
+server
+  .listen({
+    port,
   })
-  .finally(async () => {
-    await prisma.$disconnect();
+  .then(({ url }) => {
+    console.log(`🚀 Server ready at ${url}`);
   });
