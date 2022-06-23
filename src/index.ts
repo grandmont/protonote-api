@@ -4,6 +4,7 @@ import { context } from "./context";
 const port = process.env.PORT || 3333;
 
 import { schema } from "./schema";
+
 export const server = new ApolloServer({
   schema,
   context,

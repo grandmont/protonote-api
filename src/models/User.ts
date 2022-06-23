@@ -1,4 +1,11 @@
-import { enumType, extendType, intArg, nonNull, objectType } from "nexus";
+import {
+  enumType,
+  extendType,
+  intArg,
+  nonNull,
+  objectType,
+  stringArg,
+} from "nexus";
 
 export const User = objectType({
   name: "User",
@@ -25,6 +32,28 @@ export const UserQuery = extendType({
       type: "User",
       args: {
         id: nonNull(intArg()),
+      },
+    });
+    t.field("getUsers", {
+      type: "User",
+    });
+  },
+});
+
+export const UserMutation = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.field("createUser", {
+      type: "User",
+      args: {
+        name: nonNull(stringArg()),
+        email: nonNull(stringArg()),
+        password: nonNull(stringArg()),
+      },
+      async resolve(parent, args, { prisma }) {
+        return await prisma.user.create({
+          data: args,
+        });
       },
     });
   },

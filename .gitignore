@@ -2,4 +2,6 @@ node_modules/
 dist/
 src/generated/
 *.env*
+!.env.example
 *.db
+generated/
