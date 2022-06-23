@@ -33,9 +33,15 @@ export const UserQuery = extendType({
       args: {
         id: nonNull(intArg()),
       },
+      async resolve(source, args, { prisma }) {
+        return await prisma.user.findUnique({ where: { id: args.id } });
+      },
     });
-    t.field("getUsers", {
+    t.list.field("getUsers", {
       type: "User",
+      async resolve(source, args, { prisma }) {
+        return await prisma.user.findMany();
+      },
     });
   },
 });
@@ -50,7 +56,7 @@ export const UserMutation = extendType({
         email: nonNull(stringArg()),
         password: nonNull(stringArg()),
       },
-      async resolve(parent, args, { prisma }) {
+      async resolve(source, args, { prisma }) {
         return await prisma.user.create({
           data: args,
         });
