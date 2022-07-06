@@ -1,7 +1,3 @@
-node_modules/
-dist/
-src/generated/
-*.env*
-!.env.example
-*.db
-generated/
+node_modules
+# Keep environment variables out of version control
+.env
