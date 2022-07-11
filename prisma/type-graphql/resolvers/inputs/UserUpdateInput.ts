@@ -18,4 +18,9 @@ export class UserUpdateInput {
     nullable: true
   })
   name?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  password?: NullableStringFieldUpdateOperationsInput | undefined;
 }

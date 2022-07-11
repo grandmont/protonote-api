@@ -21,4 +21,9 @@ export class UserCreateManyInput {
     nullable: true
   })
   name?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  password?: string | undefined;
 }

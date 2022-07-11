@@ -8,7 +8,9 @@ import * as outputTypes from "./resolvers/outputs";
 import * as inputTypes from "./resolvers/inputs";
 
 const crudResolversMap = {
-  User: crudResolvers.UserCrudResolver
+  User: crudResolvers.UserCrudResolver,
+  Proto: crudResolvers.ProtoCrudResolver,
+  ProtoProp: crudResolvers.ProtoPropCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -24,10 +26,40 @@ const actionResolversMap = {
     upsertUser: actionResolvers.UpsertUserResolver,
     aggregateUser: actionResolvers.AggregateUserResolver,
     groupByUser: actionResolvers.GroupByUserResolver
+  },
+  Proto: {
+    proto: actionResolvers.FindUniqueProtoResolver,
+    findFirstProto: actionResolvers.FindFirstProtoResolver,
+    protos: actionResolvers.FindManyProtoResolver,
+    createProto: actionResolvers.CreateProtoResolver,
+    createManyProto: actionResolvers.CreateManyProtoResolver,
+    deleteProto: actionResolvers.DeleteProtoResolver,
+    updateProto: actionResolvers.UpdateProtoResolver,
+    deleteManyProto: actionResolvers.DeleteManyProtoResolver,
+    updateManyProto: actionResolvers.UpdateManyProtoResolver,
+    upsertProto: actionResolvers.UpsertProtoResolver,
+    aggregateProto: actionResolvers.AggregateProtoResolver,
+    groupByProto: actionResolvers.GroupByProtoResolver
+  },
+  ProtoProp: {
+    protoProp: actionResolvers.FindUniqueProtoPropResolver,
+    findFirstProtoProp: actionResolvers.FindFirstProtoPropResolver,
+    protoProps: actionResolvers.FindManyProtoPropResolver,
+    createProtoProp: actionResolvers.CreateProtoPropResolver,
+    createManyProtoProp: actionResolvers.CreateManyProtoPropResolver,
+    deleteProtoProp: actionResolvers.DeleteProtoPropResolver,
+    updateProtoProp: actionResolvers.UpdateProtoPropResolver,
+    deleteManyProtoProp: actionResolvers.DeleteManyProtoPropResolver,
+    updateManyProtoProp: actionResolvers.UpdateManyProtoPropResolver,
+    upsertProtoProp: actionResolvers.UpsertProtoPropResolver,
+    aggregateProtoProp: actionResolvers.AggregateProtoPropResolver,
+    groupByProtoProp: actionResolvers.GroupByProtoPropResolver
   }
 };
 const crudResolversInfo = {
-  User: ["user", "findFirstUser", "users", "createUser", "createManyUser", "deleteUser", "updateUser", "deleteManyUser", "updateManyUser", "upsertUser", "aggregateUser", "groupByUser"]
+  User: ["user", "findFirstUser", "users", "createUser", "createManyUser", "deleteUser", "updateUser", "deleteManyUser", "updateManyUser", "upsertUser", "aggregateUser", "groupByUser"],
+  Proto: ["proto", "findFirstProto", "protos", "createProto", "createManyProto", "deleteProto", "updateProto", "deleteManyProto", "updateManyProto", "upsertProto", "aggregateProto", "groupByProto"],
+  ProtoProp: ["protoProp", "findFirstProtoProp", "protoProps", "createProtoProp", "createManyProtoProp", "deleteProtoProp", "updateProtoProp", "deleteManyProtoProp", "updateManyProtoProp", "upsertProtoProp", "aggregateProtoProp", "groupByProtoProp"]
 };
 const argsInfo = {
   FindUniqueUserArgs: ["where"],
@@ -41,7 +73,31 @@ const argsInfo = {
   UpdateManyUserArgs: ["data", "where"],
   UpsertUserArgs: ["where", "create", "update"],
   AggregateUserArgs: ["where", "orderBy", "cursor", "take", "skip"],
-  GroupByUserArgs: ["where", "orderBy", "by", "having", "take", "skip"]
+  GroupByUserArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  FindUniqueProtoArgs: ["where"],
+  FindFirstProtoArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyProtoArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  CreateProtoArgs: ["data"],
+  CreateManyProtoArgs: ["data", "skipDuplicates"],
+  DeleteProtoArgs: ["where"],
+  UpdateProtoArgs: ["data", "where"],
+  DeleteManyProtoArgs: ["where"],
+  UpdateManyProtoArgs: ["data", "where"],
+  UpsertProtoArgs: ["where", "create", "update"],
+  AggregateProtoArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  GroupByProtoArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  FindUniqueProtoPropArgs: ["where"],
+  FindFirstProtoPropArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyProtoPropArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  CreateProtoPropArgs: ["data"],
+  CreateManyProtoPropArgs: ["data", "skipDuplicates"],
+  DeleteProtoPropArgs: ["where"],
+  UpdateProtoPropArgs: ["data", "where"],
+  DeleteManyProtoPropArgs: ["where"],
+  UpdateManyProtoPropArgs: ["data", "where"],
+  UpsertProtoPropArgs: ["where", "create", "update"],
+  AggregateProtoPropArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  GroupByProtoPropArgs: ["where", "orderBy", "by", "having", "take", "skip"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -169,7 +225,9 @@ function applyTypeClassEnhanceConfig<
 }
 
 const modelsInfo = {
-  User: ["id", "email", "name"]
+  User: ["id", "email", "name", "password"],
+  Proto: ["id", "name"],
+  ProtoProp: ["id", "name", "type"]
 };
 
 type ModelNames = keyof typeof models;
@@ -209,13 +267,27 @@ export function applyModelsEnhanceMap(modelsEnhanceMap: ModelsEnhanceMap) {
 
 const outputsInfo = {
   AggregateUser: ["_count", "_avg", "_sum", "_min", "_max"],
-  UserGroupBy: ["id", "email", "name", "_count", "_avg", "_sum", "_min", "_max"],
+  UserGroupBy: ["id", "email", "name", "password", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateProto: ["_count", "_avg", "_sum", "_min", "_max"],
+  ProtoGroupBy: ["id", "name", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateProtoProp: ["_count", "_avg", "_sum", "_min", "_max"],
+  ProtoPropGroupBy: ["id", "name", "type", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
-  UserCountAggregate: ["id", "email", "name", "_all"],
+  UserCountAggregate: ["id", "email", "name", "password", "_all"],
   UserAvgAggregate: ["id"],
   UserSumAggregate: ["id"],
-  UserMinAggregate: ["id", "email", "name"],
-  UserMaxAggregate: ["id", "email", "name"]
+  UserMinAggregate: ["id", "email", "name", "password"],
+  UserMaxAggregate: ["id", "email", "name", "password"],
+  ProtoCountAggregate: ["id", "name", "_all"],
+  ProtoAvgAggregate: ["id"],
+  ProtoSumAggregate: ["id"],
+  ProtoMinAggregate: ["id", "name"],
+  ProtoMaxAggregate: ["id", "name"],
+  ProtoPropCountAggregate: ["id", "name", "type", "_all"],
+  ProtoPropAvgAggregate: ["id"],
+  ProtoPropSumAggregate: ["id"],
+  ProtoPropMinAggregate: ["id", "name", "type"],
+  ProtoPropMaxAggregate: ["id", "name", "type"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -256,29 +328,60 @@ export function applyOutputTypesEnhanceMap(
 }
 
 const inputsInfo = {
-  UserWhereInput: ["AND", "OR", "NOT", "id", "email", "name"],
-  UserOrderByWithRelationInput: ["id", "email", "name"],
+  UserWhereInput: ["AND", "OR", "NOT", "id", "email", "name", "password"],
+  UserOrderByWithRelationInput: ["id", "email", "name", "password"],
   UserWhereUniqueInput: ["id", "email"],
-  UserOrderByWithAggregationInput: ["id", "email", "name", "_count", "_avg", "_max", "_min", "_sum"],
-  UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "email", "name"],
-  UserCreateInput: ["email", "name"],
-  UserUpdateInput: ["email", "name"],
-  UserCreateManyInput: ["id", "email", "name"],
-  UserUpdateManyMutationInput: ["email", "name"],
+  UserOrderByWithAggregationInput: ["id", "email", "name", "password", "_count", "_avg", "_max", "_min", "_sum"],
+  UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "email", "name", "password"],
+  ProtoWhereInput: ["AND", "OR", "NOT", "id", "name"],
+  ProtoOrderByWithRelationInput: ["id", "name"],
+  ProtoWhereUniqueInput: ["id"],
+  ProtoOrderByWithAggregationInput: ["id", "name", "_count", "_avg", "_max", "_min", "_sum"],
+  ProtoScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "name"],
+  ProtoPropWhereInput: ["AND", "OR", "NOT", "id", "name", "type"],
+  ProtoPropOrderByWithRelationInput: ["id", "name", "type"],
+  ProtoPropWhereUniqueInput: ["id"],
+  ProtoPropOrderByWithAggregationInput: ["id", "name", "type", "_count", "_avg", "_max", "_min", "_sum"],
+  ProtoPropScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "name", "type"],
+  UserCreateInput: ["email", "name", "password"],
+  UserUpdateInput: ["email", "name", "password"],
+  UserCreateManyInput: ["id", "email", "name", "password"],
+  UserUpdateManyMutationInput: ["email", "name", "password"],
+  ProtoCreateInput: ["name"],
+  ProtoUpdateInput: ["name"],
+  ProtoCreateManyInput: ["id", "name"],
+  ProtoUpdateManyMutationInput: ["name"],
+  ProtoPropCreateInput: ["name", "type"],
+  ProtoPropUpdateInput: ["name", "type"],
+  ProtoPropCreateManyInput: ["id", "name", "type"],
+  ProtoPropUpdateManyMutationInput: ["name", "type"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
-  UserCountOrderByAggregateInput: ["id", "email", "name"],
+  UserCountOrderByAggregateInput: ["id", "email", "name", "password"],
   UserAvgOrderByAggregateInput: ["id"],
-  UserMaxOrderByAggregateInput: ["id", "email", "name"],
-  UserMinOrderByAggregateInput: ["id", "email", "name"],
+  UserMaxOrderByAggregateInput: ["id", "email", "name", "password"],
+  UserMinOrderByAggregateInput: ["id", "email", "name", "password"],
   UserSumOrderByAggregateInput: ["id"],
   IntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   StringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
   StringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
+  ProtoCountOrderByAggregateInput: ["id", "name"],
+  ProtoAvgOrderByAggregateInput: ["id"],
+  ProtoMaxOrderByAggregateInput: ["id", "name"],
+  ProtoMinOrderByAggregateInput: ["id", "name"],
+  ProtoSumOrderByAggregateInput: ["id"],
+  EnumProtoPropTypeFilter: ["equals", "in", "notIn", "not"],
+  ProtoPropCountOrderByAggregateInput: ["id", "name", "type"],
+  ProtoPropAvgOrderByAggregateInput: ["id"],
+  ProtoPropMaxOrderByAggregateInput: ["id", "name", "type"],
+  ProtoPropMinOrderByAggregateInput: ["id", "name", "type"],
+  ProtoPropSumOrderByAggregateInput: ["id"],
+  EnumProtoPropTypeWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
   StringFieldUpdateOperationsInput: ["set"],
   NullableStringFieldUpdateOperationsInput: ["set"],
   IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
+  EnumProtoPropTypeFieldUpdateOperationsInput: ["set"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
@@ -286,7 +389,9 @@ const inputsInfo = {
   NestedFloatFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
-  NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"]
+  NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedEnumProtoPropTypeFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumProtoPropTypeWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

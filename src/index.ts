@@ -2,18 +2,13 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
 import { context } from "./context";
-import { resolvers } from "../prisma/type-graphql";
+import { schema } from "./schema";
 
 const port = process.env.PORT || 3333;
 
 async function bootstrap() {
-  const schema = await buildSchema({
-    resolvers,
-    validate: false,
-  });
-
   const server = new ApolloServer({
-    schema,
+    schema: await buildSchema(schema),
     context,
   });
 

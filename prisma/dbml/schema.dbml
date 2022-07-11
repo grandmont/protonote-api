@@ -6,4 +6,21 @@ Table User {
   id Int [pk, increment]
   email String [unique, not null]
   name String
+  password String
+}
+
+Table Proto {
+  id Int [pk, increment]
+  name String
+}
+
+Table ProtoProp {
+  id Int [pk, increment]
+  name String
+  type ProtoPropType [not null]
+}
+
+Enum ProtoPropType {
+  DESCRIPTION
+  LIKERT
 }

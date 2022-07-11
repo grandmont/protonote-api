@@ -4,14 +4,12 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn docker && ts-node-dev --no-notify --respawn --transpile-only src",
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src",
     "start": "node dist/server",
-    "docker": "docker-compose up -d",
+    "docker": "docker-compose up -d && yarn dev",
     "build": "yarn generate && tsc",
-    "grc": "node ./scripts grc",
     "migrate": "prisma migrate dev",
-    "generate": "yarn generate:prisma",
-    "generate:prisma": "prisma generate"
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "3.15",

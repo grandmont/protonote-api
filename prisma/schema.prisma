@@ -17,7 +17,24 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String?
+}
+
+model Proto {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
+
+model ProtoProp {
+  id   Int           @id @default(autoincrement())
+  name String?
+  type ProtoPropType
+}
+
+enum ProtoPropType {
+  DESCRIPTION
+  LIKERT
 }
