@@ -1,10 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
 
-export enum ProtoPropType {
+export enum ProtoPropEnum {
   DESCRIPTION = "DESCRIPTION",
   LIKERT = "LIKERT"
 }
-TypeGraphQL.registerEnumType(ProtoPropType, {
-  name: "ProtoPropType",
+TypeGraphQL.registerEnumType(ProtoPropEnum, {
+  name: "ProtoPropEnum",
   description: undefined,
 });

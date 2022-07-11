@@ -2,29 +2,29 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ProtoPropType } from "../../enums/ProtoPropType";
+import { ProtoPropEnum } from "../../enums/ProtoPropEnum";
 
-@TypeGraphQL.InputType("NestedEnumProtoPropTypeFilter", {
+@TypeGraphQL.InputType("NestedEnumProtoPropEnumFilter", {
   isAbstract: true
 })
-export class NestedEnumProtoPropTypeFilter {
-  @TypeGraphQL.Field(_type => ProtoPropType, {
+export class NestedEnumProtoPropEnumFilter {
+  @TypeGraphQL.Field(_type => ProtoPropEnum, {
     nullable: true
   })
   equals?: "DESCRIPTION" | "LIKERT" | undefined;
 
-  @TypeGraphQL.Field(_type => [ProtoPropType], {
+  @TypeGraphQL.Field(_type => [ProtoPropEnum], {
     nullable: true
   })
   in?: Array<"DESCRIPTION" | "LIKERT"> | undefined;
 
-  @TypeGraphQL.Field(_type => [ProtoPropType], {
+  @TypeGraphQL.Field(_type => [ProtoPropEnum], {
     nullable: true
   })
   notIn?: Array<"DESCRIPTION" | "LIKERT"> | undefined;
 
-  @TypeGraphQL.Field(_type => NestedEnumProtoPropTypeFilter, {
+  @TypeGraphQL.Field(_type => NestedEnumProtoPropEnumFilter, {
     nullable: true
   })
-  not?: NestedEnumProtoPropTypeFilter | undefined;
+  not?: NestedEnumProtoPropEnumFilter | undefined;
 }

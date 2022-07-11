@@ -35,5 +35,5 @@ export class FindFirstProtoPropArgs {
   @TypeGraphQL.Field(_type => [ProtoPropScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "name" | "type"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "type" | "protoId"> | undefined;
 }

@@ -7,7 +7,7 @@ import { ProtoPropCountAggregate } from "../outputs/ProtoPropCountAggregate";
 import { ProtoPropMaxAggregate } from "../outputs/ProtoPropMaxAggregate";
 import { ProtoPropMinAggregate } from "../outputs/ProtoPropMinAggregate";
 import { ProtoPropSumAggregate } from "../outputs/ProtoPropSumAggregate";
-import { ProtoPropType } from "../../enums/ProtoPropType";
+import { ProtoPropEnum } from "../../enums/ProtoPropEnum";
 
 @TypeGraphQL.ObjectType("ProtoPropGroupBy", {
   isAbstract: true
@@ -18,15 +18,30 @@ export class ProtoPropGroupBy {
   })
   id!: number;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   name!: string | null;
 
-  @TypeGraphQL.Field(_type => ProtoPropType, {
+  @TypeGraphQL.Field(_type => ProtoPropEnum, {
     nullable: false
   })
   type!: "DESCRIPTION" | "LIKERT";
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  protoId!: number;
 
   @TypeGraphQL.Field(_type => ProtoPropCountAggregate, {
     nullable: true

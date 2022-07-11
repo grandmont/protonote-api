@@ -1,0 +1,1 @@
+export { ProtoPropsArgs } from "./ProtoPropsArgs";

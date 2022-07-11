@@ -12,4 +12,9 @@ export class ProtoPropAvgOrderByAggregateInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  protoId?: "asc" | "desc" | undefined;
 }

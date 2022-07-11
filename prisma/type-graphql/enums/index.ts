@@ -1,5 +1,5 @@
+export { ProtoPropEnum } from "./ProtoPropEnum";
 export { ProtoPropScalarFieldEnum } from "./ProtoPropScalarFieldEnum";
-export { ProtoPropType } from "./ProtoPropType";
 export { ProtoScalarFieldEnum } from "./ProtoScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { SortOrder } from "./SortOrder";

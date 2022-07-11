@@ -2,7 +2,10 @@ import * as TypeGraphQL from "type-graphql";
 
 export enum ProtoScalarFieldEnum {
   id = "id",
-  name = "name"
+  createdAt = "createdAt",
+  updatedAt = "updatedAt",
+  title = "title",
+  userId = "userId"
 }
 TypeGraphQL.registerEnumType(ProtoScalarFieldEnum, {
   name: "ProtoScalarFieldEnum",

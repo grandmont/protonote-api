@@ -11,4 +11,9 @@ export class ProtoSumAggregate {
     nullable: true
   })
   id!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  userId!: number | null;
 }

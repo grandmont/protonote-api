@@ -17,10 +17,25 @@ export class ProtoGroupBy {
   })
   id!: number;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  name!: string | null;
+  title!: string | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  userId!: number;
 
   @TypeGraphQL.Field(_type => ProtoCountAggregate, {
     nullable: true

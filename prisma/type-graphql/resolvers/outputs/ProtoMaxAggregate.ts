@@ -12,8 +12,23 @@ export class ProtoMaxAggregate {
   })
   id!: number | null;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt!: Date | null;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  updatedAt!: Date | null;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  name!: string | null;
+  title!: string | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  userId!: number | null;
 }

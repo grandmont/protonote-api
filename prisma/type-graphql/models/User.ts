@@ -2,6 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { Proto } from "../models/Proto";
+import { UserCount } from "../resolvers/outputs/UserCount";
 
 @TypeGraphQL.ObjectType("User", {
   isAbstract: true
@@ -12,6 +14,16 @@ export class User {
   })
   id!: number;
 
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -20,10 +32,27 @@ export class User {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  name?: string | null;
+  username?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  firstName?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  lastName?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   password?: string | null;
+
+  protos?: Proto[];
+
+  @TypeGraphQL.Field(_type => UserCount, {
+    nullable: true
+  })
+  _count?: UserCount | null;
 }

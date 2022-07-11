@@ -20,7 +20,7 @@ export class GroupByProtoPropArgs {
   @TypeGraphQL.Field(_type => [ProtoPropScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "name" | "type">;
+  by!: Array<"id" | "createdAt" | "updatedAt" | "name" | "type" | "protoId">;
 
   @TypeGraphQL.Field(_type => ProtoPropScalarWhereWithAggregatesInput, {
     nullable: true

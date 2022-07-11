@@ -2,7 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { EnumProtoPropTypeWithAggregatesFilter } from "../inputs/EnumProtoPropTypeWithAggregatesFilter";
+import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
+import { EnumProtoPropEnumWithAggregatesFilter } from "../inputs/EnumProtoPropEnumWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 
@@ -30,13 +31,28 @@ export class ProtoPropScalarWhereWithAggregatesInput {
   })
   id?: IntWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
+  })
+  createdAt?: DateTimeWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
+    nullable: true
+  })
+  updatedAt?: DateTimeWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
   name?: StringNullableWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => EnumProtoPropTypeWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => EnumProtoPropEnumWithAggregatesFilter, {
     nullable: true
   })
-  type?: EnumProtoPropTypeWithAggregatesFilter | undefined;
+  type?: EnumProtoPropEnumWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+    nullable: true
+  })
+  protoId?: IntWithAggregatesFilter | undefined;
 }

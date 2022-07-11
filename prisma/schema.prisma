@@ -17,24 +17,38 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String?
-  password String?
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  email     String   @unique
+  username  String?  @unique
+  firstName String?
+  lastName  String?
+  password  String?
+  protos    Proto[]
 }
 
 model Proto {
-  id   Int     @id @default(autoincrement())
-  name String?
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  title     String?
+  user      User        @relation(fields: [userId], references: [id])
+  userId    Int
+  props     ProtoProp[]
 }
 
 model ProtoProp {
-  id   Int           @id @default(autoincrement())
-  name String?
-  type ProtoPropType
+  id        Int           @id @default(autoincrement())
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @default(now())
+  name      String?
+  type      ProtoPropEnum
+  proto     Proto         @relation(fields: [protoId], references: [id])
+  protoId   Int
 }
 
-enum ProtoPropType {
+enum ProtoPropEnum {
   DESCRIPTION
   LIKERT
 }
