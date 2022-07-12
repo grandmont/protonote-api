@@ -30,15 +30,5 @@ export class UserCreateWithoutProtosInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  firstName?: string | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  lastName?: string | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
   password?: string | undefined;
 }

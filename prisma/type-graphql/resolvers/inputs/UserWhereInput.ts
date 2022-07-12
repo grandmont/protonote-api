@@ -55,16 +55,6 @@ export class UserWhereInput {
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  firstName?: StringNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
-  lastName?: StringNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
   password?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => ProtoListRelationFilter, {

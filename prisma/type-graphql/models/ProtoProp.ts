@@ -24,10 +24,10 @@ export class ProtoProp {
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
     nullable: true
   })
-  name?: string | null;
+  value?: Prisma.JsonValue | null;
 
   @TypeGraphQL.Field(_type => ProtoPropEnum, {
     nullable: false

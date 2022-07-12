@@ -35,5 +35,5 @@ export class FindManyProtoPropArgs {
   @TypeGraphQL.Field(_type => [ProtoPropScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "name" | "type" | "protoId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "value" | "type" | "protoId"> | undefined;
 }

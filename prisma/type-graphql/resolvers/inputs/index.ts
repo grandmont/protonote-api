@@ -7,6 +7,8 @@ export { EnumProtoPropEnumWithAggregatesFilter } from "./EnumProtoPropEnumWithAg
 export { IntFieldUpdateOperationsInput } from "./IntFieldUpdateOperationsInput";
 export { IntFilter } from "./IntFilter";
 export { IntWithAggregatesFilter } from "./IntWithAggregatesFilter";
+export { JsonNullableFilter } from "./JsonNullableFilter";
+export { JsonNullableWithAggregatesFilter } from "./JsonNullableWithAggregatesFilter";
 export { NestedDateTimeFilter } from "./NestedDateTimeFilter";
 export { NestedDateTimeWithAggregatesFilter } from "./NestedDateTimeWithAggregatesFilter";
 export { NestedEnumProtoPropEnumFilter } from "./NestedEnumProtoPropEnumFilter";
@@ -15,6 +17,7 @@ export { NestedFloatFilter } from "./NestedFloatFilter";
 export { NestedIntFilter } from "./NestedIntFilter";
 export { NestedIntNullableFilter } from "./NestedIntNullableFilter";
 export { NestedIntWithAggregatesFilter } from "./NestedIntWithAggregatesFilter";
+export { NestedJsonNullableFilter } from "./NestedJsonNullableFilter";
 export { NestedStringFilter } from "./NestedStringFilter";
 export { NestedStringNullableFilter } from "./NestedStringNullableFilter";
 export { NestedStringNullableWithAggregatesFilter } from "./NestedStringNullableWithAggregatesFilter";

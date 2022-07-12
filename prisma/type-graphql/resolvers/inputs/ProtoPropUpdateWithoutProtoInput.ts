@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { EnumProtoPropEnumFieldUpdateOperationsInput } from "../inputs/EnumProtoPropEnumFieldUpdateOperationsInput";
-import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("ProtoPropUpdateWithoutProtoInput", {
   isAbstract: true
@@ -20,10 +19,10 @@ export class ProtoPropUpdateWithoutProtoInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
     nullable: true
   })
-  name?: NullableStringFieldUpdateOperationsInput | undefined;
+  value?: Prisma.InputJsonValue | undefined;
 
   @TypeGraphQL.Field(_type => EnumProtoPropEnumFieldUpdateOperationsInput, {
     nullable: true

@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumProtoPropEnumFilter } from "../inputs/EnumProtoPropEnumFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
+import { JsonNullableFilter } from "../inputs/JsonNullableFilter";
 
 @TypeGraphQL.InputType("ProtoPropScalarWhereInput", {
   isAbstract: true
@@ -41,10 +41,10 @@ export class ProtoPropScalarWhereInput {
   })
   updatedAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
+  @TypeGraphQL.Field(_type => JsonNullableFilter, {
     nullable: true
   })
-  name?: StringNullableFilter | undefined;
+  value?: JsonNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => EnumProtoPropEnumFilter, {
     nullable: true

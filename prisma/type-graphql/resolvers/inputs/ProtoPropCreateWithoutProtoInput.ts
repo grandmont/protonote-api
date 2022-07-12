@@ -18,10 +18,10 @@ export class ProtoPropCreateWithoutProtoInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => String, {
+  @TypeGraphQL.Field(_type => GraphQLScalars.JSONResolver, {
     nullable: true
   })
-  name?: string | undefined;
+  value?: Prisma.InputJsonValue | undefined;
 
   @TypeGraphQL.Field(_type => ProtoPropEnum, {
     nullable: false
