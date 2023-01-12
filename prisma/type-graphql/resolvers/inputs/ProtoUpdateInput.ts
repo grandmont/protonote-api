@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { ProtoPropUpdateManyWithoutProtoInput } from "../inputs/ProtoPropUpdateManyWithoutProtoInput";
 import { UserUpdateOneRequiredWithoutProtosInput } from "../inputs/UserUpdateOneRequiredWithoutProtosInput";
 
 @TypeGraphQL.InputType("ProtoUpdateInput", {
@@ -30,9 +29,4 @@ export class ProtoUpdateInput {
     nullable: true
   })
   user?: UserUpdateOneRequiredWithoutProtosInput | undefined;
-
-  @TypeGraphQL.Field(_type => ProtoPropUpdateManyWithoutProtoInput, {
-    nullable: true
-  })
-  props?: ProtoPropUpdateManyWithoutProtoInput | undefined;
 }

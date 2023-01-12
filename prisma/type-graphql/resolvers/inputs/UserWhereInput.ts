@@ -37,11 +37,6 @@ export class UserWhereInput {
   })
   createdAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeFilter, {
-    nullable: true
-  })
-  updatedAt?: DateTimeFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -51,11 +46,6 @@ export class UserWhereInput {
     nullable: true
   })
   username?: StringNullableFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
-  password?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => ProtoListRelationFilter, {
     nullable: true

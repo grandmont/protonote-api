@@ -19,11 +19,6 @@ export class User {
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
-  })
-  updatedAt!: Date;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -33,11 +28,6 @@ export class User {
     nullable: true
   })
   username?: string | null;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  password?: string | null;
 
   protos?: Proto[];
 

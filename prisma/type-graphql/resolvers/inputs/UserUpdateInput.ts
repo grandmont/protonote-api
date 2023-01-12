@@ -16,11 +16,6 @@ export class UserUpdateInput {
   })
   createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
-
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -30,11 +25,6 @@ export class UserUpdateInput {
     nullable: true
   })
   username?: NullableStringFieldUpdateOperationsInput | undefined;
-
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
-    nullable: true
-  })
-  password?: NullableStringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => ProtoUpdateManyWithoutUserInput, {
     nullable: true

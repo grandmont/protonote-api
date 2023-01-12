@@ -5,10 +5,8 @@
 Table User {
   id Int [pk, increment]
   createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [default: `now()`, not null]
   email String [unique, not null]
   username String [unique]
-  password String
   protos Proto [not null]
 }
 
@@ -19,24 +17,6 @@ Table Proto {
   title String
   user User [not null]
   userId Int [not null]
-  props ProtoProp [not null]
-}
-
-Table ProtoProp {
-  id Int [pk, increment]
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [default: `now()`, not null]
-  value Json
-  type ProtoPropEnum [not null]
-  proto Proto [not null]
-  protoId Int [not null]
-}
-
-Enum ProtoPropEnum {
-  DESCRIPTION
-  LIKERT
 }
 
 Ref: Proto.userId > User.id
-
-Ref: ProtoProp.protoId > Proto.id

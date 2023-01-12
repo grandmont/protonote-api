@@ -17,11 +17,6 @@ export class UserCreateManyInput {
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updatedAt?: Date | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -31,9 +26,4 @@ export class UserCreateManyInput {
     nullable: true
   })
   username?: string | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  password?: string | undefined;
 }

@@ -25,26 +25,10 @@ model User {
 }
 
 model Proto {
-  id        Int         @id @default(autoincrement())
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now())
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
   title     String?
-  user      User        @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   userId    Int
-  props     ProtoProp[]
-}
-
-model ProtoProp {
-  id        Int           @id @default(autoincrement())
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @default(now())
-  value     Json?
-  type      ProtoPropEnum
-  proto     Proto         @relation(fields: [protoId], references: [id])
-  protoId   Int
-}
-
-enum ProtoPropEnum {
-  DESCRIPTION
-  LIKERT
 }

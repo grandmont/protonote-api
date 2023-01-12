@@ -12,11 +12,6 @@ export class UserCreateWithoutProtosInput {
   })
   createdAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: true
-  })
-  updatedAt?: Date | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -26,9 +21,4 @@ export class UserCreateWithoutProtosInput {
     nullable: true
   })
   username?: string | undefined;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  password?: string | undefined;
 }

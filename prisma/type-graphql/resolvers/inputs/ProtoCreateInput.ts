@@ -2,7 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { ProtoPropCreateNestedManyWithoutProtoInput } from "../inputs/ProtoPropCreateNestedManyWithoutProtoInput";
 import { UserCreateNestedOneWithoutProtosInput } from "../inputs/UserCreateNestedOneWithoutProtosInput";
 
 @TypeGraphQL.InputType("ProtoCreateInput", {
@@ -28,9 +27,4 @@ export class ProtoCreateInput {
     nullable: false
   })
   user!: UserCreateNestedOneWithoutProtosInput;
-
-  @TypeGraphQL.Field(_type => ProtoPropCreateNestedManyWithoutProtoInput, {
-    nullable: true
-  })
-  props?: ProtoPropCreateNestedManyWithoutProtoInput | undefined;
 }

@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { ProtoPropListRelationFilter } from "../inputs/ProtoPropListRelationFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
@@ -56,9 +55,4 @@ export class ProtoWhereInput {
     nullable: true
   })
   userId?: IntFilter | undefined;
-
-  @TypeGraphQL.Field(_type => ProtoPropListRelationFilter, {
-    nullable: true
-  })
-  props?: ProtoPropListRelationFilter | undefined;
 }

@@ -36,11 +36,6 @@ export class UserScalarWhereWithAggregatesInput {
   })
   createdAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
-    nullable: true
-  })
-  updatedAt?: DateTimeWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
     nullable: true
   })
@@ -50,9 +45,4 @@ export class UserScalarWhereWithAggregatesInput {
     nullable: true
   })
   username?: StringNullableWithAggregatesFilter | undefined;
-
-  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  password?: StringNullableWithAggregatesFilter | undefined;
 }

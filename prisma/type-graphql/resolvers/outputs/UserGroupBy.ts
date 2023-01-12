@@ -22,11 +22,6 @@ export class UserGroupBy {
   })
   createdAt!: Date;
 
-  @TypeGraphQL.Field(_type => Date, {
-    nullable: false
-  })
-  updatedAt!: Date;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -36,11 +31,6 @@ export class UserGroupBy {
     nullable: true
   })
   username!: string | null;
-
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  password!: string | null;
 
   @TypeGraphQL.Field(_type => UserCountAggregate, {
     nullable: true

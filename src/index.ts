@@ -4,7 +4,7 @@ import { buildSchema } from "type-graphql";
 import { context } from "./context";
 import { schema } from "./schema";
 
-const port = process.env.PORT || 3333;
+const port = process.env.PORT || 4000;
 
 async function bootstrap() {
   const server = new ApolloServer({
