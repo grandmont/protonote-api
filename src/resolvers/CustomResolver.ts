@@ -4,7 +4,7 @@ import { User } from "../../prisma/type-graphql";
 
 // This is an example of custom resolver
 @Resolver()
-export class CustomResolver {
+export default class CustomResolver {
   @Query((_returns) => User, { nullable: true })
   async bestUser(@Ctx() { prisma }: Context): Promise<User | null> {
     return await prisma.user.findUnique({
