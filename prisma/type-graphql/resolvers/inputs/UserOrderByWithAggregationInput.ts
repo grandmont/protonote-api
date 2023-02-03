@@ -31,7 +31,12 @@ export class UserOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  username?: "asc" | "desc" | undefined;
+  name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  picture?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => UserCountOrderByAggregateInput, {
     nullable: true

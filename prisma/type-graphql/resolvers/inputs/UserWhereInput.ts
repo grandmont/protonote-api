@@ -6,7 +6,6 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { ProtoListRelationFilter } from "../inputs/ProtoListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
-import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("UserWhereInput", {
   isAbstract: true
@@ -42,10 +41,15 @@ export class UserWhereInput {
   })
   email?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
+  @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  username?: StringNullableFilter | undefined;
+  name?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  picture?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => ProtoListRelationFilter, {
     nullable: true

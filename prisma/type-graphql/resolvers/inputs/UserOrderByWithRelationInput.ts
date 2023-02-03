@@ -27,7 +27,12 @@ export class UserOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  username?: "asc" | "desc" | undefined;
+  name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  picture?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => ProtoOrderByRelationAggregateInput, {
     nullable: true

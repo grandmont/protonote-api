@@ -1,9 +1,10 @@
-import { ForbiddenError } from "apollo-server-core";
+import { AuthenticationError, ForbiddenError } from "apollo-server-core";
 import { CookieOptions } from "express";
 import { User } from "../../prisma/type-graphql";
 import { AuthInput } from "../schemas/Auth";
 import { Context, prisma } from "../context";
 import { signJwt, verifyJwt } from "../utils/jwt";
+import { getGoogleUserInfo } from "../utils/google";
 
 // Cookie Options
 const accessTokenExpiresIn = 15;
@@ -18,27 +19,39 @@ const cookieOptions: CookieOptions = {
 
 const accessTokenCookieOptions = {
   ...cookieOptions,
-  maxAge: accessTokenExpiresIn * 60 * 1000,
-  expires: new Date(Date.now() + accessTokenExpiresIn * 60 * 1000),
+  // maxAge: accessTokenExpiresIn * 60 * 1000,
+  // expires: new Date(Date.now() + accessTokenExpiresIn * 60 * 1000),
 };
 
 const refreshTokenCookieOptions = {
   ...cookieOptions,
-  maxAge: refreshTokenExpiresIn * 60 * 1000,
-  expires: new Date(Date.now() + refreshTokenExpiresIn * 60 * 1000),
+  // maxAge: refreshTokenExpiresIn * 60 * 1000,
+  // expires: new Date(Date.now() + refreshTokenExpiresIn * 60 * 1000),
 };
 
 if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
-async function findOrCreateUser(input: AuthInput): Promise<User | null> {
-  const { email } = input;
+type UserInfoType = {
+  id: string;
+  given_name: string;
+  email: string;
+  picture: string;
+};
 
+async function findOrCreateUser({
+  // id, external id
+  given_name,
+  email,
+  picture,
+}: UserInfoType): Promise<User | null> {
   const user = await prisma.user.findUnique({ where: { email } });
 
   if (!user) {
     return await prisma.user.create({
       data: {
         email,
+        name: given_name,
+        picture,
       },
     });
   }
@@ -65,8 +78,18 @@ export default class UserService {
   // Authenticate User
   async authenticateUser(input: AuthInput, { res }: Context) {
     try {
+      console.log("Authenticating User");
+
       // 1. Find user by email
-      const user = await findOrCreateUser(input);
+      const userInfo = await getGoogleUserInfo(input.accessToken);
+
+      if (userInfo.error) {
+        throw new AuthenticationError(
+          "Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+        );
+      }
+
+      const user = await findOrCreateUser(userInfo);
 
       // 2. Sign JWT Tokens
       const { access_token, refresh_token } = signTokens(user);
@@ -86,6 +109,7 @@ export default class UserService {
       };
     } catch (error) {
       console.error(error);
+      return error;
     }
   }
 
@@ -136,6 +160,7 @@ export default class UserService {
       };
     } catch (error) {
       console.error(error);
+      return error;
     }
   }
 }

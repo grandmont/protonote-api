@@ -28,9 +28,14 @@ export class UserGroupBy {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  username!: string | null;
+  name!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  picture!: string;
 
   @TypeGraphQL.Field(_type => UserCountAggregate, {
     nullable: true

@@ -3,9 +3,9 @@ import { Context, prisma } from "../context";
 import { verifyJwt } from "../utils/jwt";
 import { NextFn, ResolverData } from "type-graphql";
 
-const deserializeUser = async ({ context }: ResolverData, next: NextFn) => {
+const ValidateToken = async ({ context }: ResolverData, next: NextFn) => {
   try {
-    const { req } = context as Context
+    const { req } = context as Context;
 
     // Get the access token
     let access_token: string;
@@ -30,7 +30,7 @@ const deserializeUser = async ({ context }: ResolverData, next: NextFn) => {
 
     if (!decoded) throw new AuthenticationError("Invalid access token");
 
-    const id = Number(decoded.userId)
+    const id = Number(decoded.userId);
 
     const user = await prisma.user.findUnique({
       where: { id },
@@ -38,15 +38,18 @@ const deserializeUser = async ({ context }: ResolverData, next: NextFn) => {
 
     if (!user) {
       throw new ForbiddenError(
-        "The user belonging to this token no logger exist"
+        "The user belonging to this token no longer exist"
       );
     }
 
-    return next()
+    // req.user = user;
+    Object.assign(req, { user });
+
+    return next();
   } catch (error: any) {
     console.error(error);
-    return error
+    return error;
   }
 };
 
-export default deserializeUser;
+export default ValidateToken;

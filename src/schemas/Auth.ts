@@ -4,7 +4,7 @@ import { User } from '../../prisma/type-graphql';
 @InputType()
 export class AuthInput {
   @Field(() => String)
-  email: string;
+  accessToken: string;
 }
 
 @ObjectType()

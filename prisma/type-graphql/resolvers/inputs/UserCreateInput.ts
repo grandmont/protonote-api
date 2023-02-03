@@ -19,9 +19,14 @@ export class UserCreateInput {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: true
+    nullable: false
   })
-  username?: string | undefined;
+  name!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  picture!: string;
 
   @TypeGraphQL.Field(_type => ProtoCreateNestedManyWithoutUserInput, {
     nullable: true

@@ -22,6 +22,8 @@
     "graphql-fields": "^2.0.3",
     "graphql-scalars": "^1.17.0",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "node-fetch": "2",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1"
   },

@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
+import { User } from "../prisma/type-graphql";
 
 export const prisma = new PrismaClient();
 
 type ContextParams = {
-  req: Request;
+  req: { user?: User } & Request;
   res: Response;
 };
 

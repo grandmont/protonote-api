@@ -1,16 +1,28 @@
-import { Resolver, Query, Ctx } from "type-graphql";
+import { Resolver, Query, Ctx, UseMiddleware, Arg } from "type-graphql";
 import { Context } from "../context";
 import { Proto } from "../../prisma/type-graphql";
+import ValidateToken from "../middlewares/ValidateToken";
+import { getDateString } from "../utils/parsers";
 
 @Resolver()
 export default class MemoResolver {
   @Query((_returns) => Proto, { nullable: true })
-  async getToday(@Ctx() { prisma }: Context): Promise<Proto | null> {
-    return await prisma.proto.findFirst({
-      where: { userId: 1 },
+  @UseMiddleware(ValidateToken)
+  async getToday(@Arg("dateString") dateString: string, @Ctx() { prisma, req }: Context): Promise<Proto | null> {
+    console.log("-- getToday --")
+    const userId = req.user.id
+
+    const lastMemo = await prisma.proto.findFirst({
+      where: { userId },
       orderBy: {
         createdAt: "desc"
       }
     });
+
+    if (!lastMemo) return null
+
+    const lastMemoDateString = getDateString(lastMemo.createdAt)
+
+    return dateString === lastMemoDateString ? lastMemo : null 
   }
 }
