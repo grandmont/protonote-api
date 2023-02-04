@@ -20,7 +20,7 @@ export class GroupByProtoArgs {
   @TypeGraphQL.Field(_type => [ProtoScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "createdAt" | "updatedAt" | "title" | "userId">;
+  by!: Array<"id" | "createdAt" | "updatedAt" | "title" | "description" | "dateString" | "userId">;
 
   @TypeGraphQL.Field(_type => ProtoScalarWhereWithAggregatesInput, {
     nullable: true

@@ -63,13 +63,8 @@ async function findOrCreateUser({
 function signTokens(user: User) {
   const userId: string = user.id.toString();
 
-  const access_token = signJwt({ userId }, "accessTokenPrivateKey", {
-    expiresIn: `${accessTokenExpiresIn}m`,
-  });
-
-  const refresh_token = signJwt({ userId }, "refreshTokenPrivateKey", {
-    expiresIn: `${refreshTokenExpiresIn}m`,
-  });
+  const access_token = signJwt({ userId }, "accessTokenPrivateKey");
+  const refresh_token = signJwt({ userId }, "refreshTokenPrivateKey");
 
   return { access_token, refresh_token };
 }

@@ -23,4 +23,14 @@ export class ProtoUpdateWithoutUserInput {
     nullable: true
   })
   title?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  description?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  dateString?: NullableStringFieldUpdateOperationsInput | undefined;
 }

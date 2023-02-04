@@ -9,7 +9,6 @@ export default class MemoResolver {
   @Query((_returns) => Proto, { nullable: true })
   @UseMiddleware(ValidateToken)
   async getToday(@Arg("dateString") dateString: string, @Ctx() { prisma, req }: Context): Promise<Proto | null> {
-    console.log("-- getToday --")
     const userId = req.user.id
 
     const lastMemo = await prisma.proto.findFirst({

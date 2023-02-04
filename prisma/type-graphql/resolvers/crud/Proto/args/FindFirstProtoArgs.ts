@@ -35,5 +35,5 @@ export class FindFirstProtoArgs {
   @TypeGraphQL.Field(_type => [ProtoScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "title" | "userId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "title" | "description" | "dateString" | "userId"> | undefined;
 }

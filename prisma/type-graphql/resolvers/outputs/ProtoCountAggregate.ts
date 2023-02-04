@@ -30,6 +30,16 @@ export class ProtoCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  description!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  dateString!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   userId!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

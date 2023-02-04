@@ -28,6 +28,16 @@ export class Proto {
   })
   title?: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  description?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  dateString?: string | null;
+
   user?: User;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

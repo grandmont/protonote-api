@@ -5,6 +5,8 @@ export enum ProtoScalarFieldEnum {
   createdAt = "createdAt",
   updatedAt = "updatedAt",
   title = "title",
+  description = "description",
+  dateString = "dateString",
   userId = "userId"
 }
 TypeGraphQL.registerEnumType(ProtoScalarFieldEnum, {

@@ -45,6 +45,16 @@ export class ProtoScalarWhereWithAggregatesInput {
   })
   title?: StringNullableWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  description?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  dateString?: StringNullableWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })

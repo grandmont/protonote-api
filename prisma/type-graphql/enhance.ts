@@ -247,7 +247,7 @@ function applyTypeClassEnhanceConfig<
 
 const modelsInfo = {
   User: ["id", "createdAt", "email", "name", "picture"],
-  Proto: ["id", "createdAt", "updatedAt", "title", "userId"]
+  Proto: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"]
 };
 
 type ModelNames = keyof typeof models;
@@ -289,7 +289,7 @@ const outputsInfo = {
   AggregateUser: ["_count", "_avg", "_sum", "_min", "_max"],
   UserGroupBy: ["id", "createdAt", "email", "name", "picture", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateProto: ["_count", "_avg", "_sum", "_min", "_max"],
-  ProtoGroupBy: ["id", "createdAt", "updatedAt", "title", "userId", "_count", "_avg", "_sum", "_min", "_max"],
+  ProtoGroupBy: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   UserCount: ["protos"],
   UserCountAggregate: ["id", "createdAt", "email", "name", "picture", "_all"],
@@ -297,11 +297,11 @@ const outputsInfo = {
   UserSumAggregate: ["id"],
   UserMinAggregate: ["id", "createdAt", "email", "name", "picture"],
   UserMaxAggregate: ["id", "createdAt", "email", "name", "picture"],
-  ProtoCountAggregate: ["id", "createdAt", "updatedAt", "title", "userId", "_all"],
+  ProtoCountAggregate: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId", "_all"],
   ProtoAvgAggregate: ["id", "userId"],
   ProtoSumAggregate: ["id", "userId"],
-  ProtoMinAggregate: ["id", "createdAt", "updatedAt", "title", "userId"],
-  ProtoMaxAggregate: ["id", "createdAt", "updatedAt", "title", "userId"]
+  ProtoMinAggregate: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
+  ProtoMaxAggregate: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -347,19 +347,19 @@ const inputsInfo = {
   UserWhereUniqueInput: ["id", "email"],
   UserOrderByWithAggregationInput: ["id", "createdAt", "email", "name", "picture", "_count", "_avg", "_max", "_min", "_sum"],
   UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "email", "name", "picture"],
-  ProtoWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "user", "userId"],
-  ProtoOrderByWithRelationInput: ["id", "createdAt", "updatedAt", "title", "user", "userId"],
+  ProtoWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "description", "dateString", "user", "userId"],
+  ProtoOrderByWithRelationInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "user", "userId"],
   ProtoWhereUniqueInput: ["id"],
-  ProtoOrderByWithAggregationInput: ["id", "createdAt", "updatedAt", "title", "userId", "_count", "_avg", "_max", "_min", "_sum"],
-  ProtoScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "userId"],
+  ProtoOrderByWithAggregationInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId", "_count", "_avg", "_max", "_min", "_sum"],
+  ProtoScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   UserCreateInput: ["createdAt", "email", "name", "picture", "protos"],
   UserUpdateInput: ["createdAt", "email", "name", "picture", "protos"],
   UserCreateManyInput: ["id", "createdAt", "email", "name", "picture"],
   UserUpdateManyMutationInput: ["createdAt", "email", "name", "picture"],
-  ProtoCreateInput: ["createdAt", "updatedAt", "title", "user"],
-  ProtoUpdateInput: ["createdAt", "updatedAt", "title", "user"],
-  ProtoCreateManyInput: ["id", "createdAt", "updatedAt", "title", "userId"],
-  ProtoUpdateManyMutationInput: ["createdAt", "updatedAt", "title"],
+  ProtoCreateInput: ["createdAt", "updatedAt", "title", "description", "dateString", "user"],
+  ProtoUpdateInput: ["createdAt", "updatedAt", "title", "description", "dateString", "user"],
+  ProtoCreateManyInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
+  ProtoUpdateManyMutationInput: ["createdAt", "updatedAt", "title", "description", "dateString"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
@@ -375,10 +375,10 @@ const inputsInfo = {
   StringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
   StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   UserRelationFilter: ["is", "isNot"],
-  ProtoCountOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "userId"],
+  ProtoCountOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   ProtoAvgOrderByAggregateInput: ["id", "userId"],
-  ProtoMaxOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "userId"],
-  ProtoMinOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "userId"],
+  ProtoMaxOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
+  ProtoMinOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   ProtoSumOrderByAggregateInput: ["id", "userId"],
   StringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
   ProtoCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
@@ -399,19 +399,19 @@ const inputsInfo = {
   NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
-  ProtoCreateWithoutUserInput: ["createdAt", "updatedAt", "title"],
+  ProtoCreateWithoutUserInput: ["createdAt", "updatedAt", "title", "description", "dateString"],
   ProtoCreateOrConnectWithoutUserInput: ["where", "create"],
   ProtoCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
   ProtoUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
   ProtoUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   ProtoUpdateManyWithWhereWithoutUserInput: ["where", "data"],
-  ProtoScalarWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "userId"],
+  ProtoScalarWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   UserCreateWithoutProtosInput: ["createdAt", "email", "name", "picture"],
   UserCreateOrConnectWithoutProtosInput: ["where", "create"],
   UserUpsertWithoutProtosInput: ["update", "create"],
   UserUpdateWithoutProtosInput: ["createdAt", "email", "name", "picture"],
-  ProtoCreateManyUserInput: ["id", "createdAt", "updatedAt", "title"],
-  ProtoUpdateWithoutUserInput: ["createdAt", "updatedAt", "title"]
+  ProtoCreateManyUserInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString"],
+  ProtoUpdateWithoutUserInput: ["createdAt", "updatedAt", "title", "description", "dateString"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;
