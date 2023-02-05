@@ -1,6 +1,13 @@
 export { AffectedRowsOutput } from "./AffectedRowsOutput";
+export { AggregateIntegration } from "./AggregateIntegration";
 export { AggregateProto } from "./AggregateProto";
 export { AggregateUser } from "./AggregateUser";
+export { IntegrationAvgAggregate } from "./IntegrationAvgAggregate";
+export { IntegrationCountAggregate } from "./IntegrationCountAggregate";
+export { IntegrationGroupBy } from "./IntegrationGroupBy";
+export { IntegrationMaxAggregate } from "./IntegrationMaxAggregate";
+export { IntegrationMinAggregate } from "./IntegrationMinAggregate";
+export { IntegrationSumAggregate } from "./IntegrationSumAggregate";
 export { ProtoAvgAggregate } from "./ProtoAvgAggregate";
 export { ProtoCountAggregate } from "./ProtoCountAggregate";
 export { ProtoGroupBy } from "./ProtoGroupBy";

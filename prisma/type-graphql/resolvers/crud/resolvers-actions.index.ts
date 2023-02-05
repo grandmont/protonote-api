@@ -1,3 +1,15 @@
+export { FindUniqueIntegrationResolver } from "./Integration/FindUniqueIntegrationResolver";
+export { FindFirstIntegrationResolver } from "./Integration/FindFirstIntegrationResolver";
+export { FindManyIntegrationResolver } from "./Integration/FindManyIntegrationResolver";
+export { CreateIntegrationResolver } from "./Integration/CreateIntegrationResolver";
+export { CreateManyIntegrationResolver } from "./Integration/CreateManyIntegrationResolver";
+export { DeleteIntegrationResolver } from "./Integration/DeleteIntegrationResolver";
+export { UpdateIntegrationResolver } from "./Integration/UpdateIntegrationResolver";
+export { DeleteManyIntegrationResolver } from "./Integration/DeleteManyIntegrationResolver";
+export { UpdateManyIntegrationResolver } from "./Integration/UpdateManyIntegrationResolver";
+export { UpsertIntegrationResolver } from "./Integration/UpsertIntegrationResolver";
+export { AggregateIntegrationResolver } from "./Integration/AggregateIntegrationResolver";
+export { GroupByIntegrationResolver } from "./Integration/GroupByIntegrationResolver";
 export { FindUniqueProtoResolver } from "./Proto/FindUniqueProtoResolver";
 export { FindFirstProtoResolver } from "./Proto/FindFirstProtoResolver";
 export { FindManyProtoResolver } from "./Proto/FindManyProtoResolver";

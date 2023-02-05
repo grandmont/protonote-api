@@ -17,12 +17,13 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String
-  picture   String
-  protos    Proto[]
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  email        String        @unique
+  name         String
+  picture      String
+  protos       Proto[]
+  integrations Integration[]
 }
 
 model Proto {
@@ -34,4 +35,13 @@ model Proto {
   dateString  String?
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
+}
+
+model Integration {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  externalId String
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
 }

@@ -1,3 +1,4 @@
+export { IntegrationScalarFieldEnum } from "./IntegrationScalarFieldEnum";
 export { ProtoScalarFieldEnum } from "./ProtoScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { SortOrder } from "./SortOrder";
