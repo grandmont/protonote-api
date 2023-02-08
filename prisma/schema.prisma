@@ -38,10 +38,21 @@ model Proto {
 }
 
 model Integration {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
+  id         Int                 @id @default(autoincrement())
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @default(now())
   externalId String
-  user       User     @relation(fields: [userId], references: [id])
+  provider   IntegrationProvider?
+  status     IntegrationStatus?
+  user       User                @relation(fields: [userId], references: [id])
   userId     Int
+}
+
+enum IntegrationProvider {
+  SPOTIFY
+}
+
+enum IntegrationStatus {
+  CONNECTED
+  DISCONNECTED
 }

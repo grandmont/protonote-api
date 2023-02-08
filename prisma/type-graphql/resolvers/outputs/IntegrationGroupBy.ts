@@ -7,6 +7,8 @@ import { IntegrationCountAggregate } from "../outputs/IntegrationCountAggregate"
 import { IntegrationMaxAggregate } from "../outputs/IntegrationMaxAggregate";
 import { IntegrationMinAggregate } from "../outputs/IntegrationMinAggregate";
 import { IntegrationSumAggregate } from "../outputs/IntegrationSumAggregate";
+import { IntegrationProvider } from "../../enums/IntegrationProvider";
+import { IntegrationStatus } from "../../enums/IntegrationStatus";
 
 @TypeGraphQL.ObjectType("IntegrationGroupBy", {
   isAbstract: true
@@ -31,6 +33,16 @@ export class IntegrationGroupBy {
     nullable: false
   })
   externalId!: string;
+
+  @TypeGraphQL.Field(_type => IntegrationProvider, {
+    nullable: true
+  })
+  provider!: "SPOTIFY" | null;
+
+  @TypeGraphQL.Field(_type => IntegrationStatus, {
+    nullable: true
+  })
+  status!: "CONNECTED" | "DISCONNECTED" | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

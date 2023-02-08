@@ -278,7 +278,7 @@ function applyTypeClassEnhanceConfig<
 const modelsInfo = {
   User: ["id", "createdAt", "email", "name", "picture"],
   Proto: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
-  Integration: ["id", "createdAt", "updatedAt", "externalId", "userId"]
+  Integration: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"]
 };
 
 type ModelNames = keyof typeof models;
@@ -322,7 +322,7 @@ const outputsInfo = {
   AggregateProto: ["_count", "_avg", "_sum", "_min", "_max"],
   ProtoGroupBy: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateIntegration: ["_count", "_avg", "_sum", "_min", "_max"],
-  IntegrationGroupBy: ["id", "createdAt", "updatedAt", "externalId", "userId", "_count", "_avg", "_sum", "_min", "_max"],
+  IntegrationGroupBy: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   UserCount: ["protos", "integrations"],
   UserCountAggregate: ["id", "createdAt", "email", "name", "picture", "_all"],
@@ -335,11 +335,11 @@ const outputsInfo = {
   ProtoSumAggregate: ["id", "userId"],
   ProtoMinAggregate: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   ProtoMaxAggregate: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
-  IntegrationCountAggregate: ["id", "createdAt", "updatedAt", "externalId", "userId", "_all"],
+  IntegrationCountAggregate: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId", "_all"],
   IntegrationAvgAggregate: ["id", "userId"],
   IntegrationSumAggregate: ["id", "userId"],
-  IntegrationMinAggregate: ["id", "createdAt", "updatedAt", "externalId", "userId"],
-  IntegrationMaxAggregate: ["id", "createdAt", "updatedAt", "externalId", "userId"]
+  IntegrationMinAggregate: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
+  IntegrationMaxAggregate: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -390,11 +390,11 @@ const inputsInfo = {
   ProtoWhereUniqueInput: ["id"],
   ProtoOrderByWithAggregationInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId", "_count", "_avg", "_max", "_min", "_sum"],
   ProtoScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
-  IntegrationWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "user", "userId"],
-  IntegrationOrderByWithRelationInput: ["id", "createdAt", "updatedAt", "externalId", "user", "userId"],
+  IntegrationWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "provider", "status", "user", "userId"],
+  IntegrationOrderByWithRelationInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "user", "userId"],
   IntegrationWhereUniqueInput: ["id"],
-  IntegrationOrderByWithAggregationInput: ["id", "createdAt", "updatedAt", "externalId", "userId", "_count", "_avg", "_max", "_min", "_sum"],
-  IntegrationScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "userId"],
+  IntegrationOrderByWithAggregationInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId", "_count", "_avg", "_max", "_min", "_sum"],
+  IntegrationScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
   UserCreateInput: ["createdAt", "email", "name", "picture", "protos", "integrations"],
   UserUpdateInput: ["createdAt", "email", "name", "picture", "protos", "integrations"],
   UserCreateManyInput: ["id", "createdAt", "email", "name", "picture"],
@@ -403,10 +403,10 @@ const inputsInfo = {
   ProtoUpdateInput: ["createdAt", "updatedAt", "title", "description", "dateString", "user"],
   ProtoCreateManyInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   ProtoUpdateManyMutationInput: ["createdAt", "updatedAt", "title", "description", "dateString"],
-  IntegrationCreateInput: ["createdAt", "updatedAt", "externalId", "user"],
-  IntegrationUpdateInput: ["createdAt", "updatedAt", "externalId", "user"],
-  IntegrationCreateManyInput: ["id", "createdAt", "updatedAt", "externalId", "userId"],
-  IntegrationUpdateManyMutationInput: ["createdAt", "updatedAt", "externalId"],
+  IntegrationCreateInput: ["createdAt", "updatedAt", "externalId", "provider", "status", "user"],
+  IntegrationUpdateInput: ["createdAt", "updatedAt", "externalId", "provider", "status", "user"],
+  IntegrationCreateManyInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
+  IntegrationUpdateManyMutationInput: ["createdAt", "updatedAt", "externalId", "provider", "status"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
@@ -430,11 +430,15 @@ const inputsInfo = {
   ProtoMinOrderByAggregateInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString", "userId"],
   ProtoSumOrderByAggregateInput: ["id", "userId"],
   StringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
-  IntegrationCountOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "userId"],
+  EnumIntegrationProviderNullableFilter: ["equals", "in", "notIn", "not"],
+  EnumIntegrationStatusNullableFilter: ["equals", "in", "notIn", "not"],
+  IntegrationCountOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
   IntegrationAvgOrderByAggregateInput: ["id", "userId"],
-  IntegrationMaxOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "userId"],
-  IntegrationMinOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "userId"],
+  IntegrationMaxOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
+  IntegrationMinOrderByAggregateInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
   IntegrationSumOrderByAggregateInput: ["id", "userId"],
+  EnumIntegrationProviderNullableWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  EnumIntegrationStatusNullableWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
   ProtoCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   IntegrationCreateNestedManyWithoutUserInput: ["create", "connectOrCreate", "createMany", "connect"],
   DateTimeFieldUpdateOperationsInput: ["set"],
@@ -446,6 +450,8 @@ const inputsInfo = {
   NullableStringFieldUpdateOperationsInput: ["set"],
   UserUpdateOneRequiredWithoutProtosInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   UserCreateNestedOneWithoutIntegrationsInput: ["create", "connectOrCreate", "connect"],
+  NullableEnumIntegrationProviderFieldUpdateOperationsInput: ["set"],
+  NullableEnumIntegrationStatusFieldUpdateOperationsInput: ["set"],
   UserUpdateOneRequiredWithoutIntegrationsInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
@@ -457,10 +463,14 @@ const inputsInfo = {
   NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedEnumIntegrationProviderNullableFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumIntegrationStatusNullableFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumIntegrationProviderNullableWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  NestedEnumIntegrationStatusNullableWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
   ProtoCreateWithoutUserInput: ["createdAt", "updatedAt", "title", "description", "dateString"],
   ProtoCreateOrConnectWithoutUserInput: ["where", "create"],
   ProtoCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
-  IntegrationCreateWithoutUserInput: ["createdAt", "updatedAt", "externalId"],
+  IntegrationCreateWithoutUserInput: ["createdAt", "updatedAt", "externalId", "provider", "status"],
   IntegrationCreateOrConnectWithoutUserInput: ["where", "create"],
   IntegrationCreateManyUserInputEnvelope: ["data", "skipDuplicates"],
   ProtoUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
@@ -470,7 +480,7 @@ const inputsInfo = {
   IntegrationUpsertWithWhereUniqueWithoutUserInput: ["where", "update", "create"],
   IntegrationUpdateWithWhereUniqueWithoutUserInput: ["where", "data"],
   IntegrationUpdateManyWithWhereWithoutUserInput: ["where", "data"],
-  IntegrationScalarWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "userId"],
+  IntegrationScalarWhereInput: ["AND", "OR", "NOT", "id", "createdAt", "updatedAt", "externalId", "provider", "status", "userId"],
   UserCreateWithoutProtosInput: ["createdAt", "email", "name", "picture", "integrations"],
   UserCreateOrConnectWithoutProtosInput: ["where", "create"],
   UserUpsertWithoutProtosInput: ["update", "create"],
@@ -480,9 +490,9 @@ const inputsInfo = {
   UserUpsertWithoutIntegrationsInput: ["update", "create"],
   UserUpdateWithoutIntegrationsInput: ["createdAt", "email", "name", "picture", "protos"],
   ProtoCreateManyUserInput: ["id", "createdAt", "updatedAt", "title", "description", "dateString"],
-  IntegrationCreateManyUserInput: ["id", "createdAt", "updatedAt", "externalId"],
+  IntegrationCreateManyUserInput: ["id", "createdAt", "updatedAt", "externalId", "provider", "status"],
   ProtoUpdateWithoutUserInput: ["createdAt", "updatedAt", "title", "description", "dateString"],
-  IntegrationUpdateWithoutUserInput: ["createdAt", "updatedAt", "externalId"]
+  IntegrationUpdateWithoutUserInput: ["createdAt", "updatedAt", "externalId", "provider", "status"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

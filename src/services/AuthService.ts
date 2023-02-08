@@ -75,21 +75,18 @@ export default class UserService {
     try {
       console.log("Authenticating User");
 
-      // 1. Find user by email
       const userInfo = await getGoogleUserInfo(input.accessToken);
 
       if (userInfo.error) {
         throw new AuthenticationError(
-          "Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+          "Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential."
         );
       }
 
       const user = await findOrCreateUser(userInfo);
 
-      // 2. Sign JWT Tokens
       const { access_token, refresh_token } = signTokens(user);
 
-      // 3. Add Tokens to Context
       res.cookie("access_token", access_token, accessTokenCookieOptions);
       res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
       res.cookie("logged_in", "true", {

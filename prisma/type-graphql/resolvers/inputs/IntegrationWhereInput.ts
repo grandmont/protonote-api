@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { EnumIntegrationProviderNullableFilter } from "../inputs/EnumIntegrationProviderNullableFilter";
+import { EnumIntegrationStatusNullableFilter } from "../inputs/EnumIntegrationStatusNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
@@ -45,6 +47,16 @@ export class IntegrationWhereInput {
     nullable: true
   })
   externalId?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => EnumIntegrationProviderNullableFilter, {
+    nullable: true
+  })
+  provider?: EnumIntegrationProviderNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => EnumIntegrationStatusNullableFilter, {
+    nullable: true
+  })
+  status?: EnumIntegrationStatusNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => UserRelationFilter, {
     nullable: true

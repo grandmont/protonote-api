@@ -3,6 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { User } from "../models/User";
+import { IntegrationProvider } from "../enums/IntegrationProvider";
+import { IntegrationStatus } from "../enums/IntegrationStatus";
 
 @TypeGraphQL.ObjectType("Integration", {
   isAbstract: true
@@ -27,6 +29,16 @@ export class Integration {
     nullable: false
   })
   externalId!: string;
+
+  @TypeGraphQL.Field(_type => IntegrationProvider, {
+    nullable: true
+  })
+  provider?: "SPOTIFY" | null;
+
+  @TypeGraphQL.Field(_type => IntegrationStatus, {
+    nullable: true
+  })
+  status?: "CONNECTED" | "DISCONNECTED" | null;
 
   user?: User;
 
