@@ -10,6 +10,8 @@ services:
     environment:
         NODE_ENV: production
         PORT: 4000
+    env_file:
+      - .env
 
   db:
     image: postgres
