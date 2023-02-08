@@ -17,6 +17,7 @@ FROM node:18-slim
 
 WORKDIR /usr/app
 
+COPY --from=0 /srv/.env ./.env
 COPY --from=0 /srv/dist ./dist
 COPY --from=0 /srv/node_modules ./node_modules
 
