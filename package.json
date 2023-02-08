@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src",
-    "start": "prisma migrate deploy && node dist/src",
+    "start": "node dist/src",
     "docker": "docker-compose up -d && yarn dev",
     "build": "yarn generate && tsc",
     "build:production": "yarn generate && tsc -p tsconfig.release.json",
