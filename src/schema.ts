@@ -3,6 +3,7 @@ import { relationResolvers, crudResolvers } from "../prisma/type-graphql";
 
 import AuthResolver from "./resolvers/AuthResolver";
 import MemoResolver from "./resolvers/MemoResolver";
+import IntegrationsResolver from "./resolvers/IntegrationsResolver";
 
 export const schema: BuildSchemaOptions = {
   resolvers: [
@@ -10,6 +11,7 @@ export const schema: BuildSchemaOptions = {
     ...crudResolvers,
     AuthResolver,
     MemoResolver,
+    IntegrationsResolver,
   ] as unknown as NonEmptyArray<Function>,
   validate: false,
 };

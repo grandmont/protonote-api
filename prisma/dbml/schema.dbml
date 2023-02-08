@@ -9,6 +9,7 @@ Table User {
   name String [not null]
   picture String [not null]
   protos Proto [not null]
+  integrations Integration [not null]
 }
 
 Table Proto {
@@ -22,4 +23,26 @@ Table Proto {
   userId Int [not null]
 }
 
+Table Integration {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  externalId String [not null]
+  provider IntegrationProvider
+  status IntegrationStatus
+  user User [not null]
+  userId Int [not null]
+}
+
+Enum IntegrationProvider {
+  SPOTIFY
+}
+
+Enum IntegrationStatus {
+  CONNECTED
+  DISCONNECTED
+}
+
 Ref: Proto.userId > User.id
+
+Ref: Integration.userId > User.id

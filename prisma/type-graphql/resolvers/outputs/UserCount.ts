@@ -11,4 +11,9 @@ export class UserCount {
     nullable: false
   })
   protos!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  integrations!: number;
 }

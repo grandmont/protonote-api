@@ -1,0 +1,49 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../scalars";
+import { User } from "../models/User";
+import { IntegrationProvider } from "../enums/IntegrationProvider";
+import { IntegrationStatus } from "../enums/IntegrationStatus";
+
+@TypeGraphQL.ObjectType("Integration", {
+  isAbstract: true
+})
+export class Integration {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  id!: number;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  createdAt!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  updatedAt!: Date;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  externalId!: string;
+
+  @TypeGraphQL.Field(_type => IntegrationProvider, {
+    nullable: true
+  })
+  provider?: "SPOTIFY" | null;
+
+  @TypeGraphQL.Field(_type => IntegrationStatus, {
+    nullable: true
+  })
+  status?: "CONNECTED" | "DISCONNECTED" | null;
+
+  user?: User;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  userId!: number;
+}
