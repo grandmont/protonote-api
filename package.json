@@ -8,7 +8,7 @@
     "start": "node dist/src",
     "docker": "docker-compose up -d && yarn dev",
     "build": "yarn generate && tsc",
-    "build:production": "tsc -p tsconfig.release.json",
+    "build:production": "yarn generate && tsc -p tsconfig.release.json",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
     "reset": "prisma migrate reset"
