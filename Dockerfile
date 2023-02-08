@@ -1,5 +1,5 @@
 # Build stage #1
-FROM node:18-alpine
+FROM node:18-slim
 
 WORKDIR /srv
 
@@ -13,7 +13,7 @@ RUN yarn build:production
 RUN npm prune --production
 
 # Build stage #2
-FROM node:18-alpine
+FROM node:18-slim
 
 WORKDIR /usr/app
 
