@@ -2,22 +2,57 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "type-graphql"
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   @unique
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  email        String        @unique
+  name         String
+  picture      String
+  protos       Proto[]
+  integrations Integration[]
 }
 
-enum Role {
-  USER
-  ADMIN
+model Proto {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  title       String?
+  description String?
+  dateString  String?
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+model Integration {
+  id         Int                 @id @default(autoincrement())
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @default(now())
+  externalId String
+  provider   IntegrationProvider?
+  status     IntegrationStatus?
+  user       User                @relation(fields: [userId], references: [id])
+  userId     Int
+}
+
+enum IntegrationProvider {
+  SPOTIFY
+}
+
+enum IntegrationStatus {
+  CONNECTED
+  DISCONNECTED
 }

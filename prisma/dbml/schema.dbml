@@ -1,0 +1,48 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  email String [unique, not null]
+  name String [not null]
+  picture String [not null]
+  protos Proto [not null]
+  integrations Integration [not null]
+}
+
+Table Proto {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  title String
+  description String
+  dateString String
+  user User [not null]
+  userId Int [not null]
+}
+
+Table Integration {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  externalId String [not null]
+  provider IntegrationProvider
+  status IntegrationStatus
+  user User [not null]
+  userId Int [not null]
+}
+
+Enum IntegrationProvider {
+  SPOTIFY
+}
+
+Enum IntegrationStatus {
+  CONNECTED
+  DISCONNECTED
+}
+
+Ref: Proto.userId > User.id
+
+Ref: Integration.userId > User.id
