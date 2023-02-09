@@ -7,13 +7,3 @@ services:
     ports:
         - '80:4000'
     command: node dist
-    environment:
-        NODE_ENV: production
-        PORT: 4000
-        DATABASE_URL: postgresql://postgres:postgres@database-1.c2zncw873tim.us-east-1.rds.amazonaws.com/protonote?schema=public
-        ACCESS_TOKEN_PRIVATE_KEY:
-        ACCESS_TOKEN_PUBLIC_KEY:
-        REFRESH_TOKEN_PRIVATE_KEY:
-        REFRESH_TOKEN_PUBLIC_KEY:
-        SPOTIFY_CLIENT_ID:
-        SPOTIFY_CLIENT_SECRET:
