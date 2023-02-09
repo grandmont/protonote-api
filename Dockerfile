@@ -1,5 +1,5 @@
 # Build stage #1
-FROM node:lts-buster
+FROM node:18-slim
 
 WORKDIR /srv
 
@@ -12,7 +12,7 @@ COPY . .
 RUN yarn build:production
 
 # Build stage #2
-FROM node:18
+FROM node:18-slim
 
 WORKDIR /usr/app
 
@@ -21,7 +21,6 @@ COPY --from=0 /srv/yarn.lock ./yarn.lock
 COPY --from=0 /srv/dist ./dist
 COPY --from=0 /srv/prisma ./prisma
 COPY --from=0 /srv/node_modules ./node_modules
-COPY --from=0 /srv/.env ./.env
 
 EXPOSE 4000
 
