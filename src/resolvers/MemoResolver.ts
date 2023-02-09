@@ -1,6 +1,6 @@
 import { Resolver, Query, Ctx, UseMiddleware, Arg } from "type-graphql";
 import { Context } from "../context";
-import { Proto } from "../../prisma/type-graphql";
+import { Proto } from "@generated/type-graphql"
 import ValidateToken from "../middlewares/ValidateToken";
 
 @Resolver()

@@ -1,7 +1,7 @@
 import { AuthenticationError } from "apollo-server-core";
 import { CookieOptions } from "express";
 
-import { Integration, IntegrationStatus } from "../../prisma/type-graphql";
+import { Integration, IntegrationStatus } from "@generated/type-graphql";
 import { IntegrationsInput } from "../schemas/Integrations";
 import { Context, prisma } from "../context";
 import { getIntegrationProvider } from "../utils/helpers";

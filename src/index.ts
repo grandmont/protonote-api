@@ -6,7 +6,7 @@ import { buildSchema } from "type-graphql";
 
 import { context } from "./context";
 import { schema } from "./schema";
-import { applyResolversEnhanceMap } from "../prisma/type-graphql";
+import { applyResolversEnhanceMap } from "@generated/type-graphql"
 import resolversEnhanceMap from "./config/middleware";
 
 const port = process.env.PORT || 4000;

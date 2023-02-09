@@ -1,4 +1,5 @@
-import { ResolversEnhanceMap } from "../../prisma/type-graphql";
+import { ResolversEnhanceMap } from "@generated/type-graphql";
+
 import { UseMiddleware } from "type-graphql";
 
 import ValidateToken from "../middlewares/ValidateToken";

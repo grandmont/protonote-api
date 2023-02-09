@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-import { User } from "../prisma/type-graphql";
+import { User } from "@generated/type-graphql"
 
 export const prisma = new PrismaClient();
 

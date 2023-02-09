@@ -1,4 +1,4 @@
-import { IntegrationProvider } from "../../prisma/type-graphql"
+import { IntegrationProvider } from "@generated/type-graphql"
 import { getSpotifyUserInfo } from "./spotify"
 
 export const getIntegrationProvider = (provider: IntegrationProvider) => {

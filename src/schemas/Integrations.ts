@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from "type-graphql";
-import { Integration, IntegrationProvider } from "../../prisma/type-graphql";
+import { Integration, IntegrationProvider } from "@generated/type-graphql"
 
 @InputType()
 export class IntegrationsInput {

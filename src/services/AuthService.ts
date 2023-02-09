@@ -1,6 +1,6 @@
 import { AuthenticationError, ForbiddenError } from "apollo-server-core";
 import { CookieOptions } from "express";
-import { User } from "../../prisma/type-graphql";
+import { User } from "@generated/type-graphql"
 import { AuthInput } from "../schemas/Auth";
 import { Context, prisma } from "../context";
 import { signJwt, verifyJwt } from "../utils/jwt";
