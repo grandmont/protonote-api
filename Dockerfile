@@ -1,5 +1,5 @@
 # Build stage #1
-FROM node:18-slim
+FROM node:16-bullseye-slim
 
 WORKDIR /srv
 
@@ -12,7 +12,7 @@ COPY . .
 RUN yarn build:production
 
 # Build stage #2
-FROM node:18-slim
+FROM node:16-bullseye-slim
 
 WORKDIR /usr/app
 
