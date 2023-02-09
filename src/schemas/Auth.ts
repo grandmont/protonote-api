@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
-import { User } from "@generated/type-graphql"
+import { User } from "../generated"
 
 @InputType()
 export class AuthInput {

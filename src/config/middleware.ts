@@ -1,4 +1,4 @@
-import { ResolversEnhanceMap } from "@generated/type-graphql";
+import { ResolversEnhanceMap } from "../generated";
 
 import { UseMiddleware } from "type-graphql";
 

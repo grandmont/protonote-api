@@ -3,13 +3,14 @@ generator client {
   binaryTargets = ["native"]
 }
 
-generator typegraphql {
-  provider = "typegraphql-prisma"
-}
+// generator typegraphql {
+//   provider = "typegraphql-prisma"
+//   output = "../src/generated"
+// }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
 
 datasource db {
   provider = "postgresql"

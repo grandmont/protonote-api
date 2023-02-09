@@ -1,0 +1,14 @@
+export { AggregateProtoArgs } from "./AggregateProtoArgs";
+export { CreateManyProtoArgs } from "./CreateManyProtoArgs";
+export { CreateOneProtoArgs } from "./CreateOneProtoArgs";
+export { DeleteManyProtoArgs } from "./DeleteManyProtoArgs";
+export { DeleteOneProtoArgs } from "./DeleteOneProtoArgs";
+export { FindFirstProtoArgs } from "./FindFirstProtoArgs";
+export { FindFirstProtoOrThrowArgs } from "./FindFirstProtoOrThrowArgs";
+export { FindManyProtoArgs } from "./FindManyProtoArgs";
+export { FindUniqueProtoArgs } from "./FindUniqueProtoArgs";
+export { FindUniqueProtoOrThrowArgs } from "./FindUniqueProtoOrThrowArgs";
+export { GroupByProtoArgs } from "./GroupByProtoArgs";
+export { UpdateManyProtoArgs } from "./UpdateManyProtoArgs";
+export { UpdateOneProtoArgs } from "./UpdateOneProtoArgs";
+export { UpsertOneProtoArgs } from "./UpsertOneProtoArgs";
