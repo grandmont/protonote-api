@@ -20,6 +20,7 @@ async function bootstrap() {
 
   const server = new ApolloServer({
     schema: await buildSchema(schema),
+    persistedQueries: false,
     context,
   });
 

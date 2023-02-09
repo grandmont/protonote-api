@@ -24,4 +24,4 @@ COPY --from=0 /srv/node_modules ./node_modules
 
 EXPOSE 4000
 
-CMD ["yarn", "start"]
+CMD ["node", "dist"]
