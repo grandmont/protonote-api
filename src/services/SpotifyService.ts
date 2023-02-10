@@ -8,7 +8,7 @@ import { Context } from "../context";
 // init spotify config
 const spClientId = process.env.SPOTIFY_CLIENT_ID;
 const spClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-const spClientCallback = process.env.SPOTIFY_REDIRECT_URI;
+// const spClientCallback = process.env.SPOTIFY_REDIRECT_URI;
 const authString = Buffer.from(spClientId + ":" + spClientSecret).toString(
   "base64"
 );
@@ -30,7 +30,7 @@ export default class SpotifyService {
       // build request data
       const reqData = {
         grant_type: "authorization_code",
-        redirect_uri: spClientCallback,
+        redirect_uri: input.redirectUri,
         code: input.code,
       };
 
@@ -49,6 +49,8 @@ export default class SpotifyService {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
+
+      console.log(response)
 
       const result = await response.json();
 

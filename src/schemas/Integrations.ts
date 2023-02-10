@@ -25,6 +25,9 @@ export class SpotifyInput {
   code?: string;
 
   @Field(() => String, { nullable: true })
+  redirectUri?: string;
+
+  @Field(() => String, { nullable: true })
   refreshToken?: string;
 }
 
