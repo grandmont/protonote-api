@@ -1,6 +1,9 @@
 export { DateTimeFieldUpdateOperationsInput } from "./DateTimeFieldUpdateOperationsInput";
 export { DateTimeFilter } from "./DateTimeFilter";
 export { DateTimeWithAggregatesFilter } from "./DateTimeWithAggregatesFilter";
+export { EnumAuthProviderFieldUpdateOperationsInput } from "./EnumAuthProviderFieldUpdateOperationsInput";
+export { EnumAuthProviderFilter } from "./EnumAuthProviderFilter";
+export { EnumAuthProviderWithAggregatesFilter } from "./EnumAuthProviderWithAggregatesFilter";
 export { EnumIntegrationProviderNullableFilter } from "./EnumIntegrationProviderNullableFilter";
 export { EnumIntegrationProviderNullableWithAggregatesFilter } from "./EnumIntegrationProviderNullableWithAggregatesFilter";
 export { EnumIntegrationStatusNullableFilter } from "./EnumIntegrationStatusNullableFilter";
@@ -37,6 +40,8 @@ export { IntegrationWhereInput } from "./IntegrationWhereInput";
 export { IntegrationWhereUniqueInput } from "./IntegrationWhereUniqueInput";
 export { NestedDateTimeFilter } from "./NestedDateTimeFilter";
 export { NestedDateTimeWithAggregatesFilter } from "./NestedDateTimeWithAggregatesFilter";
+export { NestedEnumAuthProviderFilter } from "./NestedEnumAuthProviderFilter";
+export { NestedEnumAuthProviderWithAggregatesFilter } from "./NestedEnumAuthProviderWithAggregatesFilter";
 export { NestedEnumIntegrationProviderNullableFilter } from "./NestedEnumIntegrationProviderNullableFilter";
 export { NestedEnumIntegrationProviderNullableWithAggregatesFilter } from "./NestedEnumIntegrationProviderNullableWithAggregatesFilter";
 export { NestedEnumIntegrationStatusNullableFilter } from "./NestedEnumIntegrationStatusNullableFilter";

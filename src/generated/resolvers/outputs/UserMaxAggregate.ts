@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { AuthProvider } from "../../enums/AuthProvider";
 
 @TypeGraphQL.ObjectType("UserMaxAggregate", {
   isAbstract: true
@@ -31,4 +32,9 @@ export class UserMaxAggregate {
     nullable: true
   })
   picture!: string | null;
+
+  @TypeGraphQL.Field(_type => AuthProvider, {
+    nullable: true
+  })
+  provider!: "GOOGLE" | "APPLE" | null;
 }

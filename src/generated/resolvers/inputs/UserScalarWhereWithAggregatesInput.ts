@@ -3,7 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
+import { EnumAuthProviderWithAggregatesFilter } from "../inputs/EnumAuthProviderWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
+import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
 @TypeGraphQL.InputType("UserScalarWhereWithAggregatesInput", {
@@ -40,13 +42,18 @@ export class UserScalarWhereWithAggregatesInput {
   })
   email?: StringWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
-  name?: StringWithAggregatesFilter | undefined;
+  name?: StringNullableWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
-  picture?: StringWithAggregatesFilter | undefined;
+  picture?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => EnumAuthProviderWithAggregatesFilter, {
+    nullable: true
+  })
+  provider?: EnumAuthProviderWithAggregatesFilter | undefined;
 }

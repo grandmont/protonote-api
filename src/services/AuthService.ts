@@ -1,14 +1,14 @@
-import { AuthenticationError, ForbiddenError } from "apollo-server-core";
+import { AuthenticationError } from "apollo-server-core";
 import { CookieOptions } from "express";
-import { User } from "../generated"
+import { AuthProvider, User } from "../generated";
 import { AuthInput } from "../schemas/Auth";
 import { Context, prisma } from "../context";
-import { signJwt, verifyJwt } from "../utils/jwt";
+import { signJwt } from "../utils/jwt";
 import { getGoogleUserInfo } from "../utils/google";
 
 // Cookie Options
-const accessTokenExpiresIn = 15;
-const refreshTokenExpiresIn = 60;
+// const accessTokenExpiresIn = 15;
+// const refreshTokenExpiresIn = 60;
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -36,6 +36,7 @@ type UserInfoType = {
   given_name: string;
   email: string;
   picture: string;
+  provider: AuthProvider;
 };
 
 async function findOrCreateUser({
@@ -43,6 +44,7 @@ async function findOrCreateUser({
   given_name,
   email,
   picture,
+  provider,
 }: UserInfoType): Promise<User | null> {
   const user = await prisma.user.findUnique({ where: { email } });
 
@@ -52,6 +54,7 @@ async function findOrCreateUser({
         email,
         name: given_name,
         picture,
+        provider,
       },
     });
   }
@@ -74,8 +77,12 @@ export default class UserService {
   async authenticateUser(input: AuthInput, { res }: Context) {
     try {
       console.log("Authenticating User");
+      const { accessToken, user, provider } = input;
 
-      const userInfo = await getGoogleUserInfo(input.accessToken);
+      const userInfo =
+        provider === AuthProvider.GOOGLE
+          ? await getGoogleUserInfo(accessToken)
+          : { email: user };
 
       if (userInfo.error) {
         throw new AuthenticationError(
@@ -83,9 +90,9 @@ export default class UserService {
         );
       }
 
-      const user = await findOrCreateUser(userInfo);
+      const createdUser = await findOrCreateUser({ ...userInfo, provider });
 
-      const { access_token, refresh_token } = signTokens(user);
+      const { access_token, refresh_token } = signTokens(createdUser);
 
       res.cookie("access_token", access_token, accessTokenCookieOptions);
       res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
@@ -96,7 +103,7 @@ export default class UserService {
 
       return {
         status: "success",
-        user,
+        user: createdUser,
         access_token,
       };
     } catch (error) {
@@ -106,53 +113,53 @@ export default class UserService {
   }
 
   // Refresh Access Token
-  async refreshAccessToken({ req, res }: Context) {
-    try {
-      // Get the refresh token
-      const { refresh_token } = req.cookies;
+  // async refreshAccessToken({ req, res }: Context) {
+  //   try {
+  //     // Get the refresh token
+  //     const { refresh_token } = req.cookies;
 
-      // Validate the RefreshToken
-      const decoded = verifyJwt<{ userId: number }>(
-        refresh_token,
-        "refreshTokenPublicKey"
-      );
+  //     // Validate the RefreshToken
+  //     const decoded = verifyJwt<{ userId: number }>(
+  //       refresh_token,
+  //       "refreshTokenPublicKey"
+  //     );
 
-      if (!decoded) {
-        throw new ForbiddenError("Could not refresh access token");
-      }
+  //     if (!decoded) {
+  //       throw new ForbiddenError("Could not refresh access token");
+  //     }
 
-      // Check if user exist and is verified
-      const user = await prisma.user.findUnique({
-        where: { id: decoded.userId },
-      });
+  //     // Check if user exist and is verified
+  //     const user = await prisma.user.findUnique({
+  //       where: { id: decoded.userId },
+  //     });
 
-      if (!user) {
-        throw new ForbiddenError("Could not refresh access token");
-      }
+  //     if (!user) {
+  //       throw new ForbiddenError("Could not refresh access token");
+  //     }
 
-      // Sign new access token
-      const access_token = signJwt(
-        { userId: user.id },
-        "accessTokenPrivateKey",
-        {
-          expiresIn: `${accessTokenExpiresIn}m`,
-        }
-      );
+  //     // Sign new access token
+  //     const access_token = signJwt(
+  //       { userId: user.id },
+  //       "accessTokenPrivateKey",
+  //       {
+  //         expiresIn: `${accessTokenExpiresIn}m`,
+  //       }
+  //     );
 
-      // Send access token cookie
-      res.cookie("access_token", access_token, accessTokenCookieOptions);
-      res.cookie("logged_in", "true", {
-        ...accessTokenCookieOptions,
-        httpOnly: false,
-      });
+  //     // Send access token cookie
+  //     res.cookie("access_token", access_token, accessTokenCookieOptions);
+  //     res.cookie("logged_in", "true", {
+  //       ...accessTokenCookieOptions,
+  //       httpOnly: false,
+  //     });
 
-      return {
-        status: "success",
-        access_token,
-      };
-    } catch (error) {
-      console.error(error);
-      return error;
-    }
-  }
+  //     return {
+  //       status: "success",
+  //       access_token,
+  //     };
+  //   } catch (error) {
+  //     console.error(error);
+  //     return error;
+  //   }
+  // }
 }

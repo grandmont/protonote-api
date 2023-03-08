@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntegrationCreateNestedManyWithoutUserInput } from "../inputs/IntegrationCreateNestedManyWithoutUserInput";
 import { ProtoCreateNestedManyWithoutUserInput } from "../inputs/ProtoCreateNestedManyWithoutUserInput";
+import { AuthProvider } from "../../enums/AuthProvider";
 
 @TypeGraphQL.InputType("UserCreateInput", {
   isAbstract: true
@@ -20,14 +21,19 @@ export class UserCreateInput {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  picture?: string | undefined;
+
+  @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })
-  picture!: string;
+  provider!: "GOOGLE" | "APPLE";
 
   @TypeGraphQL.Field(_type => ProtoCreateNestedManyWithoutUserInput, {
     nullable: true

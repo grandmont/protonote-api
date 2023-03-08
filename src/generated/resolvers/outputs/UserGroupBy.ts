@@ -7,6 +7,7 @@ import { UserCountAggregate } from "../outputs/UserCountAggregate";
 import { UserMaxAggregate } from "../outputs/UserMaxAggregate";
 import { UserMinAggregate } from "../outputs/UserMinAggregate";
 import { UserSumAggregate } from "../outputs/UserSumAggregate";
+import { AuthProvider } from "../../enums/AuthProvider";
 
 @TypeGraphQL.ObjectType("UserGroupBy", {
   isAbstract: true
@@ -28,14 +29,19 @@ export class UserGroupBy {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name!: string | null;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  picture!: string | null;
+
+  @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })
-  picture!: string;
+  provider!: "GOOGLE" | "APPLE";
 
   @TypeGraphQL.Field(_type => UserCountAggregate, {
     nullable: true

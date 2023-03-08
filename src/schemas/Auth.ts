@@ -1,10 +1,18 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
-import { User } from "../generated"
+import { AuthProvider, User } from "../generated"
 
 @InputType()
 export class AuthInput {
+  // Google
+  @Field(() => String, { nullable: true })
+  accessToken?: string
+
+  // Apple
+  @Field(() => String, { nullable: true })
+  user?: string
+
   @Field(() => String)
-  accessToken: string;
+  provider: AuthProvider;
 }
 
 @ObjectType()

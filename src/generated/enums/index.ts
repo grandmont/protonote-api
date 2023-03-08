@@ -1,3 +1,4 @@
+export { AuthProvider } from "./AuthProvider";
 export { IntegrationProvider } from "./IntegrationProvider";
 export { IntegrationScalarFieldEnum } from "./IntegrationScalarFieldEnum";
 export { IntegrationStatus } from "./IntegrationStatus";

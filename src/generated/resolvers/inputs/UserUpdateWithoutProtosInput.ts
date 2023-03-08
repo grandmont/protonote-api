@@ -3,7 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { EnumAuthProviderFieldUpdateOperationsInput } from "../inputs/EnumAuthProviderFieldUpdateOperationsInput";
 import { IntegrationUpdateManyWithoutUserNestedInput } from "../inputs/IntegrationUpdateManyWithoutUserNestedInput";
+import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("UserUpdateWithoutProtosInput", {
@@ -20,15 +22,20 @@ export class UserUpdateWithoutProtosInput {
   })
   email?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
-  name?: StringFieldUpdateOperationsInput | undefined;
+  name?: NullableStringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
-  picture?: StringFieldUpdateOperationsInput | undefined;
+  picture?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => EnumAuthProviderFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  provider?: EnumAuthProviderFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => IntegrationUpdateManyWithoutUserNestedInput, {
     nullable: true

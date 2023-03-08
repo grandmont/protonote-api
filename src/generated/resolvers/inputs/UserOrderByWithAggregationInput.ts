@@ -38,6 +38,11 @@ export class UserOrderByWithAggregationInput {
   })
   picture?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  provider?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => UserCountOrderByAggregateInput, {
     nullable: true
   })

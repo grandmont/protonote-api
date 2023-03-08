@@ -1,4 +1,4 @@
-import { ResolversEnhanceMap } from "../generated";
+import { Integration, ResolversEnhanceMap } from "../generated";
 
 import { UseMiddleware } from "type-graphql";
 
@@ -9,6 +9,9 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
     _all: [UseMiddleware(ValidateToken)],
   },
   Proto: {
+    _all: [UseMiddleware(ValidateToken)]
+  },
+  Integration: {
     _all: [UseMiddleware(ValidateToken)]
   }
 };

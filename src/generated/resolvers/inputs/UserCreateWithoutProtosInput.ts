@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntegrationCreateNestedManyWithoutUserInput } from "../inputs/IntegrationCreateNestedManyWithoutUserInput";
+import { AuthProvider } from "../../enums/AuthProvider";
 
 @TypeGraphQL.InputType("UserCreateWithoutProtosInput", {
   isAbstract: true
@@ -19,14 +20,19 @@ export class UserCreateWithoutProtosInput {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  picture?: string | undefined;
+
+  @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })
-  picture!: string;
+  provider!: "GOOGLE" | "APPLE";
 
   @TypeGraphQL.Field(_type => IntegrationCreateNestedManyWithoutUserInput, {
     nullable: true

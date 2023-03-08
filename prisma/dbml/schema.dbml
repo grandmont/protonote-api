@@ -6,8 +6,9 @@ Table User {
   id Int [pk, increment]
   createdAt DateTime [default: `now()`, not null]
   email String [unique, not null]
-  name String [not null]
-  picture String [not null]
+  name String
+  picture String
+  provider AuthProvider [not null]
   protos Proto [not null]
   integrations Integration [not null]
 }
@@ -32,6 +33,11 @@ Table Integration {
   status IntegrationStatus
   user User [not null]
   userId Int [not null]
+}
+
+Enum AuthProvider {
+  GOOGLE
+  APPLE
 }
 
 Enum IntegrationProvider {

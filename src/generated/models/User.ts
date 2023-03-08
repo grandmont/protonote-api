@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Integration } from "../models/Integration";
 import { Proto } from "../models/Proto";
+import { AuthProvider } from "../enums/AuthProvider";
 import { UserCount } from "../resolvers/outputs/UserCount";
 
 @TypeGraphQL.ObjectType("User", {
@@ -26,14 +27,19 @@ export class User {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  picture?: string | null;
+
+  @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })
-  picture!: string;
+  provider!: "GOOGLE" | "APPLE";
 
   protos?: Proto[];
 

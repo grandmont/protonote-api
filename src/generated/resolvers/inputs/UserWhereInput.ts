@@ -3,10 +3,12 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { EnumAuthProviderFilter } from "../inputs/EnumAuthProviderFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntegrationListRelationFilter } from "../inputs/IntegrationListRelationFilter";
 import { ProtoListRelationFilter } from "../inputs/ProtoListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("UserWhereInput", {
   isAbstract: true
@@ -42,15 +44,20 @@ export class UserWhereInput {
   })
   email?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  name?: StringFilter | undefined;
+  name?: StringNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
-  picture?: StringFilter | undefined;
+  picture?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => EnumAuthProviderFilter, {
+    nullable: true
+  })
+  provider?: EnumAuthProviderFilter | undefined;
 
   @TypeGraphQL.Field(_type => ProtoListRelationFilter, {
     nullable: true

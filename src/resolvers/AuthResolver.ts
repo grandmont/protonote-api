@@ -13,9 +13,4 @@ export default class AuthResolver {
   async authenticate(@Arg("input") input: AuthInput, @Ctx() ctx: Context) {
     return this.authService.authenticateUser(input, ctx);
   }
-
-  @Query(() => AuthResponse)
-  async refreshAccessToken(@Ctx() ctx: Context) {
-    return this.authService.refreshAccessToken(ctx);
-  }
 }
