@@ -3,9 +3,12 @@ import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import {
   IntegrationsInput,
   IntegrationsResponse,
-  SpotifyInput,
-  SpotifyResponse,
 } from "../schemas/Integrations";
+import {
+  GetPlaybackStateResponse,
+  SpotifyInput,
+  SpotifyResponse
+} from "../schemas/SpotifySchema";
 import IntegrationsService from "../services/IntegrationsService";
 import SpotifyService from "../services/SpotifyService";
 import { Context } from "../context";
@@ -33,11 +36,12 @@ export default class IntegrationsResolver {
 
   // Spotify
   @Mutation(() => SpotifyResponse)
+  @UseMiddleware(ValidateToken)
   async swapSpotifyCode(
     @Arg("input") input: SpotifyInput,
     @Ctx() ctx: Context
   ) {
-    return this.spotifyService.swapSpotifyCode(input, ctx);
+    return this.spotifyService.swapSpotifyCode(input);
   }
 
   @Mutation(() => SpotifyResponse)
@@ -45,6 +49,24 @@ export default class IntegrationsResolver {
     @Arg("input") input: SpotifyInput,
     @Ctx() ctx: Context
   ) {
-    return this.spotifyService.refreshSpotifyAccessToken(input, ctx);
+    return this.spotifyService.refreshSpotifyAccessToken(input);
+  }
+
+  @Mutation(() => GetPlaybackStateResponse, { nullable: true })
+  @UseMiddleware(ValidateToken)
+  async getPlaybackState(
+    @Arg("input") input: SpotifyInput,
+    @Ctx() ctx: Context
+  ) {
+    return this.spotifyService.getPlaybackState(input);
+  }
+
+  @Mutation(() => SpotifyResponse, { nullable: true })
+  @UseMiddleware(ValidateToken)
+  async saveRecentlyPlayedTracks(
+    @Arg("input") input: SpotifyInput,
+    @Ctx() ctx: Context
+  ) {
+    return this.spotifyService.saveRecentlyPlayedTracks(input);
   }
 }

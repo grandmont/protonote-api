@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { IntegrationDataCreateNestedManyWithoutProtoInput } from "../inputs/IntegrationDataCreateNestedManyWithoutProtoInput";
 
 @TypeGraphQL.InputType("ProtoCreateWithoutUserInput", {
   isAbstract: true
@@ -31,4 +32,9 @@ export class ProtoCreateWithoutUserInput {
     nullable: true
   })
   dateString?: string | undefined;
+
+  @TypeGraphQL.Field(_type => IntegrationDataCreateNestedManyWithoutProtoInput, {
+    nullable: true
+  })
+  IntegrationData?: IntegrationDataCreateNestedManyWithoutProtoInput | undefined;
 }

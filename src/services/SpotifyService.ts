@@ -2,8 +2,9 @@ import { AuthenticationError } from "apollo-server-core";
 import { CookieOptions } from "express";
 import fetch from "node-fetch";
 
-import { SpotifyInput } from "../schemas/Integrations";
-import { Context } from "../context";
+import { parseRecentlyPlayedTracks } from "../utils/spotify";
+import { SPOTIFY_ACCOUNT, SPOTIFY_API_URL } from "../config/constants";
+import { SpotifyInput } from "../schemas/SpotifySchema";
 
 // init spotify config
 const spClientId = process.env.SPOTIFY_CLIENT_ID;
@@ -13,7 +14,6 @@ const authString = Buffer.from(spClientId + ":" + spClientSecret).toString(
   "base64"
 );
 const authHeader = `Basic ${authString}`;
-const spotifyEndpoint = "https://accounts.spotify.com/api/token";
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -25,7 +25,7 @@ const cookieOptions: CookieOptions = {
 if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
 export default class SpotifyService {
-  async swapSpotifyCode(input: SpotifyInput, { req, res }: Context) {
+  async swapSpotifyCode(input: SpotifyInput) {
     try {
       // build request data
       const reqData = {
@@ -41,7 +41,7 @@ export default class SpotifyService {
         )
         .join("&");
 
-      const response = await fetch(spotifyEndpoint, {
+      const response = await fetch(SPOTIFY_ACCOUNT, {
         method: "POST",
         body: formBody,
         headers: {
@@ -50,13 +50,13 @@ export default class SpotifyService {
         },
       });
 
-      console.log(response)
+      console.log(response);
 
       const result = await response.json();
 
       return {
         accessToken: result.access_token,
-        refreshToken: result.refresh_token
+        refreshToken: result.refresh_token,
       };
     } catch (error) {
       console.error(error);
@@ -64,7 +64,7 @@ export default class SpotifyService {
     }
   }
 
-  async refreshSpotifyAccessToken(input: SpotifyInput, { req, res }: Context) {
+  async refreshSpotifyAccessToken(input: SpotifyInput) {
     try {
       // ensure refresh token parameter
       if (!input.refreshToken) {
@@ -86,7 +86,7 @@ export default class SpotifyService {
         )
         .join("&");
 
-      const response = await fetch(spotifyEndpoint, {
+      const response = await fetch(SPOTIFY_ACCOUNT, {
         method: "POST",
         body: formBody,
         headers: {
@@ -103,6 +103,96 @@ export default class SpotifyService {
     } catch (error) {
       console.error(error);
       return error;
+    }
+  }
+
+  async getPlaybackState(input: SpotifyInput) {
+    const accessToken = input.accessToken;
+    const refreshToken = input.refreshToken;
+
+    if (!refreshToken) {
+      throw new AuthenticationError("Request is missing refresh token.");
+    }
+
+    try {
+      const response = await fetch(`${SPOTIFY_API_URL}/me/player`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      console.log(response);
+
+      if (response.status === 204) return null;
+
+      const data = await response.json();
+
+      // Refresh accessToken
+      if (data.error?.status === 401) {
+        const { accessToken: newAcessToken } =
+          await this.refreshSpotifyAccessToken({ refreshToken });
+
+        if (!accessToken) return null;
+
+        return this.getPlaybackState({
+          refreshToken,
+          accessToken: newAcessToken,
+        });
+      }
+
+      if (data.error) return null;
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
+
+  async saveRecentlyPlayedTracks(input: SpotifyInput) {
+    const accessToken = input.accessToken;
+    const refreshToken = input.refreshToken;
+
+    if (!refreshToken) {
+      throw new AuthenticationError("Request is missing refresh token.");
+    }
+
+    try {
+      const response = await fetch(
+        `${SPOTIFY_API_URL}/me/player/recently-played?limit=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+
+      // Refresh accessToken
+      if (data.error?.status === 401) {
+        const { accessToken: newAcessToken } =
+          await this.refreshSpotifyAccessToken({ refreshToken });
+
+          console.log(accessToken)
+
+        if (!accessToken) return null;
+
+        return this.saveRecentlyPlayedTracks({
+          refreshToken,
+          accessToken: newAcessToken,
+        });
+      }
+
+      if (data.error) return null;
+
+      parseRecentlyPlayedTracks(data)
+
+      return null
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   }
 }

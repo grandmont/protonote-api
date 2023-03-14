@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { IntegrationDataUpdateManyWithoutIntegrationNestedInput } from "../inputs/IntegrationDataUpdateManyWithoutIntegrationNestedInput";
 import { NullableEnumIntegrationProviderFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationProviderFieldUpdateOperationsInput";
 import { NullableEnumIntegrationStatusFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationStatusFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
@@ -35,4 +36,9 @@ export class IntegrationUpdateWithoutUserInput {
     nullable: true
   })
   status?: NullableEnumIntegrationStatusFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => IntegrationDataUpdateManyWithoutIntegrationNestedInput, {
+    nullable: true
+  })
+  IntegrationData?: IntegrationDataUpdateManyWithoutIntegrationNestedInput | undefined;
 }

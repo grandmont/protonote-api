@@ -6,6 +6,7 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumIntegrationProviderNullableFilter } from "../inputs/EnumIntegrationProviderNullableFilter";
 import { EnumIntegrationStatusNullableFilter } from "../inputs/EnumIntegrationStatusNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntegrationDataListRelationFilter } from "../inputs/IntegrationDataListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
@@ -67,4 +68,9 @@ export class IntegrationWhereInput {
     nullable: true
   })
   userId?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntegrationDataListRelationFilter, {
+    nullable: true
+  })
+  IntegrationData?: IntegrationDataListRelationFilter | undefined;
 }

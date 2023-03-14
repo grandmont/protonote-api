@@ -22,6 +22,7 @@ Table Proto {
   dateString String
   user User [not null]
   userId Int [not null]
+  IntegrationData IntegrationData [not null]
 }
 
 Table Integration {
@@ -33,6 +34,18 @@ Table Integration {
   status IntegrationStatus
   user User [not null]
   userId Int [not null]
+  IntegrationData IntegrationData [not null]
+}
+
+Table IntegrationData {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  data String [not null]
+  integration Integration [not null]
+  integrationId Int [not null]
+  proto Proto [not null]
+  protoId Int [not null]
 }
 
 Enum AuthProvider {
@@ -52,3 +65,7 @@ Enum IntegrationStatus {
 Ref: Proto.userId > User.id
 
 Ref: Integration.userId > User.id
+
+Ref: IntegrationData.integrationId > Integration.id
+
+Ref: IntegrationData.protoId > Proto.id

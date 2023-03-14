@@ -2,7 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { IntegrationData } from "../models/IntegrationData";
 import { User } from "../models/User";
+import { ProtoCount } from "../resolvers/outputs/ProtoCount";
 
 @TypeGraphQL.ObjectType("Proto", {
   isAbstract: true
@@ -44,4 +46,11 @@ export class Proto {
     nullable: false
   })
   userId!: number;
+
+  IntegrationData?: IntegrationData[];
+
+  @TypeGraphQL.Field(_type => ProtoCount, {
+    nullable: true
+  })
+  _count?: ProtoCount | null;
 }

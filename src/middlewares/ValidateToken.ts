@@ -34,6 +34,9 @@ const ValidateToken = async ({ context }: ResolverData, next: NextFn) => {
 
     const user = await prisma.user.findUnique({
       where: { id },
+      include: {
+        integrations: true
+      }
     });
 
     if (!user) {
@@ -42,6 +45,7 @@ const ValidateToken = async ({ context }: ResolverData, next: NextFn) => {
       );
     }
 
+    console.log("hey")
     // req.user = user;
     Object.assign(req, { user });
 
