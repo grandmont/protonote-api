@@ -45,6 +45,11 @@ export class IntegrationDataWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
+  search?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
   data?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => IntegrationRelationFilter, {

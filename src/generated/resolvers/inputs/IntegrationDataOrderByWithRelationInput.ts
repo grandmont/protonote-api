@@ -28,6 +28,11 @@ export class IntegrationDataOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  search?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   data?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => IntegrationOrderByWithRelationInput, {

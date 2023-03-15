@@ -25,13 +25,13 @@ export class ProtoRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => [IntegrationData], {
     nullable: false
   })
-  async IntegrationData(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: ProtoIntegrationDataArgs): Promise<IntegrationData[]> {
+  async integrationData(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: ProtoIntegrationDataArgs): Promise<IntegrationData[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).proto.findUnique({
       where: {
         id: proto.id,
       },
-    }).IntegrationData({
+    }).integrationData({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });

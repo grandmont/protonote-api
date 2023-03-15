@@ -25,6 +25,11 @@ export class IntegrationDataCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  search!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   data!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

@@ -49,7 +49,7 @@ export class Integration {
   })
   userId!: number;
 
-  IntegrationData?: IntegrationData[];
+  integrationData?: IntegrationData[];
 
   @TypeGraphQL.Field(_type => IntegrationCount, {
     nullable: true

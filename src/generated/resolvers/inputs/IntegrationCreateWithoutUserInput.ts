@@ -38,5 +38,5 @@ export class IntegrationCreateWithoutUserInput {
   @TypeGraphQL.Field(_type => IntegrationDataCreateNestedManyWithoutIntegrationInput, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataCreateNestedManyWithoutIntegrationInput | undefined;
+  integrationData?: IntegrationDataCreateNestedManyWithoutIntegrationInput | undefined;
 }

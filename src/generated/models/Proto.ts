@@ -47,7 +47,7 @@ export class Proto {
   })
   userId!: number;
 
-  IntegrationData?: IntegrationData[];
+  integrationData?: IntegrationData[];
 
   @TypeGraphQL.Field(_type => ProtoCount, {
     nullable: true

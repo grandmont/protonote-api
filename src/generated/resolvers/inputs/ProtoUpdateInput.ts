@@ -44,5 +44,5 @@ export class ProtoUpdateInput {
   @TypeGraphQL.Field(_type => IntegrationDataUpdateManyWithoutProtoNestedInput, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataUpdateManyWithoutProtoNestedInput | undefined;
+  integrationData?: IntegrationDataUpdateManyWithoutProtoNestedInput | undefined;
 }

@@ -10,5 +10,5 @@ export class IntegrationCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  IntegrationData!: number;
+  integrationData!: number;
 }

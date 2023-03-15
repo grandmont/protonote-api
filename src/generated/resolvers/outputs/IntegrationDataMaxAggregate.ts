@@ -25,6 +25,11 @@ export class IntegrationDataMaxAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
+  search!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
   data!: string | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

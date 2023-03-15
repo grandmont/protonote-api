@@ -22,7 +22,7 @@ Table Proto {
   dateString String
   user User [not null]
   userId Int [not null]
-  IntegrationData IntegrationData [not null]
+  integrationData IntegrationData [not null]
 }
 
 Table Integration {
@@ -34,13 +34,14 @@ Table Integration {
   status IntegrationStatus
   user User [not null]
   userId Int [not null]
-  IntegrationData IntegrationData [not null]
+  integrationData IntegrationData [not null]
 }
 
 Table IntegrationData {
   id Int [pk, increment]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
+  search String [not null]
   data String [not null]
   integration Integration [not null]
   integrationId Int [not null]

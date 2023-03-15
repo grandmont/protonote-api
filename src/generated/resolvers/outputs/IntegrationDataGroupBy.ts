@@ -30,6 +30,11 @@ export class IntegrationDataGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  search!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   data!: string;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

@@ -46,5 +46,5 @@ export class IntegrationUpdateInput {
   @TypeGraphQL.Field(_type => IntegrationDataUpdateManyWithoutIntegrationNestedInput, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataUpdateManyWithoutIntegrationNestedInput | undefined;
+  integrationData?: IntegrationDataUpdateManyWithoutIntegrationNestedInput | undefined;
 }

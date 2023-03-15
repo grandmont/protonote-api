@@ -72,5 +72,5 @@ export class IntegrationWhereInput {
   @TypeGraphQL.Field(_type => IntegrationDataListRelationFilter, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataListRelationFilter | undefined;
+  integrationData?: IntegrationDataListRelationFilter | undefined;
 }

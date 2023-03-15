@@ -42,5 +42,5 @@ export class ProtoCreateInput {
   @TypeGraphQL.Field(_type => IntegrationDataCreateNestedManyWithoutProtoInput, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataCreateNestedManyWithoutProtoInput | undefined;
+  integrationData?: IntegrationDataCreateNestedManyWithoutProtoInput | undefined;
 }

@@ -21,6 +21,11 @@ export class IntegrationDataCreateWithoutProtoInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  search!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   data!: string;
 
   @TypeGraphQL.Field(_type => IntegrationCreateNestedOneWithoutIntegrationDataInput, {

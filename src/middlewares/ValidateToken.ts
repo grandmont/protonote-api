@@ -45,8 +45,6 @@ const ValidateToken = async ({ context }: ResolverData, next: NextFn) => {
       );
     }
 
-    console.log("hey")
-    // req.user = user;
     Object.assign(req, { user });
 
     return next();

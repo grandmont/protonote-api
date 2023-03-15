@@ -2,6 +2,7 @@ import { AuthenticationError } from "apollo-server-core";
 import { CookieOptions } from "express";
 import fetch from "node-fetch";
 
+import { Context } from "../context";
 import { parseRecentlyPlayedTracks } from "../utils/spotify";
 import { SPOTIFY_ACCOUNT, SPOTIFY_API_URL } from "../config/constants";
 import { SpotifyInput } from "../schemas/SpotifySchema";
@@ -149,9 +150,10 @@ export default class SpotifyService {
     }
   }
 
-  async saveRecentlyPlayedTracks(input: SpotifyInput) {
+  async saveRecentlyPlayedTracks(input: SpotifyInput, ctx: Context) {
     const accessToken = input.accessToken;
     const refreshToken = input.refreshToken;
+    const dateString = input.dateString;
 
     if (!refreshToken) {
       throw new AuthenticationError("Request is missing refresh token.");
@@ -169,27 +171,31 @@ export default class SpotifyService {
 
       const data = await response.json();
 
-
       // Refresh accessToken
       if (data.error?.status === 401) {
         const { accessToken: newAcessToken } =
           await this.refreshSpotifyAccessToken({ refreshToken });
 
-          console.log(accessToken)
-
         if (!accessToken) return null;
 
-        return this.saveRecentlyPlayedTracks({
-          refreshToken,
-          accessToken: newAcessToken,
-        });
+        return this.saveRecentlyPlayedTracks(
+          {
+            refreshToken,
+            accessToken: newAcessToken,
+            dateString,
+          },
+          ctx
+        );
       }
 
-      if (data.error) return null;
+      if (data.error) {
+        console.log(data.error);
+        return null;
+      }
 
-      parseRecentlyPlayedTracks(data)
+      await parseRecentlyPlayedTracks(dateString, data, ctx);
 
-      return null
+      return null;
     } catch (error) {
       console.log(error);
       return null;

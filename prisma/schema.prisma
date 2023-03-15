@@ -3,14 +3,14 @@ generator client {
   binaryTargets = ["native"]
 }
 
-generator typegraphql {
-  provider = "typegraphql-prisma"
-  output   = "../src/generated"
-}
+// generator typegraphql {
+//   provider = "typegraphql-prisma"
+//   output   = "../src/generated"
+// }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
 
 datasource db {
   provider = "postgresql"
@@ -37,7 +37,7 @@ model Proto {
   dateString      String?
   user            User              @relation(fields: [userId], references: [id])
   userId          Int
-  IntegrationData IntegrationData[]
+  integrationData IntegrationData[]
 }
 
 model Integration {
@@ -49,13 +49,14 @@ model Integration {
   status          IntegrationStatus?
   user            User                 @relation(fields: [userId], references: [id])
   userId          Int
-  IntegrationData IntegrationData[]
+  integrationData IntegrationData[]
 }
 
 model IntegrationData {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @default(now())
+  search        String
   data          String
   integration   Integration @relation(fields: [integrationId], references: [id])
   integrationId Int

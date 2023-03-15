@@ -13,6 +13,9 @@ export class SpotifyInput {
 
   @Field(() => String, { nullable: true })
   refreshToken?: string;
+
+  @Field(() => String, { nullable: true })
+  dateString?: string;
 }
 
 @ObjectType()
@@ -94,7 +97,7 @@ class Item {
 }
 
 @ObjectType()
-class Track {
+export class Track {
   @Field(() => Item)
   track: Item;
 

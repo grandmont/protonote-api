@@ -4,6 +4,7 @@ export enum IntegrationDataScalarFieldEnum {
   id = "id",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  search = "search",
   data = "data",
   integrationId = "integrationId",
   protoId = "protoId"

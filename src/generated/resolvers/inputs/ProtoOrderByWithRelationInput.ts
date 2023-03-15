@@ -53,5 +53,5 @@ export class ProtoOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => IntegrationDataOrderByRelationAggregateInput, {
     nullable: true
   })
-  IntegrationData?: IntegrationDataOrderByRelationAggregateInput | undefined;
+  integrationData?: IntegrationDataOrderByRelationAggregateInput | undefined;
 }
