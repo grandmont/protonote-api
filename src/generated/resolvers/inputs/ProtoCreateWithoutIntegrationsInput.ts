@@ -34,7 +34,7 @@ export class ProtoCreateWithoutIntegrationsInput {
   dateString?: string | undefined;
 
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutProtosInput, {
-    nullable: false
+    nullable: true
   })
-  user!: UserCreateNestedOneWithoutProtosInput;
+  user?: UserCreateNestedOneWithoutProtosInput | undefined;
 }

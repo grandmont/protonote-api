@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { IntegrationDataOnProtosUpdateManyWithoutProtoNestedInput } from "../inputs/IntegrationDataOnProtosUpdateManyWithoutProtoNestedInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutProtosNestedInput } from "../inputs/UserUpdateOneRequiredWithoutProtosNestedInput";
+import { UserUpdateOneWithoutProtosNestedInput } from "../inputs/UserUpdateOneWithoutProtosNestedInput";
 
 @TypeGraphQL.InputType("ProtoUpdateInput", {
   isAbstract: true
@@ -36,10 +36,10 @@ export class ProtoUpdateInput {
   })
   dateString?: NullableStringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutProtosNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneWithoutProtosNestedInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutProtosNestedInput | undefined;
+  user?: UserUpdateOneWithoutProtosNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => IntegrationDataOnProtosUpdateManyWithoutProtoNestedInput, {
     nullable: true

@@ -76,7 +76,7 @@ export default class UserService {
   // Authenticate User
   async authenticateUser(input: AuthInput, { res }: Context) {
     try {
-      console.log("Authenticating User");
+      // console.log("Authenticating User");
       const { accessToken, user, provider } = input;
 
       const userInfo =

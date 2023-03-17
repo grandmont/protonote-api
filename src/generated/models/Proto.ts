@@ -40,12 +40,12 @@ export class Proto {
   })
   dateString?: string | null;
 
-  user?: User;
+  user?: User | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId?: number | null;
 
   integrations?: IntegrationDataOnProtos[];
 

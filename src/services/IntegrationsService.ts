@@ -42,9 +42,8 @@ async function findOrCreateIntegration({
 }
 
 export default class IntegrationsService {
-  async registerIntegration(input: IntegrationsInput, { req, res }: Context) {
+  async registerIntegration(input: IntegrationsInput, { req }: Context) {
     try {
-      console.log(req.user);
       const { accessToken, provider } = input;
 
       const integrateProvider = getIntegrationProvider(provider);

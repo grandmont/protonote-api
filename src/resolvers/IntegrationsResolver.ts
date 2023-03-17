@@ -5,7 +5,6 @@ import {
   IntegrationsResponse,
 } from "../schemas/Integrations";
 import IntegrationsService from "../services/IntegrationsService";
-import SpotifyService from "../services/SpotifyService";
 import { Context } from "../context";
 import ValidateToken from "../middlewares/ValidateToken";
 

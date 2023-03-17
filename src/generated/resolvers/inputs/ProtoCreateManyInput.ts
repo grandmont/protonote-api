@@ -38,7 +38,7 @@ export class ProtoCreateManyInput {
   dateString?: string | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId?: number | undefined;
 }

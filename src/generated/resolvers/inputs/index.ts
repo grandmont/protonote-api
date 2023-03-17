@@ -10,6 +10,8 @@ export { EnumIntegrationStatusNullableFilter } from "./EnumIntegrationStatusNull
 export { EnumIntegrationStatusNullableWithAggregatesFilter } from "./EnumIntegrationStatusNullableWithAggregatesFilter";
 export { IntFieldUpdateOperationsInput } from "./IntFieldUpdateOperationsInput";
 export { IntFilter } from "./IntFilter";
+export { IntNullableFilter } from "./IntNullableFilter";
+export { IntNullableWithAggregatesFilter } from "./IntNullableWithAggregatesFilter";
 export { IntWithAggregatesFilter } from "./IntWithAggregatesFilter";
 export { IntegrationAvgOrderByAggregateInput } from "./IntegrationAvgOrderByAggregateInput";
 export { IntegrationCountOrderByAggregateInput } from "./IntegrationCountOrderByAggregateInput";
@@ -106,8 +108,10 @@ export { NestedEnumIntegrationProviderNullableWithAggregatesFilter } from "./Nes
 export { NestedEnumIntegrationStatusNullableFilter } from "./NestedEnumIntegrationStatusNullableFilter";
 export { NestedEnumIntegrationStatusNullableWithAggregatesFilter } from "./NestedEnumIntegrationStatusNullableWithAggregatesFilter";
 export { NestedFloatFilter } from "./NestedFloatFilter";
+export { NestedFloatNullableFilter } from "./NestedFloatNullableFilter";
 export { NestedIntFilter } from "./NestedIntFilter";
 export { NestedIntNullableFilter } from "./NestedIntNullableFilter";
+export { NestedIntNullableWithAggregatesFilter } from "./NestedIntNullableWithAggregatesFilter";
 export { NestedIntWithAggregatesFilter } from "./NestedIntWithAggregatesFilter";
 export { NestedStringFilter } from "./NestedStringFilter";
 export { NestedStringNullableFilter } from "./NestedStringNullableFilter";
@@ -115,6 +119,7 @@ export { NestedStringNullableWithAggregatesFilter } from "./NestedStringNullable
 export { NestedStringWithAggregatesFilter } from "./NestedStringWithAggregatesFilter";
 export { NullableEnumIntegrationProviderFieldUpdateOperationsInput } from "./NullableEnumIntegrationProviderFieldUpdateOperationsInput";
 export { NullableEnumIntegrationStatusFieldUpdateOperationsInput } from "./NullableEnumIntegrationStatusFieldUpdateOperationsInput";
+export { NullableIntFieldUpdateOperationsInput } from "./NullableIntFieldUpdateOperationsInput";
 export { NullableStringFieldUpdateOperationsInput } from "./NullableStringFieldUpdateOperationsInput";
 export { ProtoAvgOrderByAggregateInput } from "./ProtoAvgOrderByAggregateInput";
 export { ProtoCountOrderByAggregateInput } from "./ProtoCountOrderByAggregateInput";
@@ -175,7 +180,7 @@ export { UserSumOrderByAggregateInput } from "./UserSumOrderByAggregateInput";
 export { UserUpdateInput } from "./UserUpdateInput";
 export { UserUpdateManyMutationInput } from "./UserUpdateManyMutationInput";
 export { UserUpdateOneRequiredWithoutIntegrationsNestedInput } from "./UserUpdateOneRequiredWithoutIntegrationsNestedInput";
-export { UserUpdateOneRequiredWithoutProtosNestedInput } from "./UserUpdateOneRequiredWithoutProtosNestedInput";
+export { UserUpdateOneWithoutProtosNestedInput } from "./UserUpdateOneWithoutProtosNestedInput";
 export { UserUpdateWithoutIntegrationsInput } from "./UserUpdateWithoutIntegrationsInput";
 export { UserUpdateWithoutProtosInput } from "./UserUpdateWithoutProtosInput";
 export { UserUpsertWithoutIntegrationsInput } from "./UserUpsertWithoutIntegrationsInput";

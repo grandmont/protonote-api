@@ -8,10 +8,10 @@ import { UserUpdateWithoutProtosInput } from "../inputs/UserUpdateWithoutProtosI
 import { UserUpsertWithoutProtosInput } from "../inputs/UserUpsertWithoutProtosInput";
 import { UserWhereUniqueInput } from "../inputs/UserWhereUniqueInput";
 
-@TypeGraphQL.InputType("UserUpdateOneRequiredWithoutProtosNestedInput", {
+@TypeGraphQL.InputType("UserUpdateOneWithoutProtosNestedInput", {
   isAbstract: true
 })
-export class UserUpdateOneRequiredWithoutProtosNestedInput {
+export class UserUpdateOneWithoutProtosNestedInput {
   @TypeGraphQL.Field(_type => UserCreateWithoutProtosInput, {
     nullable: true
   })
@@ -26,6 +26,16 @@ export class UserUpdateOneRequiredWithoutProtosNestedInput {
     nullable: true
   })
   upsert?: UserUpsertWithoutProtosInput | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  disconnect?: boolean | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  delete?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => UserWhereUniqueInput, {
     nullable: true

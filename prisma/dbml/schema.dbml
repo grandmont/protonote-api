@@ -20,8 +20,8 @@ Table Proto {
   title String
   description String
   dateString String
-  user User [not null]
-  userId Int [not null]
+  user User
+  userId Int
   integrations IntegrationDataOnProtos [not null]
 }
 
@@ -72,7 +72,7 @@ Enum IntegrationStatus {
   DISCONNECTED
 }
 
-Ref: Proto.userId > User.id
+Ref: Proto.userId > User.id [delete: Set Null]
 
 Ref: IntegrationDataOnProtos.protoId > Proto.id
 

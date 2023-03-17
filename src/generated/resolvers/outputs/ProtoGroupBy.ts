@@ -43,9 +43,9 @@ export class ProtoGroupBy {
   dateString!: string | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId!: number | null;
 
   @TypeGraphQL.Field(_type => ProtoCountAggregate, {
     nullable: true

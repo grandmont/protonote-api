@@ -9,9 +9,9 @@ import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldI
 @TypeGraphQL.Resolver(_of => Proto)
 export class ProtoRelationsResolver {
   @TypeGraphQL.FieldResolver(_type => User, {
-    nullable: false
+    nullable: true
   })
-  async user(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<User> {
+  async user(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<User | null> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).proto.findUnique({
       where: {
