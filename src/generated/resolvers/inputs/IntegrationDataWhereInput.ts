@@ -4,9 +4,9 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { IntFilter } from "../inputs/IntFilter";
-import { IntegrationRelationFilter } from "../inputs/IntegrationRelationFilter";
-import { ProtoRelationFilter } from "../inputs/ProtoRelationFilter";
+import { IntegrationDataOnProtosListRelationFilter } from "../inputs/IntegrationDataOnProtosListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { StringNullableFilter } from "../inputs/StringNullableFilter";
 
 @TypeGraphQL.InputType("IntegrationDataWhereInput", {
   isAbstract: true
@@ -42,6 +42,11 @@ export class IntegrationDataWhereInput {
   })
   updatedAt?: DateTimeFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  externalId?: StringNullableFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -52,23 +57,8 @@ export class IntegrationDataWhereInput {
   })
   data?: StringFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntegrationRelationFilter, {
+  @TypeGraphQL.Field(_type => IntegrationDataOnProtosListRelationFilter, {
     nullable: true
   })
-  integration?: IntegrationRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => IntFilter, {
-    nullable: true
-  })
-  integrationId?: IntFilter | undefined;
-
-  @TypeGraphQL.Field(_type => ProtoRelationFilter, {
-    nullable: true
-  })
-  proto?: ProtoRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => IntFilter, {
-    nullable: true
-  })
-  protoId?: IntFilter | undefined;
+  protos?: IntegrationDataOnProtosListRelationFilter | undefined;
 }

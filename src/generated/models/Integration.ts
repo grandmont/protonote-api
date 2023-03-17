@@ -2,11 +2,9 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { IntegrationData } from "../models/IntegrationData";
 import { User } from "../models/User";
 import { IntegrationProvider } from "../enums/IntegrationProvider";
 import { IntegrationStatus } from "../enums/IntegrationStatus";
-import { IntegrationCount } from "../resolvers/outputs/IntegrationCount";
 
 @TypeGraphQL.ObjectType("Integration", {
   isAbstract: true
@@ -48,11 +46,4 @@ export class Integration {
     nullable: false
   })
   userId!: number;
-
-  integrationData?: IntegrationData[];
-
-  @TypeGraphQL.Field(_type => IntegrationCount, {
-    nullable: true
-  })
-  _count?: IntegrationCount | null;
 }

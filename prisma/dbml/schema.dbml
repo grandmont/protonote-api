@@ -22,7 +22,29 @@ Table Proto {
   dateString String
   user User [not null]
   userId Int [not null]
+  integrations IntegrationDataOnProtos [not null]
+}
+
+Table IntegrationDataOnProtos {
+  proto Proto [not null]
+  protoId Int [not null]
   integrationData IntegrationData [not null]
+  integrationDataId Int [not null]
+  assignedAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (protoId, integrationDataId) [pk]
+  }
+}
+
+Table IntegrationData {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  externalId String
+  search String [not null]
+  data String [not null]
+  protos IntegrationDataOnProtos [not null]
 }
 
 Table Integration {
@@ -34,19 +56,6 @@ Table Integration {
   status IntegrationStatus
   user User [not null]
   userId Int [not null]
-  integrationData IntegrationData [not null]
-}
-
-Table IntegrationData {
-  id Int [pk, increment]
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [default: `now()`, not null]
-  search String [not null]
-  data String [not null]
-  integration Integration [not null]
-  integrationId Int [not null]
-  proto Proto [not null]
-  protoId Int [not null]
 }
 
 Enum AuthProvider {
@@ -65,8 +74,8 @@ Enum IntegrationStatus {
 
 Ref: Proto.userId > User.id
 
+Ref: IntegrationDataOnProtos.protoId > Proto.id
+
+Ref: IntegrationDataOnProtos.integrationDataId > IntegrationData.id
+
 Ref: Integration.userId > User.id
-
-Ref: IntegrationData.integrationId > Integration.id
-
-Ref: IntegrationData.protoId > Proto.id

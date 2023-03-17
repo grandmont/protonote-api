@@ -1,36 +1,23 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { Integration } from "../../../models/Integration";
 import { IntegrationData } from "../../../models/IntegrationData";
-import { Proto } from "../../../models/Proto";
+import { IntegrationDataOnProtos } from "../../../models/IntegrationDataOnProtos";
+import { IntegrationDataProtosArgs } from "./args/IntegrationDataProtosArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => IntegrationData)
 export class IntegrationDataRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => Integration, {
+  @TypeGraphQL.FieldResolver(_type => [IntegrationDataOnProtos], {
     nullable: false
   })
-  async integration(@TypeGraphQL.Root() integrationData: IntegrationData, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<Integration> {
+  async protos(@TypeGraphQL.Root() integrationData: IntegrationData, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: IntegrationDataProtosArgs): Promise<IntegrationDataOnProtos[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).integrationData.findUnique({
       where: {
         id: integrationData.id,
       },
-    }).integration({
-      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
-    });
-  }
-
-  @TypeGraphQL.FieldResolver(_type => Proto, {
-    nullable: false
-  })
-  async proto(@TypeGraphQL.Root() integrationData: IntegrationData, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo): Promise<Proto> {
-    const { _count } = transformInfoIntoPrismaArgs(info);
-    return getPrismaFromContext(ctx).integrationData.findUnique({
-      where: {
-        id: integrationData.id,
-      },
-    }).proto({
+    }).protos({
+      ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });
   }

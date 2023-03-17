@@ -1,4 +1,5 @@
 export { AuthProvider } from "./AuthProvider";
+export { IntegrationDataOnProtosScalarFieldEnum } from "./IntegrationDataOnProtosScalarFieldEnum";
 export { IntegrationDataScalarFieldEnum } from "./IntegrationDataScalarFieldEnum";
 export { IntegrationProvider } from "./IntegrationProvider";
 export { IntegrationScalarFieldEnum } from "./IntegrationScalarFieldEnum";

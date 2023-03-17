@@ -2,8 +2,8 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
-import { Integration } from "../models/Integration";
-import { Proto } from "../models/Proto";
+import { IntegrationDataOnProtos } from "../models/IntegrationDataOnProtos";
+import { IntegrationDataCount } from "../resolvers/outputs/IntegrationDataCount";
 
 @TypeGraphQL.ObjectType("IntegrationData", {
   isAbstract: true
@@ -25,6 +25,11 @@ export class IntegrationData {
   updatedAt!: Date;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  externalId?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   search!: string;
@@ -34,17 +39,10 @@ export class IntegrationData {
   })
   data!: string;
 
-  integration?: Integration;
+  protos?: IntegrationDataOnProtos[];
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+  @TypeGraphQL.Field(_type => IntegrationDataCount, {
+    nullable: true
   })
-  integrationId!: number;
-
-  proto?: Proto;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  protoId!: number;
+  _count?: IntegrationDataCount | null;
 }

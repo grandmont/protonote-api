@@ -23,6 +23,11 @@ export class IntegrationDataCreateManyInput {
   updatedAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  externalId?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   search!: string;
@@ -31,14 +36,4 @@ export class IntegrationDataCreateManyInput {
     nullable: false
   })
   data!: string;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  integrationId!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  protoId!: number;
 }

@@ -3,14 +3,14 @@ generator client {
   binaryTargets = ["native"]
 }
 
-// generator typegraphql {
-//   provider = "typegraphql-prisma"
-//   output   = "../src/generated"
-// }
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../src/generated"
+}
 
-// generator dbml {
-//   provider = "prisma-dbml-generator"
-// }
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
 
 datasource db {
   provider = "postgresql"
@@ -29,39 +29,46 @@ model User {
 }
 
 model Proto {
-  id              Int               @id @default(autoincrement())
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @default(now())
-  title           String?
-  description     String?
-  dateString      String?
-  user            User              @relation(fields: [userId], references: [id])
-  userId          Int
-  integrationData IntegrationData[]
+  id           Int                       @id @default(autoincrement())
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @default(now())
+  title        String?
+  description  String?
+  dateString   String?
+  user         User                      @relation(fields: [userId], references: [id])
+  userId       Int
+  integrations IntegrationDataOnProtos[]
 }
 
-model Integration {
-  id              Int                  @id @default(autoincrement())
-  createdAt       DateTime             @default(now())
-  updatedAt       DateTime             @default(now())
-  externalId      String
-  provider        IntegrationProvider?
-  status          IntegrationStatus?
-  user            User                 @relation(fields: [userId], references: [id])
-  userId          Int
-  integrationData IntegrationData[]
+model IntegrationDataOnProtos {
+  proto             Proto           @relation(fields: [protoId], references: [id])
+  protoId           Int
+  integrationData   IntegrationData @relation(fields: [integrationDataId], references: [id])
+  integrationDataId Int
+  assignedAt        DateTime        @default(now())
+
+  @@id([protoId, integrationDataId])
 }
 
 model IntegrationData {
-  id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @default(now())
-  search        String
-  data          String
-  integration   Integration @relation(fields: [integrationId], references: [id])
-  integrationId Int
-  proto         Proto       @relation(fields: [protoId], references: [id])
-  protoId       Int
+  id         Int                       @id @default(autoincrement())
+  createdAt  DateTime                  @default(now())
+  updatedAt  DateTime                  @default(now())
+  externalId String?
+  search     String
+  data       String
+  protos     IntegrationDataOnProtos[]
+}
+
+model Integration {
+  id         Int                  @id @default(autoincrement())
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @default(now())
+  externalId String
+  provider   IntegrationProvider?
+  status     IntegrationStatus?
+  user       User                 @relation(fields: [userId], references: [id])
+  userId     Int
 }
 
 enum AuthProvider {

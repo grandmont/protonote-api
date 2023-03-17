@@ -28,6 +28,11 @@ export class IntegrationDataGroupBy {
   updatedAt!: Date;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  externalId!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   search!: string;
@@ -36,16 +41,6 @@ export class IntegrationDataGroupBy {
     nullable: false
   })
   data!: string;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  integrationId!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  protoId!: number;
 
   @TypeGraphQL.Field(_type => IntegrationDataCountAggregate, {
     nullable: true

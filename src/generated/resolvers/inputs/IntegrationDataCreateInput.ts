@@ -2,8 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { IntegrationCreateNestedOneWithoutIntegrationDataInput } from "../inputs/IntegrationCreateNestedOneWithoutIntegrationDataInput";
-import { ProtoCreateNestedOneWithoutIntegrationDataInput } from "../inputs/ProtoCreateNestedOneWithoutIntegrationDataInput";
+import { IntegrationDataOnProtosCreateNestedManyWithoutIntegrationDataInput } from "../inputs/IntegrationDataOnProtosCreateNestedManyWithoutIntegrationDataInput";
 
 @TypeGraphQL.InputType("IntegrationDataCreateInput", {
   isAbstract: true
@@ -20,6 +19,11 @@ export class IntegrationDataCreateInput {
   updatedAt?: Date | undefined;
 
   @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  externalId?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   search!: string;
@@ -29,13 +33,8 @@ export class IntegrationDataCreateInput {
   })
   data!: string;
 
-  @TypeGraphQL.Field(_type => IntegrationCreateNestedOneWithoutIntegrationDataInput, {
-    nullable: false
+  @TypeGraphQL.Field(_type => IntegrationDataOnProtosCreateNestedManyWithoutIntegrationDataInput, {
+    nullable: true
   })
-  integration!: IntegrationCreateNestedOneWithoutIntegrationDataInput;
-
-  @TypeGraphQL.Field(_type => ProtoCreateNestedOneWithoutIntegrationDataInput, {
-    nullable: false
-  })
-  proto!: ProtoCreateNestedOneWithoutIntegrationDataInput;
+  protos?: IntegrationDataOnProtosCreateNestedManyWithoutIntegrationDataInput | undefined;
 }

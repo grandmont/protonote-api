@@ -3,8 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
-import { IntegrationUpdateOneRequiredWithoutIntegrationDataNestedInput } from "../inputs/IntegrationUpdateOneRequiredWithoutIntegrationDataNestedInput";
-import { ProtoUpdateOneRequiredWithoutIntegrationDataNestedInput } from "../inputs/ProtoUpdateOneRequiredWithoutIntegrationDataNestedInput";
+import { IntegrationDataOnProtosUpdateManyWithoutIntegrationDataNestedInput } from "../inputs/IntegrationDataOnProtosUpdateManyWithoutIntegrationDataNestedInput";
+import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("IntegrationDataUpdateInput", {
@@ -21,6 +21,11 @@ export class IntegrationDataUpdateInput {
   })
   updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  externalId?: NullableStringFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -31,13 +36,8 @@ export class IntegrationDataUpdateInput {
   })
   data?: StringFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => IntegrationUpdateOneRequiredWithoutIntegrationDataNestedInput, {
+  @TypeGraphQL.Field(_type => IntegrationDataOnProtosUpdateManyWithoutIntegrationDataNestedInput, {
     nullable: true
   })
-  integration?: IntegrationUpdateOneRequiredWithoutIntegrationDataNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => ProtoUpdateOneRequiredWithoutIntegrationDataNestedInput, {
-    nullable: true
-  })
-  proto?: ProtoUpdateOneRequiredWithoutIntegrationDataNestedInput | undefined;
+  protos?: IntegrationDataOnProtosUpdateManyWithoutIntegrationDataNestedInput | undefined;
 }

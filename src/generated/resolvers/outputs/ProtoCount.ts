@@ -10,5 +10,5 @@ export class ProtoCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  integrationData!: number;
+  integrations!: number;
 }

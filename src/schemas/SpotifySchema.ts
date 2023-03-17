@@ -1,4 +1,4 @@
-import { Field, InputType, InterfaceType, ObjectType } from "type-graphql";
+import { Field, InputType, ObjectType } from "type-graphql";
 
 @InputType()
 export class SpotifyInput {
@@ -26,24 +26,6 @@ export class SpotifyResponse {
   @Field(() => String, { nullable: true })
   refreshToken?: string;
 }
-
-// export type PlaybackStateType = {
-//   progress_ms: number;
-//   item: {
-//     album: {
-//       artists: {
-//         id: string;
-//         name: string;
-//       }[];
-//       images: {
-//         height: 640 | 300 | 64;
-//         url: string;
-//         width: 640 | 300 | 64;
-//       }[];
-//       release_date: string;
-//     } & SpotifyItemType;
-//   } & SpotifyItemType;
-// };
 
 @ObjectType()
 class ExternalURLs {
@@ -79,10 +61,13 @@ class Album {
 
   @Field(() => [Artist])
   artists: Artist[];
+
+  @Field()
+  external_urls: ExternalURLs;
 }
 
 @ObjectType()
-class Item {
+class SpotifyItem {
   @Field()
   id: string;
 
@@ -98,8 +83,8 @@ class Item {
 
 @ObjectType()
 export class Track {
-  @Field(() => Item)
-  track: Item;
+  @Field(() => SpotifyItem)
+  track: SpotifyItem;
 
   @Field(() => String)
   played_at: string;
@@ -111,7 +96,7 @@ export class GetPlaybackStateResponse {
   progress_ms: number;
 
   @Field()
-  item: Item;
+  item: SpotifyItem;
 }
 
 @ObjectType()

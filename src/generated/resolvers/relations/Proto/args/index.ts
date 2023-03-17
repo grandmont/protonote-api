@@ -1,1 +1,1 @@
-export { ProtoIntegrationDataArgs } from "./ProtoIntegrationDataArgs";
+export { ProtoIntegrationsArgs } from "./ProtoIntegrationsArgs";

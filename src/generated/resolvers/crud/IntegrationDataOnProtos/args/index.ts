@@ -1,0 +1,14 @@
+export { AggregateIntegrationDataOnProtosArgs } from "./AggregateIntegrationDataOnProtosArgs";
+export { CreateManyIntegrationDataOnProtosArgs } from "./CreateManyIntegrationDataOnProtosArgs";
+export { CreateOneIntegrationDataOnProtosArgs } from "./CreateOneIntegrationDataOnProtosArgs";
+export { DeleteManyIntegrationDataOnProtosArgs } from "./DeleteManyIntegrationDataOnProtosArgs";
+export { DeleteOneIntegrationDataOnProtosArgs } from "./DeleteOneIntegrationDataOnProtosArgs";
+export { FindFirstIntegrationDataOnProtosArgs } from "./FindFirstIntegrationDataOnProtosArgs";
+export { FindFirstIntegrationDataOnProtosOrThrowArgs } from "./FindFirstIntegrationDataOnProtosOrThrowArgs";
+export { FindManyIntegrationDataOnProtosArgs } from "./FindManyIntegrationDataOnProtosArgs";
+export { FindUniqueIntegrationDataOnProtosArgs } from "./FindUniqueIntegrationDataOnProtosArgs";
+export { FindUniqueIntegrationDataOnProtosOrThrowArgs } from "./FindUniqueIntegrationDataOnProtosOrThrowArgs";
+export { GroupByIntegrationDataOnProtosArgs } from "./GroupByIntegrationDataOnProtosArgs";
+export { UpdateManyIntegrationDataOnProtosArgs } from "./UpdateManyIntegrationDataOnProtosArgs";
+export { UpdateOneIntegrationDataOnProtosArgs } from "./UpdateOneIntegrationDataOnProtosArgs";
+export { UpsertOneIntegrationDataOnProtosArgs } from "./UpsertOneIntegrationDataOnProtosArgs";

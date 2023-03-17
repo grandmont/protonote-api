@@ -1,9 +1,9 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
-import { IntegrationData } from "../../../models/IntegrationData";
+import { IntegrationDataOnProtos } from "../../../models/IntegrationDataOnProtos";
 import { Proto } from "../../../models/Proto";
 import { User } from "../../../models/User";
-import { ProtoIntegrationDataArgs } from "./args/ProtoIntegrationDataArgs";
+import { ProtoIntegrationsArgs } from "./args/ProtoIntegrationsArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => Proto)
@@ -22,16 +22,16 @@ export class ProtoRelationsResolver {
     });
   }
 
-  @TypeGraphQL.FieldResolver(_type => [IntegrationData], {
+  @TypeGraphQL.FieldResolver(_type => [IntegrationDataOnProtos], {
     nullable: false
   })
-  async integrationData(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: ProtoIntegrationDataArgs): Promise<IntegrationData[]> {
+  async integrations(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: ProtoIntegrationsArgs): Promise<IntegrationDataOnProtos[]> {
     const { _count } = transformInfoIntoPrismaArgs(info);
     return getPrismaFromContext(ctx).proto.findUnique({
       where: {
         id: proto.id,
       },
-    }).integrationData({
+    }).integrations({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });

@@ -2,8 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { IntegrationOrderByWithRelationInput } from "../inputs/IntegrationOrderByWithRelationInput";
-import { ProtoOrderByWithRelationInput } from "../inputs/ProtoOrderByWithRelationInput";
+import { IntegrationDataOnProtosOrderByRelationAggregateInput } from "../inputs/IntegrationDataOnProtosOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("IntegrationDataOrderByWithRelationInput", {
@@ -28,6 +27,11 @@ export class IntegrationDataOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  externalId?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   search?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -35,23 +39,8 @@ export class IntegrationDataOrderByWithRelationInput {
   })
   data?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => IntegrationOrderByWithRelationInput, {
+  @TypeGraphQL.Field(_type => IntegrationDataOnProtosOrderByRelationAggregateInput, {
     nullable: true
   })
-  integration?: IntegrationOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  integrationId?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => ProtoOrderByWithRelationInput, {
-    nullable: true
-  })
-  proto?: ProtoOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  protoId?: "asc" | "desc" | undefined;
+  protos?: IntegrationDataOnProtosOrderByRelationAggregateInput | undefined;
 }

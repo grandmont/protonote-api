@@ -2,7 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { IntegrationDataOrderByRelationAggregateInput } from "../inputs/IntegrationDataOrderByRelationAggregateInput";
+import { IntegrationDataOnProtosOrderByRelationAggregateInput } from "../inputs/IntegrationDataOnProtosOrderByRelationAggregateInput";
 import { UserOrderByWithRelationInput } from "../inputs/UserOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -50,8 +50,8 @@ export class ProtoOrderByWithRelationInput {
   })
   userId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => IntegrationDataOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => IntegrationDataOnProtosOrderByRelationAggregateInput, {
     nullable: true
   })
-  integrationData?: IntegrationDataOrderByRelationAggregateInput | undefined;
+  integrations?: IntegrationDataOnProtosOrderByRelationAggregateInput | undefined;
 }

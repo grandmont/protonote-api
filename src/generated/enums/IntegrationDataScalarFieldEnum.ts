@@ -4,10 +4,9 @@ export enum IntegrationDataScalarFieldEnum {
   id = "id",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  externalId = "externalId",
   search = "search",
-  data = "data",
-  integrationId = "integrationId",
-  protoId = "protoId"
+  data = "data"
 }
 TypeGraphQL.registerEnumType(IntegrationDataScalarFieldEnum, {
   name: "IntegrationDataScalarFieldEnum",

@@ -46,6 +46,7 @@ export default class SpotifyIntegration {
     @Arg("input") input: SpotifyInput,
     @Ctx() ctx: Context
   ) {
+    console.log("opa")
     return this.spotifyService.saveRecentlyPlayedTracks(input, ctx);
   }
 }
