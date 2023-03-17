@@ -4,16 +4,22 @@ import { relationResolvers, crudResolvers } from "./generated";
 import AuthResolver from "./resolvers/AuthResolver";
 import MemoResolver from "./resolvers/MemoResolver";
 import IntegrationsResolver from "./resolvers/IntegrationsResolver";
+import AccountResolver from "./resolvers/AccountResolver";
 import SpotifyIntegration from "./integrations/SpotifyIntegration";
 
 export const schema: BuildSchemaOptions = {
   resolvers: [
     ...relationResolvers,
     ...crudResolvers,
+
+    // Custom resolvers
     AuthResolver,
     MemoResolver,
     IntegrationsResolver,
-    SpotifyIntegration
+    AccountResolver,
+
+    // Integrations
+    SpotifyIntegration,
   ] as unknown as NonEmptyArray<Function>,
   validate: false,
 };

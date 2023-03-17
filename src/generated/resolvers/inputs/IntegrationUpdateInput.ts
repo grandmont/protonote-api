@@ -6,7 +6,7 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { NullableEnumIntegrationProviderFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationProviderFieldUpdateOperationsInput";
 import { NullableEnumIntegrationStatusFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationStatusFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { UserUpdateOneRequiredWithoutIntegrationsNestedInput } from "../inputs/UserUpdateOneRequiredWithoutIntegrationsNestedInput";
+import { UserUpdateOneWithoutIntegrationsNestedInput } from "../inputs/UserUpdateOneWithoutIntegrationsNestedInput";
 
 @TypeGraphQL.InputType("IntegrationUpdateInput", {
   isAbstract: true
@@ -37,8 +37,8 @@ export class IntegrationUpdateInput {
   })
   status?: NullableEnumIntegrationStatusFieldUpdateOperationsInput | undefined;
 
-  @TypeGraphQL.Field(_type => UserUpdateOneRequiredWithoutIntegrationsNestedInput, {
+  @TypeGraphQL.Field(_type => UserUpdateOneWithoutIntegrationsNestedInput, {
     nullable: true
   })
-  user?: UserUpdateOneRequiredWithoutIntegrationsNestedInput | undefined;
+  user?: UserUpdateOneWithoutIntegrationsNestedInput | undefined;
 }

@@ -40,7 +40,7 @@ export class IntegrationCreateManyInput {
   status?: "CONNECTED" | "DISCONNECTED" | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId?: number | undefined;
 }

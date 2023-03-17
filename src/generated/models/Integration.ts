@@ -40,10 +40,10 @@ export class Integration {
   })
   status?: "CONNECTED" | "DISCONNECTED" | null;
 
-  user?: User;
+  user?: User | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId?: number | null;
 }

@@ -6,6 +6,7 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { EnumIntegrationProviderNullableFilter } from "../inputs/EnumIntegrationProviderNullableFilter";
 import { EnumIntegrationStatusNullableFilter } from "../inputs/EnumIntegrationStatusNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType("IntegrationScalarWhereInput", {
@@ -57,8 +58,8 @@ export class IntegrationScalarWhereInput {
   })
   status?: EnumIntegrationStatusNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntFilter, {
+  @TypeGraphQL.Field(_type => IntNullableFilter, {
     nullable: true
   })
-  userId?: IntFilter | undefined;
+  userId?: IntNullableFilter | undefined;
 }

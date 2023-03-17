@@ -36,7 +36,7 @@ export class IntegrationCreateInput {
   status?: "CONNECTED" | "DISCONNECTED" | undefined;
 
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutIntegrationsInput, {
-    nullable: false
+    nullable: true
   })
-  user!: UserCreateNestedOneWithoutIntegrationsInput;
+  user?: UserCreateNestedOneWithoutIntegrationsInput | undefined;
 }

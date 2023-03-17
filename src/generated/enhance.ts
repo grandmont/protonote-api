@@ -597,7 +597,7 @@ const inputsInfo = {
   UserCreateNestedOneWithoutIntegrationsInput: ["create", "connectOrCreate", "connect"],
   NullableEnumIntegrationProviderFieldUpdateOperationsInput: ["set"],
   NullableEnumIntegrationStatusFieldUpdateOperationsInput: ["set"],
-  UserUpdateOneRequiredWithoutIntegrationsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  UserUpdateOneWithoutIntegrationsNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],

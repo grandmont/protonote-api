@@ -179,7 +179,7 @@ export { UserScalarWhereWithAggregatesInput } from "./UserScalarWhereWithAggrega
 export { UserSumOrderByAggregateInput } from "./UserSumOrderByAggregateInput";
 export { UserUpdateInput } from "./UserUpdateInput";
 export { UserUpdateManyMutationInput } from "./UserUpdateManyMutationInput";
-export { UserUpdateOneRequiredWithoutIntegrationsNestedInput } from "./UserUpdateOneRequiredWithoutIntegrationsNestedInput";
+export { UserUpdateOneWithoutIntegrationsNestedInput } from "./UserUpdateOneWithoutIntegrationsNestedInput";
 export { UserUpdateOneWithoutProtosNestedInput } from "./UserUpdateOneWithoutProtosNestedInput";
 export { UserUpdateWithoutIntegrationsInput } from "./UserUpdateWithoutIntegrationsInput";
 export { UserUpdateWithoutProtosInput } from "./UserUpdateWithoutProtosInput";

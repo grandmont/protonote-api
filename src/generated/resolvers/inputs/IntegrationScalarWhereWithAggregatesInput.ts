@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
 import { EnumIntegrationProviderNullableWithAggregatesFilter } from "../inputs/EnumIntegrationProviderNullableWithAggregatesFilter";
 import { EnumIntegrationStatusNullableWithAggregatesFilter } from "../inputs/EnumIntegrationStatusNullableWithAggregatesFilter";
+import { IntNullableWithAggregatesFilter } from "../inputs/IntNullableWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
@@ -57,8 +58,8 @@ export class IntegrationScalarWhereWithAggregatesInput {
   })
   status?: EnumIntegrationStatusNullableWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
+  @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
     nullable: true
   })
-  userId?: IntWithAggregatesFilter | undefined;
+  userId?: IntNullableWithAggregatesFilter | undefined;
 }

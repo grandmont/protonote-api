@@ -54,8 +54,8 @@ Table Integration {
   externalId String [not null]
   provider IntegrationProvider
   status IntegrationStatus
-  user User [not null]
-  userId Int [not null]
+  user User
+  userId Int
 }
 
 Enum AuthProvider {
@@ -78,4 +78,4 @@ Ref: IntegrationDataOnProtos.protoId > Proto.id
 
 Ref: IntegrationDataOnProtos.integrationDataId > IntegrationData.id
 
-Ref: Integration.userId > User.id
+Ref: Integration.userId > User.id [delete: Set Null]

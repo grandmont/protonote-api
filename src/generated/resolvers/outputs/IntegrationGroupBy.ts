@@ -45,9 +45,9 @@ export class IntegrationGroupBy {
   status!: "CONNECTED" | "DISCONNECTED" | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
+    nullable: true
   })
-  userId!: number;
+  userId!: number | null;
 
   @TypeGraphQL.Field(_type => IntegrationCountAggregate, {
     nullable: true
