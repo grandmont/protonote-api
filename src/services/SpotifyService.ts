@@ -155,6 +155,9 @@ export default class SpotifyService {
     const refreshToken = input.refreshToken;
     const dateString = input.dateString;
 
+    console.log("saveRecentlyPlayedTracks [DEPRECATED]");
+    return null;
+
     if (!refreshToken) {
       throw new AuthenticationError("Request is missing refresh token.");
     }
