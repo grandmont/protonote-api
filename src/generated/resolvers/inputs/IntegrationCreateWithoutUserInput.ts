@@ -33,4 +33,9 @@ export class IntegrationCreateWithoutUserInput {
     nullable: true
   })
   status?: "CONNECTED" | "DISCONNECTED" | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  refreshToken?: string | undefined;
 }

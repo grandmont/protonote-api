@@ -6,8 +6,10 @@ import { buildSchema } from "type-graphql";
 
 import { context } from "./context";
 import { schema } from "./schema";
-import { applyResolversEnhanceMap } from "./generated"
+import { applyResolversEnhanceMap } from "./generated";
 import resolversEnhanceMap from "./config/middleware";
+
+import cronJob from "./jobs/cronJob";
 
 const port = process.env.PORT || 4000;
 
@@ -28,8 +30,12 @@ async function bootstrap() {
 
   server.applyMiddleware({ app });
 
+  cronJob.start();
+
   app.listen({ port }, () =>
-    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
+    console.log(
+      `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+    )
   );
 }
 

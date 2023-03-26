@@ -30,6 +30,11 @@ export class UserCreateInput {
   })
   picture?: string | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  timeZone?: string | undefined;
+
   @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })

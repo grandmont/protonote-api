@@ -7,6 +7,7 @@ import { EnumIntegrationProviderNullableWithAggregatesFilter } from "../inputs/E
 import { EnumIntegrationStatusNullableWithAggregatesFilter } from "../inputs/EnumIntegrationStatusNullableWithAggregatesFilter";
 import { IntNullableWithAggregatesFilter } from "../inputs/IntNullableWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
+import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 
 @TypeGraphQL.InputType("IntegrationScalarWhereWithAggregatesInput", {
@@ -57,6 +58,11 @@ export class IntegrationScalarWhereWithAggregatesInput {
     nullable: true
   })
   status?: EnumIntegrationStatusNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  refreshToken?: StringNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
     nullable: true

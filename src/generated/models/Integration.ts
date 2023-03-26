@@ -40,6 +40,11 @@ export class Integration {
   })
   status?: "CONNECTED" | "DISCONNECTED" | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  refreshToken?: string | null;
+
   user?: User | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

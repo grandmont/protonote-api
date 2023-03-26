@@ -38,6 +38,11 @@ export class UserGroupBy {
   })
   picture!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  timeZone!: string | null;
+
   @TypeGraphQL.Field(_type => AuthProvider, {
     nullable: false
   })

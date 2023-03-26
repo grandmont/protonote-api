@@ -52,6 +52,11 @@ export class UserScalarWhereWithAggregatesInput {
   })
   picture?: StringNullableWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  timeZone?: StringNullableWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => EnumAuthProviderWithAggregatesFilter, {
     nullable: true
   })

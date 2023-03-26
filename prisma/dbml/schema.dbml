@@ -8,6 +8,7 @@ Table User {
   email String [unique, not null]
   name String
   picture String
+  timeZone String
   provider AuthProvider [not null]
   protos Proto [not null]
   integrations Integration [not null]
@@ -54,6 +55,7 @@ Table Integration {
   externalId String [not null]
   provider IntegrationProvider
   status IntegrationStatus
+  refreshToken String
   user User
   userId Int
 }

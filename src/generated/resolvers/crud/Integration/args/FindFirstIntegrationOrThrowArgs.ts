@@ -35,5 +35,5 @@ export class FindFirstIntegrationOrThrowArgs {
   @TypeGraphQL.Field(_type => [IntegrationScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "externalId" | "provider" | "status" | "userId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "externalId" | "provider" | "status" | "refreshToken" | "userId"> | undefined;
 }

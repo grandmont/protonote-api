@@ -39,6 +39,11 @@ export class IntegrationCreateManyInput {
   })
   status?: "CONNECTED" | "DISCONNECTED" | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  refreshToken?: string | undefined;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })

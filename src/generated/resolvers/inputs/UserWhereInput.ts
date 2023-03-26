@@ -54,6 +54,11 @@ export class UserWhereInput {
   })
   picture?: StringNullableFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  timeZone?: StringNullableFilter | undefined;
+
   @TypeGraphQL.Field(_type => EnumAuthProviderFilter, {
     nullable: true
   })

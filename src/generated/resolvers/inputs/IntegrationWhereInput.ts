@@ -8,6 +8,7 @@ import { EnumIntegrationStatusNullableFilter } from "../inputs/EnumIntegrationSt
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
 @TypeGraphQL.InputType("IntegrationWhereInput", {
@@ -58,6 +59,11 @@ export class IntegrationWhereInput {
     nullable: true
   })
   status?: EnumIntegrationStatusNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableFilter, {
+    nullable: true
+  })
+  refreshToken?: StringNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => UserRelationFilter, {
     nullable: true

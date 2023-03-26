@@ -39,6 +39,11 @@ export class IntegrationOrderByWithRelationInput {
   })
   status?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  refreshToken?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => UserOrderByWithRelationInput, {
     nullable: true
   })

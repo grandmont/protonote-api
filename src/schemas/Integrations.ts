@@ -6,6 +6,9 @@ export class IntegrationsInput {
   @Field(() => String)
   accessToken: string;
 
+  @Field(() => String)
+  refreshToken?: string;
+
   @Field(() => IntegrationProvider)
   provider: IntegrationProvider;
 }

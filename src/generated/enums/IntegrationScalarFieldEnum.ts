@@ -7,6 +7,7 @@ export enum IntegrationScalarFieldEnum {
   externalId = "externalId",
   provider = "provider",
   status = "status",
+  refreshToken = "refreshToken",
   userId = "userId"
 }
 TypeGraphQL.registerEnumType(IntegrationScalarFieldEnum, {

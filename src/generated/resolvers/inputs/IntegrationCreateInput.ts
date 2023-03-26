@@ -35,6 +35,11 @@ export class IntegrationCreateInput {
   })
   status?: "CONNECTED" | "DISCONNECTED" | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  refreshToken?: string | undefined;
+
   @TypeGraphQL.Field(_type => UserCreateNestedOneWithoutIntegrationsInput, {
     nullable: true
   })

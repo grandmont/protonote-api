@@ -19,6 +19,7 @@ async function findOrCreateIntegration({
   externalId,
   userId,
   provider,
+  refreshToken,
   status,
 }: Partial<Integration>): Promise<Integration | null> {
   const integration = await prisma.integration.findFirst({ where: { userId } });
@@ -29,6 +30,7 @@ async function findOrCreateIntegration({
         externalId,
         provider,
         status,
+        refreshToken,
         user: {
           connect: {
             id: userId,
@@ -44,7 +46,7 @@ async function findOrCreateIntegration({
 export default class IntegrationsService {
   async registerIntegration(input: IntegrationsInput, { req }: Context) {
     try {
-      const { accessToken, provider } = input;
+      const { accessToken, refreshToken, provider } = input;
 
       const integrateProvider = getIntegrationProvider(provider);
 
@@ -60,6 +62,7 @@ export default class IntegrationsService {
         externalId: userInfo.id,
         userId: req.user.id,
         provider,
+        refreshToken,
         status: IntegrationStatus.CONNECTED,
       };
 

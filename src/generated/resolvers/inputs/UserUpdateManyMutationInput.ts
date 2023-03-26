@@ -31,6 +31,11 @@ export class UserUpdateManyMutationInput {
   })
   picture?: NullableStringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  timeZone?: NullableStringFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => EnumAuthProviderFieldUpdateOperationsInput, {
     nullable: true
   })

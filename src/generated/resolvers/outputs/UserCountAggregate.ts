@@ -35,6 +35,11 @@ export class UserCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  timeZone!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   provider!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

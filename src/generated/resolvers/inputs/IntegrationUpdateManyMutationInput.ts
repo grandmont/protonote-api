@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { NullableEnumIntegrationProviderFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationProviderFieldUpdateOperationsInput";
 import { NullableEnumIntegrationStatusFieldUpdateOperationsInput } from "../inputs/NullableEnumIntegrationStatusFieldUpdateOperationsInput";
+import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("IntegrationUpdateManyMutationInput", {
@@ -35,4 +36,9 @@ export class IntegrationUpdateManyMutationInput {
     nullable: true
   })
   status?: NullableEnumIntegrationStatusFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  refreshToken?: NullableStringFieldUpdateOperationsInput | undefined;
 }

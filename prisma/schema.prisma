@@ -23,6 +23,7 @@ model User {
   email        String        @unique
   name         String?
   picture      String?
+  timeZone     String?
   provider     AuthProvider
   protos       Proto[]
   integrations Integration[]
@@ -61,14 +62,15 @@ model IntegrationData {
 }
 
 model Integration {
-  id         Int                  @id @default(autoincrement())
-  createdAt  DateTime             @default(now())
-  updatedAt  DateTime             @default(now())
-  externalId String
-  provider   IntegrationProvider?
-  status     IntegrationStatus?
-  user       User?                @relation(fields: [userId], references: [id], onDelete: SetNull)
-  userId     Int?
+  id           Int                  @id @default(autoincrement())
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @default(now())
+  externalId   String
+  provider     IntegrationProvider?
+  status       IntegrationStatus?
+  refreshToken String?
+  user         User?                @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId       Int?
 }
 
 enum AuthProvider {

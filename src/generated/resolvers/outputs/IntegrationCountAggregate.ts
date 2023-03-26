@@ -40,6 +40,11 @@ export class IntegrationCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
+  refreshToken!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
   userId!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
