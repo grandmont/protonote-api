@@ -1,4 +1,3 @@
-import { IntegrationProvider } from "@prisma/client";
 import { DeleteAccountInput, UpdateDeviceInput } from "../schemas/Account";
 import { Context, prisma } from "../context";
 
@@ -34,8 +33,6 @@ export default class AccountService {
 
   async updateDevice(input: UpdateDeviceInput, { req }: Context) {
     try {
-      console.log(input);
-
       const userId = req.user.id;
 
       if (input.timeZone) {
@@ -47,30 +44,6 @@ export default class AccountService {
           },
           where: {
             id: userId,
-          },
-        });
-      }
-
-      if (input.refreshToken) {
-        console.log("updaterefresh token");
-        // Update spotify refreshToken
-        const spotifyIntegration = await prisma.integration.findFirst({
-          where: {
-            userId: {
-              equals: userId,
-            },
-            provider: {
-              equals: IntegrationProvider.SPOTIFY,
-            },
-          },
-        });
-
-        await prisma.integration.update({
-          data: {
-            refreshToken: input.refreshToken,
-          },
-          where: {
-            id: spotifyIntegration.id,
           },
         });
       }

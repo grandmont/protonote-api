@@ -16,9 +16,6 @@ export class DeleteAccountResponse {
 export class UpdateDeviceInput {
   @Field(() => String)
   timeZone: string;
-
-  @Field(() => String, { nullable: true })
-  refreshToken?: string;
 }
 
 @ObjectType()
