@@ -65,7 +65,7 @@ model Integration {
   id           Int                  @id @default(autoincrement())
   createdAt    DateTime             @default(now())
   updatedAt    DateTime             @default(now())
-  externalId   String
+  externalId   String?
   provider     IntegrationProvider?
   status       IntegrationStatus?
   refreshToken String?
