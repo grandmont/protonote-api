@@ -26,7 +26,8 @@ const cronJob = new CronJob(
         },
       });
 
-      users.forEach(async (user) => {
+      await users.reduce(async (promise, user) => {
+        await promise;
         console.log("userId:", user.id);
 
         const { timeZone } = user;
@@ -41,6 +42,8 @@ const cronJob = new CronJob(
 
         const spotifyService = new SpotifyService();
 
+        console.log(spotifyIntegration.externalId);
+
         await spotifyService.syncRecentlyPlayedTracks(
           {
             accessToken: null,
@@ -49,7 +52,9 @@ const cronJob = new CronJob(
           },
           user
         );
-      });
+
+        console.log("Finished");
+      }, Promise.resolve());
     } catch (error) {
       console.log(error);
     }

@@ -40,11 +40,14 @@ async function findOrCreateIntegration({
     });
   }
 
+  // TODO: Add update integration function here
+
   return integration;
 }
 
 export default class IntegrationsService {
   async registerIntegration(input: IntegrationsInput, { req }: Context) {
+    console.log("registerIntegration");
     try {
       const { accessToken, refreshToken, provider } = input;
 
@@ -59,7 +62,7 @@ export default class IntegrationsService {
       }
 
       const integrationInfo = {
-        externalId: userInfo.id,
+        externalId: userInfo?.id,
         userId: req.user.id,
         provider,
         refreshToken,
