@@ -26,9 +26,9 @@ export class Integration {
   updatedAt!: Date;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  externalId!: string;
+  externalId?: string | null;
 
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
