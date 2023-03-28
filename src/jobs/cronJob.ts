@@ -11,8 +11,6 @@ const cronJob = new CronJob(
   "0 * * * *",
   async () => {
     try {
-      const dateString = moment(new Date().toISOString());
-
       const users = await prisma.user.findMany({
         where: {
           integrations: {
@@ -33,7 +31,7 @@ const cronJob = new CronJob(
 
         const { timeZone } = user;
 
-        const userDateString = dateString.tz(timeZone).format(DATE_FORMAT);
+        const userDateString = moment.tz(timeZone).format(DATE_FORMAT);
 
         const spotifyIntegration = user.integrations.find(
           ({ provider }) => provider === IntegrationProvider.SPOTIFY

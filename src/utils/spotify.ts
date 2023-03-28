@@ -7,6 +7,7 @@ import { getDateString, getWrittenDateString } from "../utils/parsers";
 import { User } from "@prisma/client";
 
 export const getSpotifyUserInfo = async (accessToken: string) => {
+  console.log("getSpotifyUserInfo");
   try {
     const userInfoResponse = await fetch("https://api.spotify.com/v1/me", {
       headers: {
@@ -16,6 +17,7 @@ export const getSpotifyUserInfo = async (accessToken: string) => {
 
     const response = await userInfoResponse.json();
 
+    console.log("getSpotifyUserInfo response:", response);
     return response;
   } catch (error) {
     return error;

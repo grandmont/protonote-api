@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
 export default class SpotifyService {
   async swapSpotifyCode(input: SpotifyInput) {
+    console.log("swapSpotifyCode");
     try {
       // build request data
       const reqData = {
@@ -55,9 +56,9 @@ export default class SpotifyService {
         },
       });
 
-      console.log(response);
-
       const result = await response.json();
+
+      console.log("swapSpotifyCode result:", result);
 
       return {
         accessToken: result.access_token,
