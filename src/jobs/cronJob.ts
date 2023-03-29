@@ -8,7 +8,7 @@ import SpotifyService from "../services/SpotifyService";
 const CronJob = require("cron").CronJob;
 
 const cronJob = new CronJob(
-  "0 * * * *",
+  "*/10 * * * *",
   async () => {
     try {
       const users = await prisma.user.findMany({
@@ -44,7 +44,7 @@ const cronJob = new CronJob(
 
         console.log(spotifyIntegration.externalId);
 
-        await spotifyService.syncRecentlyPlayedTracks(
+        return await spotifyService.syncRecentlyPlayedTracks(
           {
             accessToken: null,
             refreshToken: spotifyIntegration.refreshToken,
@@ -52,8 +52,6 @@ const cronJob = new CronJob(
           },
           user
         );
-
-        console.log("Finished");
       }, Promise.resolve());
     } catch (error) {
       console.log(error);

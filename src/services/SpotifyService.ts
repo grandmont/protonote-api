@@ -215,6 +215,20 @@ export default class SpotifyService {
     const refreshToken = input.refreshToken;
     const dateString = input.dateString;
 
+    if (!accessToken) {
+      const { accessToken: newAcessToken } =
+        await this.refreshSpotifyAccessToken({ refreshToken });
+
+      return await this.syncRecentlyPlayedTracks(
+        {
+          refreshToken,
+          accessToken: newAcessToken,
+          dateString,
+        },
+        user
+      );
+    }
+
     if (!refreshToken) {
       throw new AuthenticationError("Request is missing refresh token.");
     }
@@ -234,6 +248,8 @@ export default class SpotifyService {
       );
 
       const data = await response.json();
+
+      console.log("accessToken:", accessToken);
 
       // Refresh accessToken
       if (data.error?.status === 401) {
