@@ -3,9 +3,8 @@ import { CookieOptions } from "express";
 import fetch from "node-fetch";
 import { User } from "@prisma/client";
 
-import { Context } from "../context";
 import {
-  parseRecentlyPlayedTracks,
+  getRecentlyPlayedTracks,
   storeRecentlyPlayedTracks,
 } from "../utils/spotify";
 import { SPOTIFY_ACCOUNT, SPOTIFY_API_URL } from "../config/constants";
@@ -155,61 +154,6 @@ export default class SpotifyService {
     }
   }
 
-  async saveRecentlyPlayedTracks(input: SpotifyInput, ctx: Context) {
-    const accessToken = input.accessToken;
-    const refreshToken = input.refreshToken;
-    const dateString = input.dateString;
-
-    console.log("saveRecentlyPlayedTracks [DEPRECATED]");
-    return null;
-
-    if (!refreshToken) {
-      throw new AuthenticationError("Request is missing refresh token.");
-    }
-
-    try {
-      const response = await fetch(
-        `${SPOTIFY_API_URL}/me/player/recently-played?limit=50`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      // Refresh accessToken
-      if (data.error?.status === 401) {
-        const { accessToken: newAcessToken } =
-          await this.refreshSpotifyAccessToken({ refreshToken });
-
-        if (!accessToken) return null;
-
-        return this.saveRecentlyPlayedTracks(
-          {
-            refreshToken,
-            accessToken: newAcessToken,
-            dateString,
-          },
-          ctx
-        );
-      }
-
-      if (data.error) {
-        console.log(data.error);
-        return null;
-      }
-
-      await parseRecentlyPlayedTracks(dateString, data, ctx);
-
-      return null;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
   async syncRecentlyPlayedTracks(input: SpotifyInput, user: User) {
     const accessToken = input.accessToken;
     const refreshToken = input.refreshToken;
@@ -238,16 +182,16 @@ export default class SpotifyService {
     }
 
     try {
-      const response = await fetch(
-        `${SPOTIFY_API_URL}/me/player/recently-played?limit=50`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const data = await getRecentlyPlayedTracks(accessToken);
 
-      const data = await response.json();
+      // const currentlyPlaying = await getCurrentlyPlayingTrack(accessToken);
+
+      // const {
+      //   items: [item],
+      // } = data;
+
+      // console.log(item.track);
+      // console.log(currentlyPlaying.item);
 
       console.log("accessToken:", accessToken);
 
@@ -264,6 +208,13 @@ export default class SpotifyService {
           },
           user
         );
+      }
+
+      if (data.error?.status === 504) {
+        console.log(`
+  Error 504 - userId: ${user.id}
+        `);
+        return null;
       }
 
       if (data.error) {
