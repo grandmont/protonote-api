@@ -26,7 +26,7 @@ export const getSpotifyUserInfo = async (accessToken: string) => {
 
 export const getRecentlyPlayedTracks = async (accessToken: string) => {
   const response = await fetch(
-    `${SPOTIFY_API_URL}/me/player/recently-played?limit=20`,
+    `${SPOTIFY_API_URL}/me/player/recently-played?limit=50`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
