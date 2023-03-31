@@ -25,15 +25,20 @@ router.get("/deezer", async (req, res) => {
     });
   }
 
-  const response = await fetch(
-    `${DEEZER_ACCESS_TOKEN_URL}?app_id=${DEEZER_APP_ID}&secret=${DEEZER_SECRET_KEY}&code=${code}`
-  );
+  try {
+    const response = await fetch(
+      `${DEEZER_ACCESS_TOKEN_URL}?app_id=${DEEZER_APP_ID}&secret=${DEEZER_SECRET_KEY}&code=${code}`
+    );
 
-  const result = await response.json();
+    const data = await response.text();
 
-  console.log(result);
+    console.log(data);
 
-  return res.redirect(`${APP_SCHEME}://redirect`);
+    return res.redirect(`${APP_SCHEME}://redirect`);
+  } catch (error) {
+    console.log(error);
+    res.send({ error });
+  }
 });
 
 export default router;
