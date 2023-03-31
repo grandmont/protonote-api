@@ -1,7 +1,11 @@
 import { Router } from "express";
 import fetch from "node-fetch";
 
-import { DEEZER_APP_ID, DEEZER_SECRET_KEY } from "../config/constants";
+import {
+  APP_SCHEME,
+  DEEZER_APP_ID,
+  DEEZER_SECRET_KEY,
+} from "../config/constants";
 
 const router = Router();
 
@@ -10,8 +14,6 @@ const DEEZER_ACCESS_TOKEN_URL =
 
 router.get("/deezer", async (req, res) => {
   const code = req.query?.code;
-
-  const redirectUri = req.query?.redirectUri as string;
 
   if (!code) {
     return res.send({
@@ -25,14 +27,9 @@ router.get("/deezer", async (req, res) => {
     `${DEEZER_ACCESS_TOKEN_URL}?app_id=${DEEZER_APP_ID}&secret=${DEEZER_SECRET_KEY}&code=${code}`
   );
 
-  console.log(response);
+  console.log(response.json());
 
-  if (!redirectUri) {
-    console.log("No redirect url found");
-    return res.send("Success");
-  }
-
-  return res.redirect(redirectUri);
+  return res.redirect(`${APP_SCHEME}://redirect`);
 });
 
 export default router;
