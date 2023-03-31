@@ -67,6 +67,7 @@ Enum AuthProvider {
 
 Enum IntegrationProvider {
   SPOTIFY
+  DEEZER
 }
 
 Enum IntegrationStatus {

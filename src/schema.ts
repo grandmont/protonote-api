@@ -6,6 +6,7 @@ import MemoResolver from "./resolvers/MemoResolver";
 import IntegrationsResolver from "./resolvers/IntegrationsResolver";
 import AccountResolver from "./resolvers/AccountResolver";
 import SpotifyIntegration from "./integrations/SpotifyIntegration";
+import DeezerIntegration from "./integrations/DeezerIntegration";
 
 export const schema: BuildSchemaOptions = {
   resolvers: [
@@ -20,6 +21,7 @@ export const schema: BuildSchemaOptions = {
 
     // Integrations
     SpotifyIntegration,
+    DeezerIntegration,
   ] as unknown as NonEmptyArray<Function>,
   validate: false,
 };

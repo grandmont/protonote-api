@@ -12,17 +12,17 @@ export class EnumIntegrationProviderNullableFilter {
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })
-  equals?: "SPOTIFY" | undefined;
+  equals?: "SPOTIFY" | "DEEZER" | undefined;
 
   @TypeGraphQL.Field(_type => [IntegrationProvider], {
     nullable: true
   })
-  in?: "SPOTIFY"[] | undefined;
+  in?: Array<"SPOTIFY" | "DEEZER"> | undefined;
 
   @TypeGraphQL.Field(_type => [IntegrationProvider], {
     nullable: true
   })
-  notIn?: "SPOTIFY"[] | undefined;
+  notIn?: Array<"SPOTIFY" | "DEEZER"> | undefined;
 
   @TypeGraphQL.Field(_type => NestedEnumIntegrationProviderNullableFilter, {
     nullable: true

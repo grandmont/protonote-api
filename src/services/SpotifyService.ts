@@ -184,15 +184,6 @@ export default class SpotifyService {
     try {
       const data = await getRecentlyPlayedTracks(accessToken);
 
-      // const currentlyPlaying = await getCurrentlyPlayingTrack(accessToken);
-
-      // const {
-      //   items: [item],
-      // } = data;
-
-      // console.log(item.track);
-      // console.log(currentlyPlaying.item);
-
       console.log("accessToken:", accessToken);
 
       // Refresh accessToken
@@ -211,9 +202,7 @@ export default class SpotifyService {
       }
 
       if (data.error?.status === 504) {
-        console.log(`
-  Error 504 - userId: ${user.id}
-        `);
+        console.log(data.error);
         return null;
       }
 

@@ -37,7 +37,7 @@ export class IntegrationGroupBy {
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })
-  provider!: "SPOTIFY" | null;
+  provider!: "SPOTIFY" | "DEEZER" | null;
 
   @TypeGraphQL.Field(_type => IntegrationStatus, {
     nullable: true

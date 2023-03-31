@@ -11,5 +11,5 @@ export class NullableEnumIntegrationProviderFieldUpdateOperationsInput {
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })
-  set?: "SPOTIFY" | undefined;
+  set?: "SPOTIFY" | "DEEZER" | undefined;
 }
