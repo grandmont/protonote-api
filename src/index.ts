@@ -8,7 +8,7 @@ import { context } from "./context";
 import { schema } from "./schema";
 import { applyResolversEnhanceMap } from "./generated";
 import resolversEnhanceMap from "./config/middleware";
-
+import RedirectController from "./controllers/RedirectController";
 import cronJob from "./jobs/cronJob";
 
 const port = process.env.PORT || 4000;
@@ -17,21 +17,7 @@ const app = express();
 
 app.use(cookieParser());
 
-app.get("/redirect", (req, res) => {
-  const params = JSON.stringify(req.params);
-  const query = JSON.stringify(req.query);
-  const body = JSON.stringify(req.body);
-
-  console.log(req.query.code);
-
-  res.send({
-    message: "Good",
-    params,
-    query,
-    body,
-    code: req.query.code,
-  });
-});
+app.use(RedirectController);
 
 async function bootstrap() {
   applyResolversEnhanceMap(resolversEnhanceMap);
