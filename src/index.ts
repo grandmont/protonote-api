@@ -18,10 +18,15 @@ const app = express();
 app.use(cookieParser());
 
 app.get("/redirect", (req, res) => {
-  console.log(req.params.code);
+  const params = JSON.stringify(req.params);
+  const query = JSON.stringify(req.query);
+  const body = JSON.stringify(req.body);
 
   res.send({
     message: "Good",
+    params,
+    query,
+    body,
   });
 });
 
