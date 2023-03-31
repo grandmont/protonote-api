@@ -18,4 +18,7 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
   },
 };
 
-export default resolversEnhanceMap;
+const middlewareMap =
+  process.env.ENVIRONMENT === "development" ? {} : resolversEnhanceMap;
+
+export default middlewareMap;
