@@ -32,7 +32,15 @@ router.get("/deezer", async (req, res) => {
 
     const data = await response.text();
 
-    console.log(data);
+    const [, accessToken] = data.split("=");
+
+    console.log("deezer accessToken:", accessToken);
+
+    const user = await fetch(
+      `https://api.deezer.com/user/5317837644/history?access_token=${accessToken}`
+    );
+
+    console.log(user);
 
     return res.redirect(`${APP_SCHEME}://redirect`);
   } catch (error) {
