@@ -18,9 +18,10 @@ const app = express();
 app.use(cookieParser());
 
 app.get("/redirect", (req, res) => {
-  const response = JSON.stringify(req);
+  console.log(req);
+
   res.send({
-    response,
+    message: "Good",
   });
 });
 
