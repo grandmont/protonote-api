@@ -18,7 +18,7 @@ const app = express();
 app.use(cookieParser());
 
 app.get("/redirect", (req, res) => {
-  console.log(req);
+  console.log(req.params.code);
 
   res.send({
     message: "Good",
