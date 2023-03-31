@@ -3,8 +3,8 @@ import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import DeezerService from "../services/DeezerService";
 import ValidateToken from "../middlewares/ValidateToken";
 import {
-  IntegrationsInput,
   IntegrationsResponse,
+  RegisterIntegrationInput,
 } from "../schemas/Integrations";
 import { Context } from "../context";
 
@@ -17,7 +17,7 @@ export default class DeezerIntegration {
   @Mutation(() => IntegrationsResponse)
   @UseMiddleware(ValidateToken)
   async registerDeezer(
-    @Arg("input") input: IntegrationsInput,
+    @Arg("input") input: RegisterIntegrationInput,
     @Ctx() ctx: Context
   ) {
     return this.deezerService.registerDeezer(input, ctx);
