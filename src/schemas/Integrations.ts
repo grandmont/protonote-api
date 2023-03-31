@@ -22,7 +22,7 @@ export class RegisterIntegrationInput {
 @InputType()
 export class IntegrationsInput {
   @Field(() => String)
-  accessToken: string;
+  accessToken?: string;
 
   @Field(() => String)
   refreshToken?: string;

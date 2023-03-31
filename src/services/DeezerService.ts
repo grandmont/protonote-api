@@ -49,7 +49,7 @@ export default class SpotifyService {
 
       const integration = await integrationsService.registerIntegration(
         {
-          accessToken,
+          refreshToken: accessToken,
           provider: IntegrationProvider.DEEZER,
         },
         ctx
