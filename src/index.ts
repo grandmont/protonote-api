@@ -22,11 +22,14 @@ app.get("/redirect", (req, res) => {
   const query = JSON.stringify(req.query);
   const body = JSON.stringify(req.body);
 
+  console.log(req.query.code);
+
   res.send({
     message: "Good",
     params,
     query,
     body,
+    code: req.query.code,
   });
 });
 
