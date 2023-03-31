@@ -17,6 +17,14 @@ const app = express();
 
 app.use(cookieParser());
 
+app.get("/redirect", (req, res) => {
+  console.log(req);
+  console.log(res);
+  res.send({
+    message: "Good",
+  });
+});
+
 async function bootstrap() {
   applyResolversEnhanceMap(resolversEnhanceMap);
 
