@@ -32,7 +32,10 @@ router.get("/deezer", async (req, res) => {
 
     const data = await response.json();
 
-    console.log("deezer accessToken:", data.access_token);
+    if (!data.access_token) {
+      console.log("No access_token was returned");
+      return res.redirect(`${APP_SCHEME}://redirect`);
+    }
 
     console.log(data);
 
@@ -44,7 +47,9 @@ router.get("/deezer", async (req, res) => {
 
     console.log(listeningHistory);
 
-    return res.redirect(`${APP_SCHEME}://redirect`);
+    return res.redirect(
+      `${APP_SCHEME}://deezer?accessToken=${data.access_token}`
+    );
   } catch (error) {
     console.log(error);
     res.send({ error });
