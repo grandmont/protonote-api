@@ -13,6 +13,8 @@ const DEEZER_ACCESS_TOKEN_URL =
   "https://connect.deezer.com/oauth/access_token.php";
 
 router.get("/deezer", async (req, res) => {
+  console.log("start deezer integration");
+
   const code = req.query?.code;
 
   if (!code) {
@@ -27,7 +29,9 @@ router.get("/deezer", async (req, res) => {
     `${DEEZER_ACCESS_TOKEN_URL}?app_id=${DEEZER_APP_ID}&secret=${DEEZER_SECRET_KEY}&code=${code}`
   );
 
-  console.log(response.json());
+  const result = await response.json();
+
+  console.log(result);
 
   return res.redirect(`${APP_SCHEME}://redirect`);
 });
