@@ -42,8 +42,6 @@ const cronJob = new CronJob(
 
         const spotifyService = new SpotifyService();
 
-        console.log(spotifyIntegration.externalId);
-
         return await spotifyService.syncRecentlyPlayedTracks(
           {
             accessToken: null,
