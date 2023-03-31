@@ -43,11 +43,6 @@ export class IntegrationScalarWhereInput {
   })
   updatedAt?: DateTimeFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableFilter, {
-    nullable: true
-  })
-  externalId?: StringNullableFilter | undefined;
-
   @TypeGraphQL.Field(_type => EnumIntegrationProviderNullableFilter, {
     nullable: true
   })

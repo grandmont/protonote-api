@@ -24,11 +24,6 @@ export class IntegrationCreateManyInput {
   })
   updatedAt?: Date | undefined;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  externalId?: string | undefined;
-
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })

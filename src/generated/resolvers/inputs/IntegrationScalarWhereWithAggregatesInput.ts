@@ -43,11 +43,6 @@ export class IntegrationScalarWhereWithAggregatesInput {
   })
   updatedAt?: DateTimeWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  externalId?: StringNullableWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => EnumIntegrationProviderNullableWithAggregatesFilter, {
     nullable: true
   })

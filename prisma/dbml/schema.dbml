@@ -52,7 +52,6 @@ Table Integration {
   id Int [pk, increment]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  externalId String
   provider IntegrationProvider
   status IntegrationStatus
   refreshToken String

@@ -29,11 +29,6 @@ export class IntegrationGroupBy {
   })
   updatedAt!: Date;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  externalId!: string | null;
-
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })

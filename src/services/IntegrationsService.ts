@@ -4,7 +4,6 @@ import { CookieOptions } from "express";
 import { Integration, IntegrationStatus } from "../generated";
 import { IntegrationsInput } from "../schemas/Integrations";
 import { Context, prisma } from "../context";
-import { getIntegrationProvider } from "../utils/helpers";
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -16,7 +15,6 @@ const cookieOptions: CookieOptions = {
 if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
 async function findOrCreateIntegration({
-  externalId,
   userId,
   provider,
   refreshToken,
@@ -27,7 +25,6 @@ async function findOrCreateIntegration({
   if (!integration) {
     return await prisma.integration.create({
       data: {
-        externalId,
         provider,
         status,
         refreshToken,
@@ -49,20 +46,15 @@ export default class IntegrationsService {
   async registerIntegration(input: IntegrationsInput, { req }: Context) {
     console.log("registerIntegration");
     try {
-      const { accessToken, refreshToken, provider } = input;
+      const { refreshToken, provider } = input;
 
-      const integrateProvider = getIntegrationProvider(provider);
-
-      const userInfo = await integrateProvider(accessToken);
-
-      if (userInfo.error) {
+      if (!refreshToken) {
         throw new AuthenticationError(
           "Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential."
         );
       }
 
       const integrationInfo = {
-        externalId: userInfo?.id,
         userId: req.user.id,
         provider,
         refreshToken,

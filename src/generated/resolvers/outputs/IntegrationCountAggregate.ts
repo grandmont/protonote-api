@@ -25,11 +25,6 @@ export class IntegrationCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  externalId!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
   provider!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

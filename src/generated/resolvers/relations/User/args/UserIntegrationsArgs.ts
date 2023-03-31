@@ -35,5 +35,5 @@ export class UserIntegrationsArgs {
   @TypeGraphQL.Field(_type => [IntegrationScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "createdAt" | "updatedAt" | "externalId" | "provider" | "status" | "refreshToken" | "userId"> | undefined;
+  distinct?: Array<"id" | "createdAt" | "updatedAt" | "provider" | "status" | "refreshToken" | "userId"> | undefined;
 }

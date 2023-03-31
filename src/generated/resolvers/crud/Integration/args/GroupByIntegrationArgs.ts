@@ -20,7 +20,7 @@ export class GroupByIntegrationArgs {
   @TypeGraphQL.Field(_type => [IntegrationScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "createdAt" | "updatedAt" | "externalId" | "provider" | "status" | "refreshToken" | "userId">;
+  by!: Array<"id" | "createdAt" | "updatedAt" | "provider" | "status" | "refreshToken" | "userId">;
 
   @TypeGraphQL.Field(_type => IntegrationScalarWhereWithAggregatesInput, {
     nullable: true
