@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { DATE_FORMAT } from "../config/constants";
 import moment from "moment";
 
 import { prisma } from "../context";
@@ -26,9 +27,7 @@ export const storeListeningHistory = async (
   const entries = data.data
     // Remove duplicates and filter by date
     .filter((item, index, self) => {
-      const playedAt = moment.unix(item.timestamp).tz(user.timeZone).toDate();
-
-      console.log(playedAt);
+      const playedAt = moment.unix(item.timestamp).toDate();
 
       return (
         index === self.findIndex((t) => t.id === item.id) &&

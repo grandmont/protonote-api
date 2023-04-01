@@ -72,6 +72,8 @@ export const storeRecentlyPlayedTracks = async (
     .filter((item, index, self) => {
       const playedAt = moment(item.played_at).tz(user.timeZone).toDate();
 
+      console.log(playedAt);
+
       return (
         index === self.findIndex((t) => t.track.id === item.track.id) &&
         getDateString(playedAt) === dateString
@@ -83,11 +85,6 @@ export const storeRecentlyPlayedTracks = async (
         return externalId === item.track.id;
       });
     });
-
-  // entries.forEach(({ played_at, track }) => {
-  //   console.log(track.name);
-  //   console.log(getDateString(new Date(played_at)));
-  // });
 
   // Create memo if it does not exist
   const { id: memoId } = !memo
