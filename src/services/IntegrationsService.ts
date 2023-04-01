@@ -54,6 +54,8 @@ export default class IntegrationsService {
         );
       }
 
+      console.log(refreshToken, provider);
+
       const integrationInfo = {
         userId: req.user.id,
         provider,
