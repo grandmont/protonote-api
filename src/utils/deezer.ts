@@ -36,7 +36,9 @@ export const storeListeningHistory = async (
     // Remove tracks that already exist in the memo
     .filter(
       (item) =>
-        !deezer.some(({ deezerData: { externalId } }) => externalId === item.id)
+        !deezer.some(
+          ({ deezerData: { externalId } }) => externalId === String(item.id)
+        )
     );
 
   // Create memo if it does not exist
@@ -53,8 +55,10 @@ export const storeListeningHistory = async (
   await entries.reduce(async (promise, item) => {
     await promise;
 
+    const itemId = String(item.id);
+
     const deezerData = await prisma.deezerData.findFirst({
-      where: { externalId: item.id },
+      where: { externalId: itemId },
     });
 
     // Update the integrationData by adding relation with the proto
@@ -103,10 +107,11 @@ export const storeListeningHistory = async (
         },
       };
 
+      // Create data
       const result = await prisma.deezerData.create({
         data: {
           search: title,
-          externalId: id,
+          externalId: itemId,
           data: JSON.stringify(track) as string,
         },
       });
