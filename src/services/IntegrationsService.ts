@@ -1,5 +1,6 @@
 import { AuthenticationError } from "apollo-server-core";
 import { CookieOptions } from "express";
+import { IntegrationProvider } from "@prisma/client";
 
 import { Integration, IntegrationStatus } from "../generated";
 import { IntegrationsInput } from "../schemas/Integrations";
@@ -14,13 +15,17 @@ const cookieOptions: CookieOptions = {
 
 if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
-async function findOrCreateIntegration({
+async function createOrUpdateIntegration({
   userId,
   provider,
   refreshToken,
   status,
 }: Partial<Integration>): Promise<Integration | null> {
-  const integration = await prisma.integration.findFirst({ where: { userId } });
+  const integration = await prisma.integration.findFirst({
+    where: { userId, provider },
+  });
+
+  console.log(integration);
 
   if (!integration) {
     return await prisma.integration.create({
@@ -37,9 +42,16 @@ async function findOrCreateIntegration({
     });
   }
 
-  // TODO: Add update integration function here
-
-  return integration;
+  return await prisma.integration.update({
+    data: {
+      provider,
+      status,
+      refreshToken,
+    },
+    where: {
+      id: integration.id,
+    },
+  });
 }
 
 export default class IntegrationsService {
@@ -54,8 +66,6 @@ export default class IntegrationsService {
         );
       }
 
-      console.log(refreshToken, provider);
-
       const integrationInfo = {
         userId: req.user.id,
         provider,
@@ -63,7 +73,9 @@ export default class IntegrationsService {
         status: IntegrationStatus.CONNECTED,
       };
 
-      const integration = await findOrCreateIntegration(integrationInfo);
+      console.log(integrationInfo);
+
+      const integration = await createOrUpdateIntegration(integrationInfo);
 
       return {
         status: "success",
