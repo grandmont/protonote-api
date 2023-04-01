@@ -69,7 +69,7 @@ export default class DeezerService {
   async syncUserHistory({ accessToken, dateString, user }) {
     try {
       const listeningHistoryResponse = await fetch(
-        `https://api.deezer.com/user/5317861044/history?access_token=${accessToken}&index=0&limit=20&output=json`
+        `https://api.deezer.com/user/me/history?access_token=${accessToken}&index=0&limit=20&output=json`
       );
 
       const data = await listeningHistoryResponse.json();

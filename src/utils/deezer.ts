@@ -28,6 +28,8 @@ export const storeListeningHistory = async (
     .filter((item, index, self) => {
       const playedAt = moment.unix(item.timestamp).tz(user.timeZone).toDate();
 
+      console.log(playedAt);
+
       return (
         index === self.findIndex((t) => t.id === item.id) &&
         getDateString(playedAt) === dateString
