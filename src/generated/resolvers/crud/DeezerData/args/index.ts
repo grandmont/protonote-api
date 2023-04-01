@@ -1,0 +1,14 @@
+export { AggregateDeezerDataArgs } from "./AggregateDeezerDataArgs";
+export { CreateManyDeezerDataArgs } from "./CreateManyDeezerDataArgs";
+export { CreateOneDeezerDataArgs } from "./CreateOneDeezerDataArgs";
+export { DeleteManyDeezerDataArgs } from "./DeleteManyDeezerDataArgs";
+export { DeleteOneDeezerDataArgs } from "./DeleteOneDeezerDataArgs";
+export { FindFirstDeezerDataArgs } from "./FindFirstDeezerDataArgs";
+export { FindFirstDeezerDataOrThrowArgs } from "./FindFirstDeezerDataOrThrowArgs";
+export { FindManyDeezerDataArgs } from "./FindManyDeezerDataArgs";
+export { FindUniqueDeezerDataArgs } from "./FindUniqueDeezerDataArgs";
+export { FindUniqueDeezerDataOrThrowArgs } from "./FindUniqueDeezerDataOrThrowArgs";
+export { GroupByDeezerDataArgs } from "./GroupByDeezerDataArgs";
+export { UpdateManyDeezerDataArgs } from "./UpdateManyDeezerDataArgs";
+export { UpdateOneDeezerDataArgs } from "./UpdateOneDeezerDataArgs";
+export { UpsertOneDeezerDataArgs } from "./UpsertOneDeezerDataArgs";

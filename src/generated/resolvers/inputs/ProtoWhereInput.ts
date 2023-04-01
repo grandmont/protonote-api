@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
+import { DeezerDataOnProtosListRelationFilter } from "../inputs/DeezerDataOnProtosListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { IntegrationDataOnProtosListRelationFilter } from "../inputs/IntegrationDataOnProtosListRelationFilter";
@@ -72,4 +73,9 @@ export class ProtoWhereInput {
     nullable: true
   })
   integrations?: IntegrationDataOnProtosListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => DeezerDataOnProtosListRelationFilter, {
+    nullable: true
+  })
+  deezer?: DeezerDataOnProtosListRelationFilter | undefined;
 }

@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import moment from "moment-timezone";
 import { User } from "@prisma/client";
 
 import { prisma } from "../context";
@@ -69,9 +70,11 @@ export const storeRecentlyPlayedTracks = async (
   const entries = data.items
     // Remove duplicates and filter by date
     .filter((item, index, self) => {
+      const playedAt = moment(item.played_at).tz(user.timeZone).toDate();
+
       return (
         index === self.findIndex((t) => t.track.id === item.track.id) &&
-        getDateString(new Date(item.played_at)) === dateString
+        getDateString(playedAt) === dateString
       );
     })
     // Remove tracks that already exist in the memo
@@ -97,7 +100,9 @@ export const storeRecentlyPlayedTracks = async (
       })
     : memo;
 
-  entries.forEach(async (item) => {
+  await entries.reduce(async (promise, item) => {
+    await promise;
+
     const integrationData = await prisma.integrationData.findFirst({
       where: { externalId: item.track.id },
     });
@@ -155,7 +160,7 @@ export const storeRecentlyPlayedTracks = async (
         },
       });
     }
-  });
+  }, Promise.resolve());
 
   return true;
 };

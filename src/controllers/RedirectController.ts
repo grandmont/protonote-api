@@ -39,14 +39,6 @@ router.get("/deezer", async (req, res) => {
 
     console.log(data);
 
-    // const listeningHistoryResponse = await fetch(
-    //   `https://api.deezer.com/user/5317861044/history?access_token=${data.access_token}&output=json`
-    // );
-
-    // const listeningHistory = await listeningHistoryResponse.json();
-
-    // console.log(listeningHistory);
-
     return res.redirect(
       `${APP_SCHEME}://deezer?accessToken=${data.access_token}`
     );

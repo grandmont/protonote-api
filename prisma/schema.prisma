@@ -39,6 +39,7 @@ model Proto {
   user         User?                     @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId       Int?
   integrations IntegrationDataOnProtos[]
+  deezer       DeezerDataOnProtos[]
 }
 
 model IntegrationDataOnProtos {
@@ -49,6 +50,26 @@ model IntegrationDataOnProtos {
   assignedAt        DateTime        @default(now())
 
   @@id([protoId, integrationDataId])
+}
+
+model DeezerDataOnProtos {
+  proto        Proto      @relation(fields: [protoId], references: [id])
+  protoId      Int
+  deezerData   DeezerData @relation(fields: [deezerDataId], references: [id])
+  deezerDataId Int
+  assignedAt   DateTime   @default(now())
+
+  @@id([protoId, deezerDataId])
+}
+
+model DeezerData {
+  id         Int                  @id @default(autoincrement())
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @default(now())
+  externalId String?
+  search     String
+  data       String
+  protos     DeezerDataOnProtos[]
 }
 
 model IntegrationData {

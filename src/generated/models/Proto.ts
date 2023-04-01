@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { DeezerDataOnProtos } from "../models/DeezerDataOnProtos";
 import { IntegrationDataOnProtos } from "../models/IntegrationDataOnProtos";
 import { User } from "../models/User";
 import { ProtoCount } from "../resolvers/outputs/ProtoCount";
@@ -48,6 +49,8 @@ export class Proto {
   userId?: number | null;
 
   integrations?: IntegrationDataOnProtos[];
+
+  deezer?: DeezerDataOnProtos[];
 
   @TypeGraphQL.Field(_type => ProtoCount, {
     nullable: true

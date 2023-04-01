@@ -9,7 +9,8 @@ import { schema } from "./schema";
 import { applyResolversEnhanceMap } from "./generated";
 import resolversEnhanceMap from "./config/middleware";
 import RedirectController from "./controllers/RedirectController";
-import cronJob from "./jobs/cronJob";
+import spotifyJob from "./jobs/spotifyJob";
+import deezerJob from "./jobs/deezerJob";
 
 const port = process.env.PORT || 4000;
 
@@ -32,7 +33,8 @@ async function bootstrap() {
 
   server.applyMiddleware({ app });
 
-  cronJob.start();
+  spotifyJob.start();
+  deezerJob.start();
 
   app.listen({ port }, () =>
     console.log(

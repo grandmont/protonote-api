@@ -1,0 +1,14 @@
+export { AggregateDeezerDataOnProtosArgs } from "./AggregateDeezerDataOnProtosArgs";
+export { CreateManyDeezerDataOnProtosArgs } from "./CreateManyDeezerDataOnProtosArgs";
+export { CreateOneDeezerDataOnProtosArgs } from "./CreateOneDeezerDataOnProtosArgs";
+export { DeleteManyDeezerDataOnProtosArgs } from "./DeleteManyDeezerDataOnProtosArgs";
+export { DeleteOneDeezerDataOnProtosArgs } from "./DeleteOneDeezerDataOnProtosArgs";
+export { FindFirstDeezerDataOnProtosArgs } from "./FindFirstDeezerDataOnProtosArgs";
+export { FindFirstDeezerDataOnProtosOrThrowArgs } from "./FindFirstDeezerDataOnProtosOrThrowArgs";
+export { FindManyDeezerDataOnProtosArgs } from "./FindManyDeezerDataOnProtosArgs";
+export { FindUniqueDeezerDataOnProtosArgs } from "./FindUniqueDeezerDataOnProtosArgs";
+export { FindUniqueDeezerDataOnProtosOrThrowArgs } from "./FindUniqueDeezerDataOnProtosOrThrowArgs";
+export { GroupByDeezerDataOnProtosArgs } from "./GroupByDeezerDataOnProtosArgs";
+export { UpdateManyDeezerDataOnProtosArgs } from "./UpdateManyDeezerDataOnProtosArgs";
+export { UpdateOneDeezerDataOnProtosArgs } from "./UpdateOneDeezerDataOnProtosArgs";
+export { UpsertOneDeezerDataOnProtosArgs } from "./UpsertOneDeezerDataOnProtosArgs";

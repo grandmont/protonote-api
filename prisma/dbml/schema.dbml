@@ -24,6 +24,7 @@ Table Proto {
   user User
   userId Int
   integrations IntegrationDataOnProtos [not null]
+  deezer DeezerDataOnProtos [not null]
 }
 
 Table IntegrationDataOnProtos {
@@ -36,6 +37,28 @@ Table IntegrationDataOnProtos {
   indexes {
     (protoId, integrationDataId) [pk]
   }
+}
+
+Table DeezerDataOnProtos {
+  proto Proto [not null]
+  protoId Int [not null]
+  deezerData DeezerData [not null]
+  deezerDataId Int [not null]
+  assignedAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (protoId, deezerDataId) [pk]
+  }
+}
+
+Table DeezerData {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  externalId String
+  search String [not null]
+  data String [not null]
+  protos DeezerDataOnProtos [not null]
 }
 
 Table IntegrationData {
@@ -79,5 +102,9 @@ Ref: Proto.userId > User.id [delete: Set Null]
 Ref: IntegrationDataOnProtos.protoId > Proto.id
 
 Ref: IntegrationDataOnProtos.integrationDataId > IntegrationData.id
+
+Ref: DeezerDataOnProtos.protoId > Proto.id
+
+Ref: DeezerDataOnProtos.deezerDataId > DeezerData.id
 
 Ref: Integration.userId > User.id [delete: Set Null]

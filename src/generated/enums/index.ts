@@ -1,4 +1,6 @@
 export { AuthProvider } from "./AuthProvider";
+export { DeezerDataOnProtosScalarFieldEnum } from "./DeezerDataOnProtosScalarFieldEnum";
+export { DeezerDataScalarFieldEnum } from "./DeezerDataScalarFieldEnum";
 export { IntegrationDataOnProtosScalarFieldEnum } from "./IntegrationDataOnProtosScalarFieldEnum";
 export { IntegrationDataScalarFieldEnum } from "./IntegrationDataScalarFieldEnum";
 export { IntegrationProvider } from "./IntegrationProvider";

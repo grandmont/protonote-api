@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
+import { DeezerDataOnProtosUpdateManyWithoutProtoNestedInput } from "../inputs/DeezerDataOnProtosUpdateManyWithoutProtoNestedInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { UserUpdateOneWithoutProtosNestedInput } from "../inputs/UserUpdateOneWithoutProtosNestedInput";
 
@@ -39,4 +40,9 @@ export class ProtoUpdateWithoutIntegrationsInput {
     nullable: true
   })
   user?: UserUpdateOneWithoutProtosNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => DeezerDataOnProtosUpdateManyWithoutProtoNestedInput, {
+    nullable: true
+  })
+  deezer?: DeezerDataOnProtosUpdateManyWithoutProtoNestedInput | undefined;
 }

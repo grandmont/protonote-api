@@ -11,4 +11,9 @@ export class ProtoCount {
     nullable: false
   })
   integrations!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  deezer!: number;
 }

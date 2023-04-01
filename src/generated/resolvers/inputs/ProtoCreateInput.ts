@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { DeezerDataOnProtosCreateNestedManyWithoutProtoInput } from "../inputs/DeezerDataOnProtosCreateNestedManyWithoutProtoInput";
 import { IntegrationDataOnProtosCreateNestedManyWithoutProtoInput } from "../inputs/IntegrationDataOnProtosCreateNestedManyWithoutProtoInput";
 import { UserCreateNestedOneWithoutProtosInput } from "../inputs/UserCreateNestedOneWithoutProtosInput";
 
@@ -43,4 +44,9 @@ export class ProtoCreateInput {
     nullable: true
   })
   integrations?: IntegrationDataOnProtosCreateNestedManyWithoutProtoInput | undefined;
+
+  @TypeGraphQL.Field(_type => DeezerDataOnProtosCreateNestedManyWithoutProtoInput, {
+    nullable: true
+  })
+  deezer?: DeezerDataOnProtosCreateNestedManyWithoutProtoInput | undefined;
 }

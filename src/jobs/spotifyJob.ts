@@ -7,7 +7,7 @@ import SpotifyService from "../services/SpotifyService";
 
 const CronJob = require("cron").CronJob;
 
-const cronJob = new CronJob(
+const spotifyJob = new CronJob(
   "*/10 * * * *",
   async () => {
     try {
@@ -60,4 +60,4 @@ const cronJob = new CronJob(
   "America/Los_Angeles"
 );
 
-export default cronJob;
+export default spotifyJob;

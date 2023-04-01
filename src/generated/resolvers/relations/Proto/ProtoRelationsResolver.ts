@@ -1,8 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
 import type { GraphQLResolveInfo } from "graphql";
+import { DeezerDataOnProtos } from "../../../models/DeezerDataOnProtos";
 import { IntegrationDataOnProtos } from "../../../models/IntegrationDataOnProtos";
 import { Proto } from "../../../models/Proto";
 import { User } from "../../../models/User";
+import { ProtoDeezerArgs } from "./args/ProtoDeezerArgs";
 import { ProtoIntegrationsArgs } from "./args/ProtoIntegrationsArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -32,6 +34,21 @@ export class ProtoRelationsResolver {
         id: proto.id,
       },
     }).integrations({
+      ...args,
+      ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
+    });
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [DeezerDataOnProtos], {
+    nullable: false
+  })
+  async deezer(@TypeGraphQL.Root() proto: Proto, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Info() info: GraphQLResolveInfo, @TypeGraphQL.Args() args: ProtoDeezerArgs): Promise<DeezerDataOnProtos[]> {
+    const { _count } = transformInfoIntoPrismaArgs(info);
+    return getPrismaFromContext(ctx).proto.findUnique({
+      where: {
+        id: proto.id,
+      },
+    }).deezer({
       ...args,
       ...(_count && transformCountFieldIntoSelectRelationsCount(_count)),
     });

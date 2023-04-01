@@ -7,6 +7,7 @@ import { DEEZER_API_URL } from "../config/constants";
 import { RegisterIntegrationInput } from "../schemas/Integrations";
 import IntegrationsService from "./IntegrationsService";
 import { Context } from "../context";
+import { storeListeningHistory } from "../utils/deezer";
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -17,7 +18,7 @@ const cookieOptions: CookieOptions = {
 
 if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
-export default class SpotifyService {
+export default class DeezerService {
   async getUserInfo({ accessToken }) {
     try {
       const response = await fetch(
@@ -62,6 +63,28 @@ export default class SpotifyService {
     } catch (error) {
       console.log(error);
       return error;
+    }
+  }
+
+  async syncUserHistory({ accessToken, dateString, user }) {
+    try {
+      const listeningHistoryResponse = await fetch(
+        `https://api.deezer.com/user/5317861044/history?access_token=${accessToken}&index=0&limit=20&output=json`
+      );
+
+      const data = await listeningHistoryResponse.json();
+
+      if (data.error) {
+        console.log(data.error);
+        return null;
+      }
+
+      await storeListeningHistory(dateString, data, user);
+
+      return null;
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   }
 }

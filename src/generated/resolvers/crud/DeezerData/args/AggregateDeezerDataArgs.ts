@@ -1,0 +1,33 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { DeezerDataOrderByWithRelationInput } from "../../../inputs/DeezerDataOrderByWithRelationInput";
+import { DeezerDataWhereInput } from "../../../inputs/DeezerDataWhereInput";
+import { DeezerDataWhereUniqueInput } from "../../../inputs/DeezerDataWhereUniqueInput";
+
+@TypeGraphQL.ArgsType()
+export class AggregateDeezerDataArgs {
+  @TypeGraphQL.Field(_type => DeezerDataWhereInput, {
+    nullable: true
+  })
+  where?: DeezerDataWhereInput | undefined;
+
+  @TypeGraphQL.Field(_type => [DeezerDataOrderByWithRelationInput], {
+    nullable: true
+  })
+  orderBy?: DeezerDataOrderByWithRelationInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => DeezerDataWhereUniqueInput, {
+    nullable: true
+  })
+  cursor?: DeezerDataWhereUniqueInput | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  take?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  skip?: number | undefined;
+}
