@@ -70,9 +70,12 @@ export const storeRecentlyPlayedTracks = async (
   const entries = data.items
     // Remove duplicates and filter by date
     .filter((item, index, self) => {
-      const playedAt = moment(item.played_at).tz(user.timeZone).toDate();
+      const playedAt = moment(new Date(item.played_at))
+        .tz(user.timeZone)
+        .toDate();
 
       console.log(playedAt);
+      console.log(getDateString(playedAt));
 
       return (
         index === self.findIndex((t) => t.track.id === item.track.id) &&
