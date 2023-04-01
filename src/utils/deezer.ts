@@ -1,6 +1,5 @@
-import { User } from "@prisma/client";
-import { DATE_FORMAT } from "../config/constants";
 import moment from "moment";
+import { User } from "@prisma/client";
 
 import { prisma } from "../context";
 import { getDateString, getWrittenDateString } from "../utils/parsers";
@@ -28,10 +27,11 @@ export const storeListeningHistory = async (
     // Remove duplicates and filter by date
     .filter((item, index, self) => {
       const playedAt = moment.unix(item.timestamp).toDate();
+      const convertedPlayedAt = moment(playedAt).tz(user.timeZone).toDate();
 
       return (
         index === self.findIndex((t) => t.id === item.id) &&
-        getDateString(playedAt) === dateString
+        getDateString(convertedPlayedAt) === dateString
       );
     })
     // Remove tracks that already exist in the memo

@@ -4,8 +4,8 @@ import { User } from "@prisma/client";
 
 import { prisma } from "../context";
 import { SaveRecentlyPlayedTracksResponse } from "../schemas/SpotifySchema";
-import { getDateString, getWrittenDateString } from "../utils/parsers";
-import { SPOTIFY_API_URL } from "../config/constants";
+import { getWrittenDateString } from "../utils/parsers";
+import { DATE_FORMAT, SPOTIFY_API_URL } from "../config/constants";
 
 export const getSpotifyUserInfo = async (accessToken: string) => {
   console.log("getSpotifyUserInfo");
@@ -70,16 +70,12 @@ export const storeRecentlyPlayedTracks = async (
   const entries = data.items
     // Remove duplicates and filter by date
     .filter((item, index, self) => {
-      const playedAt = moment(new Date(item.played_at))
-        .tz(user.timeZone)
-        .toDate();
-
-      console.log(playedAt);
-      console.log(getDateString(playedAt));
+      const playedAt = moment.utc(item.played_at).local();
+      const playedAtDateString = playedAt.format(DATE_FORMAT);
 
       return (
         index === self.findIndex((t) => t.track.id === item.track.id) &&
-        getDateString(playedAt) === dateString
+        playedAtDateString === dateString
       );
     })
     // Remove tracks that already exist in the memo
