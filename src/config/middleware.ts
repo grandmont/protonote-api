@@ -16,6 +16,15 @@ const resolversEnhanceMap: ResolversEnhanceMap = {
   IntegrationData: {
     _all: [UseMiddleware(ValidateToken)],
   },
+  IntegrationDataOnProtos: {
+    _all: [UseMiddleware(ValidateToken)],
+  },
+  DeezerData: {
+    _all: [UseMiddleware(ValidateToken)],
+  },
+  DeezerDataOnProtos: {
+    _all: [UseMiddleware(ValidateToken)],
+  },
 };
 
 const middlewareMap =
