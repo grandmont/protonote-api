@@ -7,6 +7,7 @@ import IntegrationsResolver from "./resolvers/IntegrationsResolver";
 import AccountResolver from "./resolvers/AccountResolver";
 import SpotifyIntegration from "./integrations/SpotifyIntegration";
 import DeezerIntegration from "./integrations/DeezerIntegration";
+import SystemResolver from "resolvers/SystemResolver";
 
 export const schema: BuildSchemaOptions = {
   resolvers: [
@@ -18,6 +19,7 @@ export const schema: BuildSchemaOptions = {
     MemoResolver,
     IntegrationsResolver,
     AccountResolver,
+    SystemResolver,
 
     // Integrations
     SpotifyIntegration,
