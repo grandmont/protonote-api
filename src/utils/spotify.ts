@@ -27,7 +27,7 @@ export const getSpotifyUserInfo = async (accessToken: string) => {
 
 export const getRecentlyPlayedTracks = async (accessToken: string) => {
   const response = await fetch(
-    `${SPOTIFY_API_URL}/me/player/recently-played?limit=50`,
+    `${SPOTIFY_API_URL}/me/player/recently-played?limit=20`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -35,7 +35,7 @@ export const getRecentlyPlayedTracks = async (accessToken: string) => {
     }
   );
 
-  return response.json();
+  return await response.json();
 };
 
 export const getPlaybackState = async (accessToken) => {
@@ -117,27 +117,45 @@ export const storeRecentlyPlayedTracks = async (
     if (!integrationData) {
       console.log("integrationData does not exist", item.track.name);
       const {
-        played_at,
-        track: {
-          id,
-          name,
-          external_urls: trackUrls,
-          album: { images, artists, external_urls: albumUrls },
-        },
-      } = item;
-
-      // Get only the important data
-      const track = {
-        played_at,
         track: {
           id,
           name,
           external_urls: trackUrls,
           album: {
+            name: albumName,
+            images,
+            artists,
+            external_urls: albumUrls,
+            release_date,
+            total_tracks,
+          },
+          duration_ms,
+          explicit,
+          external_ids,
+          preview_url,
+          track_number,
+        },
+      } = item as any;
+
+      // Get only the important data
+      const track = {
+        track: {
+          id,
+          name,
+          external_urls: trackUrls,
+          album: {
+            name: albumName,
             images,
             artists: artists.map(({ id, name }) => ({ id, name })),
             external_urls: albumUrls,
+            release_date,
+            total_tracks,
           },
+          duration_ms,
+          explicit,
+          external_ids,
+          preview_url,
+          track_number,
         },
       };
 

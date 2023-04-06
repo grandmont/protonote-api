@@ -80,7 +80,6 @@ export const storeListeningHistory = async (
         id,
         title,
         link,
-        timestamp,
         artist: { id: artistId, name: artistName },
         album: {
           id: albumId,
@@ -95,7 +94,6 @@ export const storeListeningHistory = async (
         id,
         title,
         link,
-        timestamp,
         artist: {
           id: artistId,
           name: artistName,

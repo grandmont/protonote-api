@@ -56,6 +56,9 @@ class Artist {
 
 @ObjectType()
 class Album {
+  @Field()
+  name: string;
+
   @Field(() => [Image])
   images: Image[];
 
