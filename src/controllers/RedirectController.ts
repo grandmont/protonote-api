@@ -49,7 +49,7 @@ router.get("/deezer", async (req, res) => {
 });
 
 const YOUTUBE_ACCESS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token";
-const REDIRECT_URI = "https://protonote-api-production.up.railway.app/youtube";
+const REDIRECT_URI = "https://beememo.grandmont.io/youtube";
 
 router.get("/youtube", async (req, res) => {
   console.log("start YouTube integration");
@@ -68,7 +68,10 @@ router.get("/youtube", async (req, res) => {
 
   try {
     const response = await fetch(
-      `${YOUTUBE_ACCESS_TOKEN_URL}?code=${code}&client_id=${process.env.YOUTUBE_CLIENT_ID}&client_secret=${process.env.YOUTUBE_CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`
+      `${YOUTUBE_ACCESS_TOKEN_URL}?code=${code}&client_id=${process.env.YOUTUBE_CLIENT_ID}&client_secret=${process.env.YOUTUBE_CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`,
+      {
+        method: "POST",
+      }
     );
 
     const data = await response.json();
