@@ -13,17 +13,17 @@ export class NestedEnumIntegrationProviderNullableWithAggregatesFilter {
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })
-  equals?: "SPOTIFY" | "DEEZER" | undefined;
+  equals?: "SPOTIFY" | "DEEZER" | "YOUTUBE" | undefined;
 
   @TypeGraphQL.Field(_type => [IntegrationProvider], {
     nullable: true
   })
-  in?: Array<"SPOTIFY" | "DEEZER"> | undefined;
+  in?: Array<"SPOTIFY" | "DEEZER" | "YOUTUBE"> | undefined;
 
   @TypeGraphQL.Field(_type => [IntegrationProvider], {
     nullable: true
   })
-  notIn?: Array<"SPOTIFY" | "DEEZER"> | undefined;
+  notIn?: Array<"SPOTIFY" | "DEEZER" | "YOUTUBE"> | undefined;
 
   @TypeGraphQL.Field(_type => NestedEnumIntegrationProviderNullableWithAggregatesFilter, {
     nullable: true

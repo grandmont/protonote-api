@@ -8,6 +8,7 @@ import AccountResolver from "./resolvers/AccountResolver";
 import SystemResolver from "./resolvers/SystemResolver";
 import SpotifyIntegration from "./integrations/SpotifyIntegration";
 import DeezerIntegration from "./integrations/DeezerIntegration";
+import YouTubeIntegration from "./integrations/YouTubeIntegration";
 
 export const schema: BuildSchemaOptions = {
   resolvers: [
@@ -24,6 +25,7 @@ export const schema: BuildSchemaOptions = {
     // Integrations
     SpotifyIntegration,
     DeezerIntegration,
+    YouTubeIntegration,
   ] as unknown as NonEmptyArray<Function>,
   validate: false,
 };

@@ -55,6 +55,7 @@ router.get("/youtube", async (req, res) => {
   console.log("start YouTube integration");
 
   const code = req.query?.code;
+  const state = req.query?.state;
 
   console.log(req.query);
   console.log(req.params);
@@ -84,7 +85,7 @@ router.get("/youtube", async (req, res) => {
     }
 
     return res.redirect(
-      `${APP_SCHEME}://youtube?accessToken=${data.access_token}`
+      `${APP_SCHEME}://youtube?accessToken=${data.access_token}&refreshToken=${data.refresh_token}&state=${state}`
     );
   } catch (error) {
     console.log(error);

@@ -22,7 +22,7 @@ export class IntegrationCreateWithoutUserInput {
   @TypeGraphQL.Field(_type => IntegrationProvider, {
     nullable: true
   })
-  provider?: "SPOTIFY" | "DEEZER" | undefined;
+  provider?: "SPOTIFY" | "DEEZER" | "YOUTUBE" | undefined;
 
   @TypeGraphQL.Field(_type => IntegrationStatus, {
     nullable: true
