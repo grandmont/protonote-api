@@ -13,7 +13,7 @@ const DEEZER_ACCESS_TOKEN_URL =
   "https://connect.deezer.com/oauth/access_token.php";
 
 router.get("/deezer", async (req, res) => {
-  console.log("start deezer integration");
+  console.log("start Deezer integration");
 
   const code = req.query?.code;
 
@@ -41,6 +41,46 @@ router.get("/deezer", async (req, res) => {
 
     return res.redirect(
       `${APP_SCHEME}://deezer?accessToken=${data.access_token}`
+    );
+  } catch (error) {
+    console.log(error);
+    res.send({ error });
+  }
+});
+
+const YOUTUBE_ACCESS_TOKEN_URL = "https://";
+
+router.get("/youtube", async (req, res) => {
+  console.log("start YouTube integration");
+
+  const code = req.query?.code;
+
+  console.log(req.query);
+  console.log(req.params);
+  if (!code) {
+    return res.send({
+      error: {
+        message: "No code was returned",
+      },
+    });
+  }
+
+  try {
+    const response = await fetch(
+      `${YOUTUBE_ACCESS_TOKEN_URL}?code=${code}&client_id=${process.env.YOUTUBE_CLIENT_ID}&client_secret=${process.env.YOUTUBE_CLIENT_SECRET}&grant_type=authorization_code`
+    );
+
+    const data = await response.json();
+
+    if (!data.access_token) {
+      console.log("No access_token was returned");
+      return res.redirect(`${APP_SCHEME}://redirect`);
+    }
+
+    console.log(data);
+
+    return res.redirect(
+      `${APP_SCHEME}://youtube?accessToken=${data.access_token}`
     );
   } catch (error) {
     console.log(error);

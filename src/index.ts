@@ -11,6 +11,7 @@ import resolversEnhanceMap from "./config/middleware";
 import RedirectController from "./controllers/RedirectController";
 import spotifyJob from "./jobs/spotifyJob";
 import deezerJob from "./jobs/deezerJob";
+import migration from "./tests/migration";
 
 const port = process.env.PORT || 4000;
 
@@ -35,6 +36,7 @@ async function bootstrap() {
 
   spotifyJob.start();
   deezerJob.start();
+  // migration();
 
   app.listen({ port }, () =>
     console.log(
