@@ -16,6 +16,7 @@ router.get("/deezer", async (req, res) => {
   console.log("start Deezer integration");
 
   const code = req.query?.code;
+  const state = req.query?.state;
 
   if (!code) {
     return res.send({
@@ -40,7 +41,7 @@ router.get("/deezer", async (req, res) => {
     console.log(data);
 
     return res.redirect(
-      `${APP_SCHEME}://deezer?accessToken=${data.access_token}`
+      `${APP_SCHEME}://deezer?accessToken=${data.access_token}&state=${state}`
     );
   } catch (error) {
     console.log(error);
