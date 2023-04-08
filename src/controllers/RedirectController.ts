@@ -76,12 +76,12 @@ router.get("/youtube", async (req, res) => {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!data.access_token) {
       console.log("No access_token was returned");
       return res.redirect(`${APP_SCHEME}://redirect`);
     }
-
-    console.log(data);
 
     return res.redirect(
       `${APP_SCHEME}://youtube?accessToken=${data.access_token}`
